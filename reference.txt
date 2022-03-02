@@ -1,0 +1,8 @@
+Visual Studio 2022 설치
+제네릭 프로그래밍: 데이터 형식에 무관한 코딩, CPP에서 최초 구현 -> Template을 통해 구현
+교재: C++14 STL 철저 입문
+Coding convention - 회사에서 정해주는 코딩 형식/스타일
+string은 Debug 모드에서 메모리를 더 많이 씀
+string_view는 더 적게 씀
+
+
