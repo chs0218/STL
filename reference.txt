@@ -4,5 +4,6 @@ Visual Studio 2022 설치
 Coding convention - 회사에서 정해주는 코딩 형식/스타일
 string은 Debug 모드에서 메모리를 더 많이 씀
 string_view는 더 적게 씀
+C++은 in.close() 같은 행동이 무의미(자동으로 됨)
 
 
