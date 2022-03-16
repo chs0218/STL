@@ -6,4 +6,22 @@ string은 Debug 모드에서 메모리를 더 많이 씀
 string_view는 더 적게 씀
 C++은 in.close() 같은 행동이 무의미(자동으로 됨)
 
+C++ => procedual language -> C언어
+programming	} object oriented Program -> modeling 
+paradigm		} Generic Programming -> 너가 모델링한 자료수의 가짓수가 많은데 그걸 어떻게 프로그래밍할꺼냐
+			-> functional programming
+			-> template meta programming
+				  	
+時 -> time -> continuous
+空 -> space -> contiguous
 
+
+왜 4004? -> CR, LF
+줄 바꿈 형식
+std::ios::binary
+
+	file I/O
+
+모드	입출력
+텍스트	<<, >>
+바이너리	read, write

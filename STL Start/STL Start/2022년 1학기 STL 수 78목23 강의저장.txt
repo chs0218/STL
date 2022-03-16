@@ -699,3 +699,1044 @@ std::ostream& operator <<(std::ostream& c, const Dog& dog)
 	c << dog.getAge();
 	return c;
 }
+
+파일이름: 소스.cpp
+파일크기: 813
+저장시간: 2022-03-10 10:58:24 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 1일)
+// 
+// 할 일 -
+// 템플릿
+// 많은 데이터를 다루는 연습 - 파일
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+//using namespace std;
+
+using namespace std::string_literals;
+
+template<typename T>
+void change(T& a, T& b) {
+	T tmp{};
+	tmp = a;
+	a = b;
+	b = tmp;
+}
+
+// [문제] change를 한번만 선언하고 정의하여
+// main()이 수정없이 실행되도록 하라(5분)
+//----
+int main()
+//----
+{
+	{
+		int a{ 1 }, b{ 2 };
+		change(a, b);
+		std::cout << a << "," << b << std::endl;
+	}
+	{
+		std::string a{ "1"s}, b{"2"s};
+		change(a, b);
+		std::cout << a << "," << b << std::endl;
+	}
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 952
+저장시간: 2022-03-10 10:59:34 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 1일)
+// 
+// 할 일 -
+// 템플릿
+// 많은 데이터를 다루는 연습 - 파일
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+//using namespace std;
+
+using namespace std::string_literals;
+
+template<typename T>
+void change(T& a, T& b) {
+	T tmp{};
+	tmp = a;
+	a = b;
+	b = tmp;
+}
+
+template<>
+void change(int& a, int& b)
+{
+	std::cout << "int 인자의 경우 불리는 함수\n";
+	int tmp;
+	tmp = a;
+	a = b;
+	b = tmp;
+}
+
+// [문제] change를 한번만 선언하고 정의하여
+// main()이 수정없이 실행되도록 하라(5분)
+//----
+int main()
+//----
+{
+	{
+		int a{ 1 }, b{ 2 };
+		change(a, b);
+		std::cout << a << "," << b << std::endl;
+	}
+	{
+		std::string a{ "1"s}, b{"2"s};
+		change(a, b);
+		std::cout << a << "," << b << std::endl;
+	}
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 949
+저장시간: 2022-03-10 11:00:23 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 1일)
+// 
+// 할 일 -
+// 템플릿
+// 많은 데이터를 다루는 연습 - 파일
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+//using namespace std;
+
+using namespace std::string_literals;
+
+template<class T>
+void change(T& a, T& b) {
+	T tmp{};
+	tmp = a;
+	a = b;
+	b = tmp;
+}
+
+template<>
+void change(int& a, int& b)
+{
+	std::cout << "int 인자의 경우 불리는 함수\n";
+	int tmp;
+	tmp = a;
+	a = b;
+	b = tmp;
+}
+
+// [문제] change를 한번만 선언하고 정의하여
+// main()이 수정없이 실행되도록 하라(5분)
+//----
+int main()
+//----
+{
+	{
+		int a{ 1 }, b{ 2 };
+		change(a, b);
+		std::cout << a << "," << b << std::endl;
+	}
+	{
+		std::string a{ "1"s}, b{"2"s};
+		change(a, b);
+		std::cout << a << "," << b << std::endl;
+	}
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 977
+저장시간: 2022-03-10 11:11:18 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 1일)
+// 
+// 할 일 -
+// 템플릿 - 자료형에 관계없는 함수와 클래스를 만드는 핵심 Keyword
+//		 - 이런 방식의 코딩을 generic programming이라고 함
+// 많은 데이터를 다루는 연습 - 파일
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+//using namespace std;
+
+using namespace std::string_literals;
+
+template<class T>
+void change(T& a, T& b) {
+	T tmp{};
+	tmp = a;
+	a = b;
+	b = tmp;
+}
+
+template<>
+void change(int& a, int& b)
+{
+	std::cout << "int 인자의 경우 불리는 함수\n";
+	int tmp;
+	tmp = a;
+	a = b;
+	b = tmp;
+}
+
+
+
+//----
+int main()
+//----
+{
+	{
+		int a{ 1 }, b{ 2 };
+		change(a, b);
+		std::cout << a << "," << b << std::endl;
+	}
+	{
+		std::string a{ "1"s}, b{"2"s};
+		change(a, b);
+		std::cout << a << "," << b << std::endl;
+	}
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 505
+저장시간: 2022-03-10 11:11:42 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 1일)
+// 
+// 할 일 -
+// 템플릿 - 자료형에 관계없는 함수와 클래스를 만드는 핵심 Keyword
+//		 - 이런 방식의 코딩을 generic programming이라고 함
+// 많은 데이터를 다루는 연습 - 파일
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+//using namespace std;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 669
+저장시간: 2022-03-10 11:17:07 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 1일)
+// 
+// 할 일 -
+// 템플릿 - 자료형에 관계없는 함수와 클래스를 만드는 핵심 Keyword
+//		 - 이런 방식의 코딩을 generic programming이라고 함
+// 많은 데이터를 다루는 연습 - 파일
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <random>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] 임의의 값을 갖는(random value) int 1000개를 화면에 출력하라.
+
+//----
+int main()
+//----
+{	
+	for (int i = 0; i < 1000; ++i)
+		std::cout << rand() << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 914
+저장시간: 2022-03-10 11:45:02 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 1일)
+// 
+// 할 일 -
+// 템플릿 - 자료형에 관계없는 함수와 클래스를 만드는 핵심 Keyword
+//		 - 이런 방식의 코딩을 generic programming이라고 함
+// 많은 데이터를 다루는 연습 - 파일
+//		- 랜덤 데이터를 생성하는 방법(엔진/분포) - 시험에서는 노말한 분포를 자주 냄
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <random>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] 엔진과 분포를 사용하여 임의의 값을 갖는(random value) 
+// int 1000개를 화면에 출력하라.
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+
+//----
+int main()
+//----
+{	
+	std::uniform_int_distribution uid;
+	for (int i = 0; i < 1'000; ++i)
+	{
+		std::cout << uid(dre) << '\t';
+	}
+	std::cout << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 906
+저장시간: 2022-03-10 11:47:29 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 1일)
+// 
+// 할 일 -
+// 템플릿 - 자료형에 관계없는 함수와 클래스를 만드는 핵심 Keyword
+//		 - 이런 방식의 코딩을 generic programming이라고 함
+// 많은 데이터를 다루는 연습 - 파일
+//		- 랜덤 데이터를 생성하는 방법(엔진/분포) - 시험에서는 노말한 분포를 자주 냄
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <random>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] int의 최대값을 출력하라
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+
+//----
+int main()
+//----
+{	
+	std::uniform_int_distribution uid;
+	for (int i = 0; i < 1'000; ++i)
+	{
+		std::cout << uid(dre) << '\t';
+	}
+	std::cout << std::endl;
+	std::cout << "UINT 최대값: " << UINT_MAX << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 928
+저장시간: 2022-03-10 11:48:47 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 1일)
+// 
+// 할 일 -
+// 템플릿 - 자료형에 관계없는 함수와 클래스를 만드는 핵심 Keyword
+//		 - 이런 방식의 코딩을 generic programming이라고 함
+// 많은 데이터를 다루는 연습 - 파일
+//		- 랜덤 데이터를 생성하는 방법(엔진/분포) - 시험에서는 노말한 분포를 자주 냄
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <random>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] int의 최대값을 출력하라
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+
+//----
+int main()
+//----
+{	
+	std::uniform_int_distribution uid;
+	for (int i = 0; i < 1'000; ++i)
+	{
+		std::cout << uid(dre) << '\t';
+	}
+	std::cout << std::endl;
+	std::cout << "INT 최대값: " << std::numeric_limits<int>::max() << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 937
+저장시간: 2022-03-10 11:48:58 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 1일)
+// 
+// 할 일 -
+// 템플릿 - 자료형에 관계없는 함수와 클래스를 만드는 핵심 Keyword
+//		 - 이런 방식의 코딩을 generic programming이라고 함
+// 많은 데이터를 다루는 연습 - 파일
+//		- 랜덤 데이터를 생성하는 방법(엔진/분포) - 시험에서는 노말한 분포를 자주 냄
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <random>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] int의 최대값을 출력하라
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+
+//----
+int main()
+//----
+{	
+	std::uniform_int_distribution uid;
+	for (int i = 0; i < 1'000; ++i)
+	{
+		std::cout << uid(dre) << '\t';
+	}
+	std::cout << std::endl;
+	std::cout << "INT 최대값: " << std::numeric_limits<unsigned int>::max() << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 951
+저장시간: 2022-03-10 11:50:50 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 1일)
+// 
+// 할 일 -
+// 템플릿 - 자료형에 관계없는 함수와 클래스를 만드는 핵심 Keyword
+//		 - 이런 방식의 코딩을 generic programming이라고 함
+// 많은 데이터를 다루는 연습 - 파일
+//		- 랜덤 데이터를 생성하는 방법(엔진/분포) - 시험에서는 노말한 분포를 자주 냄
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <random>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] int의 최대값을 출력하라
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+
+//----
+int main()
+//----
+{	
+	std::uniform_int_distribution uid;
+	for (int i = 0; i < 1'000; ++i)
+	{
+		std::cout << uid(dre) << '\t';
+	}
+	std::cout << std::endl;
+	int num = 0B01111111'11111111'11111111'11111111;
+	std::cout << "INT 최대값: " << num << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 924
+저장시간: 2022-03-10 11:51:49 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 1일)
+// 
+// 할 일 -
+// 템플릿 - 자료형에 관계없는 함수와 클래스를 만드는 핵심 Keyword
+//		 - 이런 방식의 코딩을 generic programming이라고 함
+// 많은 데이터를 다루는 연습 - 파일
+//		- 랜덤 데이터를 생성하는 방법(엔진/분포) - 시험에서는 노말한 분포를 자주 냄
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <random>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] int의 최대값을 출력하라
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+
+//----
+int main()
+//----
+{	
+	std::uniform_int_distribution uid;
+	for (int i = 0; i < 1'000; ++i)
+	{
+		std::cout << uid(dre) << '\t';
+	}
+	std::cout << std::endl;
+	int num = 0x7FFFFFFF;
+	std::cout << "INT 최대값: " << num << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 924
+저장시간: 2022-03-10 11:52:25 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 1일)
+// 
+// 할 일 -
+// 템플릿 - 자료형에 관계없는 함수와 클래스를 만드는 핵심 Keyword
+//		 - 이런 방식의 코딩을 generic programming이라고 함
+// 많은 데이터를 다루는 연습 - 파일
+//		- 랜덤 데이터를 생성하는 방법(엔진/분포) - 시험에서는 노말한 분포를 자주 냄
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <random>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] int의 최대값을 출력하라
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+
+//----
+int main()
+//----
+{	
+	std::uniform_int_distribution uid;
+	for (int i = 0; i < 1'000; ++i)
+	{
+		std::cout << uid(dre) << '\t';
+	}
+	std::cout << std::endl;
+	int num = 0xFFFFFFFF;
+	std::cout << "INT 최대값: " << num << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 945
+저장시간: 2022-03-10 12:08:16 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 1일)
+// 
+// 할 일 -
+// 템플릿 - 자료형에 관계없는 함수와 클래스를 만드는 핵심 Keyword
+//		 - 이런 방식의 코딩을 generic programming이라고 함
+// 많은 데이터를 다루는 연습 - 파일
+//		- 랜덤 데이터를 생성하는 방법(엔진/분포) - 시험에서는 노말한 분포를 자주 냄
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <fstream>
+#include <random>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] 랜덤 int 1000개를 "int 1000개.txt"에 저장하라
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+
+//----
+int main()
+//----
+{	
+	std::uniform_int_distribution uid;
+	std::ofstream out{ "int 1000개.txt" };	// 이미 있으면 파괴하고 생성
+
+	for (int i = 0; i < 1'000; ++i)
+		out << uid(dre) << '\t';
+	out << std::endl;
+
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 915
+저장시간: 2022-03-16 15:40:02 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 2일)
+// 
+// 할 일 -
+// 다음시간 질문 - int 1000개를 저장하려면 몇 바이트가 필요하니?
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <fstream>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] "int 1000개.txt"에 저장된 int 1000개를 화면 출력하라.
+// 가장 큰 값을 찾아 화면에 출력하라
+
+//----
+int main()
+//----
+{
+	std::ifstream in{ "int 1000개.txt" };
+	if (!in)
+	{
+		std::cout << "파일을 열 수 없다" << std::endl;
+		return 0;
+	}
+
+	int maxValue = std::numeric_limits<unsigned int>::min();
+	int* tmp = new int[1000];
+	for (int i = 0; i < 1000; ++i)
+	{
+		in >> tmp[i];
+		if (tmp[i] > maxValue)
+			maxValue = tmp[i];
+	}
+
+	std::cout << "가장 큰 값: " << maxValue;
+	delete[] tmp;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 794
+저장시간: 2022-03-16 15:52:31 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 2일)
+// 
+// 할 일 -
+// 다음시간 질문 - int 1000개를 저장하려면 몇 바이트가 필요하니?
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] "int 1000개.txt"에 저장된 int 1000개를 화면 출력하라.
+// 가장 큰 값을 찾아 화면에 출력하라
+
+//----
+int main()
+//----
+{
+	std::ifstream in{ "int 1000개.txt" };
+	if (!in)
+	{
+		std::cout << "파일을 열 수 없다" << std::endl;
+		return 0;
+	}
+
+	auto p = std::max_element(std::istream_iterator<int>{in}, {});
+	std::cout << "최대값: " << *p << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 802
+저장시간: 2022-03-16 16:09:12 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 2일)
+// 
+// 할 일 -
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <fstream>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] int 1000개를 저장하려면 메모리 몇 바이트가 필요합니까?
+//		-> 상황에 따라 다름
+//		-> 그렇지만 int 메모리 자체 비트를 그래도 기록하고 일거 온다면
+//		-> 어떤 상황에서도 4000바이트면 문제가 없다
+
+// [문제] int 1000개를 "int 1000개.txt" 파일에 메모리 그대로 기록하라.
+//----
+int main()
+//----
+{
+	std::ofstream out{ "int 1000개.txt" };
+	int num;
+	for (int i = 0; i < 1000; ++i)
+	{
+		num = i + 1;
+		out.write((const char*)&num, sizeof(num));
+	}
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 820
+저장시간: 2022-03-16 16:18:12 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 2일)
+// 
+// 할 일 -
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <fstream>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] int 1000개를 저장하려면 메모리 몇 바이트가 필요합니까?
+//		-> 상황에 따라 다름
+//		-> 그렇지만 int 메모리 자체 비트를 그래도 기록하고 일거 온다면
+//		-> 어떤 상황에서도 4000바이트면 문제가 없다
+
+// [문제] int 1000개를 "int 1000개.txt" 파일에 메모리 그대로 기록하라.
+//----
+int main()
+//----
+{
+	std::ofstream out{ "int 1000개.txt", std::ios::binary };
+	int num;
+	for (int i = 0; i < 1000; ++i)
+	{
+		num = i + 1;
+		out.write((const char*)&num, sizeof(num));
+	}
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 915
+저장시간: 2022-03-16 16:33:47 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 2일)
+// 
+// 할 일 -
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <random>
+#include <fstream>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] int 1000개를 저장하려면 메모리 몇 바이트가 필요합니까?
+//		-> 상황에 따라 다름
+//		-> 그렇지만 int 메모리 자체 비트를 그래도 기록하고 일거 온다면
+//		-> 어떤 상황에서도 4000바이트면 문제가 없다
+
+// [문제] int 1000개를 "int 1000개.txt" 파일에 메모리 그대로 기록하라.
+//----
+
+std::default_random_engine dre;
+std::uniform_int_distribution uid;
+
+int main()
+//----
+{
+	std::ofstream out{ "int 1000개.txt", std::ios::binary };
+	int num;
+	for (int i = 0; i < 1000; ++i)
+	{
+		num = uid(dre);
+		out.write((const char*)&num, sizeof(num));
+	}
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 819
+저장시간: 2022-03-16 16:40:45 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 3일 목요일(2주 2일)
+// 
+// 할 일 -
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <fstream>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] 랜덤 값을 갖는 int 1000를
+// "int 1000개.txt" 파일에 binary 모드와 write 함수를 사용하여 기록하였다.
+// 읽어서 가장 큰 값을 찾아 화면에 출력하라
+//----
+
+int main()
+//----
+{
+	std::ifstream in{ "int 1000개.txt", std::ios::binary };
+	int maxValue = std::numeric_limits<int>::min();
+	int num;
+	for (int i = 0; i < 1000; ++i)
+	{
+		in.read((char*)&num, sizeof(num));
+		if (maxValue < num)
+			maxValue = num;
+	}
+	std::cout << "최대 값: " << maxValue << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 775
+저장시간: 2022-03-16 16:59:19 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(2주 2일)
+// 
+// 책/구글 꼭 찾아보기
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <algorithm>
+#include <fstream>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] 랜덤 값을 갖는 int 1000를
+// "int 1000개.txt" 파일에 binary 모드와 write 함수를 사용하여 기록하였다.
+// 읽어서 가장 큰 값을 찾아 화면에 출력하라
+//----
+
+int main()
+//----
+{
+	std::ifstream in{ "int 1000개.txt", std::ios::binary };
+	int num[1000];
+	in.read((char*)&num, 1000 * sizeof(int));
+	
+	std::cout << "최댓값: " << *std::max_element(std::begin(num), std::end(num)) << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 937
+저장시간: 2022-03-16 17:05:53 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(2주 2일)
+// 
+// 책/구글 꼭 찾아보기
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <algorithm>
+#include <fstream>
+#include <format>	// c++20 최신이어야 돌아감
+#include "save.h"
+
+//using namespace std;
+
+// [문제] 랜덤 값을 갖는 int 1000를
+// "int 1000개.txt" 파일에 binary 모드와 write 함수를 사용하여 기록하였다.
+// 읽어서 가장 큰 값을 찾아 화면에 출력하라
+//----
+
+int main()
+//----
+{
+	std::ifstream in{ "int 1000개.txt", std::ios::binary };
+	int num[1000];
+	in.read((char*)&num, 1000 * sizeof(int));
+	
+	// 읽은 값 출력 연습
+	for (int num : num)
+		std::cout << std::format("{:80}", num);
+	std::cout << std::endl;
+
+	std::cout << "최댓값: " << *std::max_element(std::begin(num), std::end(num)) << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 938
+저장시간: 2022-03-16 17:05:59 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(2주 2일)
+// 
+// 책/구글 꼭 찾아보기
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <algorithm>
+#include <fstream>
+#include <format>	// c++20 최신이어야 돌아감
+#include "save.h"
+
+//using namespace std;
+
+// [문제] 랜덤 값을 갖는 int 1000를
+// "int 1000개.txt" 파일에 binary 모드와 write 함수를 사용하여 기록하였다.
+// 읽어서 가장 큰 값을 찾아 화면에 출력하라
+//----
+
+int main()
+//----
+{
+	std::ifstream in{ "int 1000개.txt", std::ios::binary };
+	int num[1000];
+	in.read((char*)&num, 1000 * sizeof(int));
+	
+	// 읽은 값 출력 연습
+	for (int num : num)
+		std::cout << std::format("{:^80}", num);
+	std::cout << std::endl;
+
+	std::cout << "최댓값: " << *std::max_element(std::begin(num), std::end(num)) << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 938
+저장시간: 2022-03-16 17:06:17 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(2주 2일)
+// 
+// 책/구글 꼭 찾아보기
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <algorithm>
+#include <fstream>
+#include <format>	// c++20 최신이어야 돌아감
+#include "save.h"
+
+//using namespace std;
+
+// [문제] 랜덤 값을 갖는 int 1000를
+// "int 1000개.txt" 파일에 binary 모드와 write 함수를 사용하여 기록하였다.
+// 읽어서 가장 큰 값을 찾아 화면에 출력하라
+//----
+
+int main()
+//----
+{
+	std::ifstream in{ "int 1000개.txt", std::ios::binary };
+	int num[1000];
+	in.read((char*)&num, 1000 * sizeof(int));
+	
+	// 읽은 값 출력 연습
+	for (int num : num)
+		std::cout << std::format("{:<80}", num);
+	std::cout << std::endl;
+
+	std::cout << "최댓값: " << *std::max_element(std::begin(num), std::end(num)) << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 937
+저장시간: 2022-03-16 17:06:37 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(2주 2일)
+// 
+// 책/구글 꼭 찾아보기
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <algorithm>
+#include <fstream>
+#include <format>	// c++20 최신이어야 돌아감
+#include "save.h"
+
+//using namespace std;
+
+// [문제] 랜덤 값을 갖는 int 1000를
+// "int 1000개.txt" 파일에 binary 모드와 write 함수를 사용하여 기록하였다.
+// 읽어서 가장 큰 값을 찾아 화면에 출력하라
+//----
+
+int main()
+//----
+{
+	std::ifstream in{ "int 1000개.txt", std::ios::binary };
+	int num[1000];
+	in.read((char*)&num, 1000 * sizeof(int));
+	
+	// 읽은 값 출력 연습
+	for (int num : num)
+		std::cout << std::format("{:20}", num);
+	std::cout << std::endl;
+
+	std::cout << "최댓값: " << *std::max_element(std::begin(num), std::end(num)) << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 815
+저장시간: 2022-03-16 17:11:44 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(2주 2일)
+// 
+// 책/구글 꼭 찾아보기
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <algorithm>
+#include <array>
+#include <fstream>
+#include "save.h"
+
+//using namespace std;
+
+// [문제] 랜덤 값을 갖는 int 1000를
+// "int 1000개.txt" 파일에 binary 모드와 write 함수를 사용하여 기록하였다.
+// 읽어서 가장 큰 값을 찾아 화면에 출력하라
+//----
+
+int main()
+//----
+{
+	std::ifstream in{ "int 1000개.txt", std::ios::binary };
+	std::array<int, 1000> num;
+	
+	in.read((char*)num.data(), 1'000 * sizeof(int));
+	
+	std::cout << "최댓값: " << *std::max_element(std::begin(num), std::end(num)) << std::endl;
+	save("소스.cpp");
+}

@@ -1,66 +1,31 @@
 //-----------------------------------------------------------------------------
-// 2022. 1학기 STL 3월 3일 목요일(1주 2일)
+// 2022. 1학기 STL 3월 16일 수요일(2주 2일)
 // 
-// 할 일 - 어제 코딩한 save 함수를 save.cpp로 분리한 후 실행되도록 수정
-// &의 의미를 복습
-// class를 복습
-// Youtube - Back to Basics Classic STL 강의를 볼 수 있다면 도움이 될 것임
+// 책/구글 꼭 찾아보기
 //-----------------------------------------------------------------------------
 #include <iostream>
+#include <array>
+#include <fstream>
 #include "save.h"
 
 //using namespace std;
 
-// [문제] main()을 변경하면 안된다.
-// 실행하면 a와 b의 값이 서로 바뀌어야한다.
-
-class Dog {
-	friend std::ostream& operator<<(std::ostream os, const Dog& dog);
-private:
-	int age;
-public:
-	Dog() = default;
-
-	Dog(int i) :age{ i } {};
-
-	void changeAge(const int i)
-	{
-		age = i;
-	}
-
-	/*operator int() {
-		return age;
-	}*/
-
-};
-
-void change(Dog&, Dog&);
-
-std::ostream& operator <<(std::ostream& os, const Dog& dog)
-{
-	os << dog.age;
-	return os;
-};
-
+// [문제] 사용자가 원하는 만큼 int를 저장할 메모리를 확보하고
+// 1부터 증가하는 정수로 메모리를 채워라
+// 전체 합계를 출력하라
+// 예) 10
+//	   1 2 3 4 5 6 7 8 9 10
+//	   55
+ 
+//----
 int main()
+//----
 {
-	Dog a{ 1 };
-	Dog b{ 2 };
-
-	change(a, b);
-
-	std::cout << a << ", " << b << std::endl;
-	//save("소스.cpp");
-}
-
-std::ostream& operator<<(std::ostream os, const Dog& dog)
-{
-	// TODO: 여기에 return 문을 삽입합니다.
-}
-
-void change(Dog& a, Dog& b)
-{
-	Dog tmp{};	// default 초기화
-
+	int num;
+	std::cout << "int 몇 개를 원하십니까? ";
+	std::cin >> num;
+	std::array<int, num> ar;
+	// 여기 들어갈 코드를 답지에 적어라
 	
+	// save("소스.cpp");
 }
