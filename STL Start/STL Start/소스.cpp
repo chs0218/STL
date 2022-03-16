@@ -4,7 +4,7 @@
 // 책/구글 꼭 찾아보기
 //-----------------------------------------------------------------------------
 #include <iostream>
-#include <array>
+#include <vector>
 #include <fstream>
 #include "save.h"
 
@@ -24,7 +24,17 @@ int main()
 	int num;
 	std::cout << "int 몇 개를 원하십니까? ";
 	std::cin >> num;
-	std::array<int, num> ar;
+
+	std::vector<int> arr;
+	int result = 0;
+	for (int i = 0; i < num; ++i)
+	{
+		arr.emplace_back(i + 1);
+		result += arr[i];
+	}
+
+	std::cout << "결과: " << result << std::endl;
+
 	// 여기 들어갈 코드를 답지에 적어라
 	
 	// save("소스.cpp");
