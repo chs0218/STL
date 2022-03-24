@@ -1,41 +1,53 @@
 //-----------------------------------------------------------------------------
-// 2022. 1학기 STL 3월 16일 수요일(2주 2일)
+// 2022. 1학기 STL 3월 16일 수요일(3주 2일)
 // 
-// 책/구글 꼭 찾아보기
+// int[100] 대신에 -> array<int, 100> 사용하자
+// int* 대신에 -> unique_ptr<int> 사용하자
+// int*가 new int[100] 대신에 -> unique_ptr<int[]> 사용하자
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+// STRING
 //-----------------------------------------------------------------------------
 #include <iostream>
-#include <vector>
-#include <fstream>
+#include <thread>
 #include "save.h"
 
-//using namespace std;
 
-// [문제] 사용자가 원하는 만큼 int를 저장할 메모리를 확보하고
-// 1부터 증가하는 정수로 메모리를 채워라
-// 전체 합계를 출력하라
-// 예) 10
-//	   1 2 3 4 5 6 7 8 9 10
-//	   55
- 
+using namespace std::chrono_literals;
+// using namespace std;
+//
+// 실행시킬때 함수 포인터를 계속 바꿔주면 같은 함수를 호출하면서 다른 기능을 사용할 수 있다.
+// 키 입력을 바꾸는 방법이 될 수 있다.
+//
+
+void jump() {
+	std::cout << "점프" << std::endl;
+}
+
+void slide() {
+	std::cout << "슬라이드" << std::endl;
+}
+
 //----
 int main()
 //----
 {
-	int num;
-	std::cout << "int 몇 개를 원하십니까? ";
-	std::cin >> num;
-
-	std::vector<int> arr;
-	int result = 0;
-	for (int i = 0; i < num; ++i)
-	{
-		arr.emplace_back(i + 1);
-		result += arr[i];
-	}
-
-	std::cout << "결과: " << result << std::endl;
-
-	// 여기 들어갈 코드를 답지에 적어라
+	save("소스.cpp");
 	
-	// save("소스.cpp");
+	void(*f)(void)= jump;
+
+	// 3초에 한번씩 jump/slide toggle
+	int cnt{};
+	while (true) {
+		f();	// 1초마다 호출
+		// 3초가 지나면 바꾼다
+		std::this_thread::sleep_for(1s);
+		if ((++cnt % 3) == 0) {
+			if (f == jump)
+				f = slide;
+			else
+				f = jump;
+		}
+	}
 }

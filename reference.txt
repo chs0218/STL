@@ -25,3 +25,9 @@ std::ios::binary
 모드	입출력
 텍스트	<<, >>
 바이너리	read, write
+
+
+int* p = new int;
+delete p;
+를 해도 중간에 프로그램이 끝나버리면 메모리가 할당 해제되지 않음
+RAII -> 객체가 소멸자가 호출 될 것임을 보장됨
