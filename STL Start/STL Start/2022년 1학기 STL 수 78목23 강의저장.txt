@@ -2832,3 +2832,821 @@ int main()
 		}
 	}
 }
+
+
+파일이름: 소스.cpp
+파일크기: 1303
+저장시간: 2022-03-24 10:39:38 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(3주 2일)
+// 
+// int[100] 대신에 -> array<int, 100> 사용하자
+// int* 대신에 -> unique_ptr<int> 사용하자
+// int*가 new int[100] 대신에 -> unique_ptr<int[]> 사용하자
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+// STRING
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <thread>
+#include "save.h"
+
+// using namespace std;
+//
+// 실행시킬때 함수 포인터를 계속 바꿔주면 같은 함수를 호출하면서 다른 기능을 사용할 수 있다.
+// 키 입력을 바꾸는 방법이 될 수 있다.
+//
+
+void jump() {
+	std::cout << "점프" << std::endl;
+}
+
+void slide() {
+	std::cout << "슬라이드" << std::endl;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// 확인 - 함수의 이름은 함수가 기록되어 있는 CODE 세그먼트의 시작번지이다.
+	// 함수들은 유사한 메모리에 기록되어 있음을 알 수 있다.
+
+	std::cout << "main = " << std::addressof(main) << std::endl;
+	std::cout << "svae = " << std::addressof(save) << std::endl;
+	std::cout << "main = " << std::addressof(jump) << std::endl;
+	std::cout << "main = " << std::addressof(slide) << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1449
+저장시간: 2022-03-24 10:41:07 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(3주 2일)
+// 
+// int[100] 대신에 -> array<int, 100> 사용하자
+// int* 대신에 -> unique_ptr<int> 사용하자
+// int*가 new int[100] 대신에 -> unique_ptr<int[]> 사용하자
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+// STRING
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <thread>
+#include "save.h"
+
+// using namespace std;
+//
+// 실행시킬때 함수 포인터를 계속 바꿔주면 같은 함수를 호출하면서 다른 기능을 사용할 수 있다.
+// 키 입력을 바꾸는 방법이 될 수 있다.
+//
+
+void jump() {
+	std::cout << "점프" << std::endl;
+}
+
+void slide() {
+	std::cout << "슬라이드" << std::endl;
+}
+
+int g;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// 확인 - 함수의 이름은 함수가 기록되어 있는 CODE 세그먼트의 시작번지이다.
+	// 함수들은 유사한 메모리에 기록되어 있음을 알 수 있다.
+
+	std::cout << "main = " << std::addressof(main) << std::endl;
+	std::cout << "save = " << std::addressof(save) << std::endl;
+	std::cout << "jump = " << std::addressof(jump) << std::endl;
+	std::cout << "slide = " << std::addressof(slide) << std::endl;
+
+	int n;
+	std::cout << "스택 - " << std::addressof(n) << std::endl;
+
+	std::cout << "데이터 - " << std::addressof(g) << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 601
+저장시간: 2022-03-24 10:51:19 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+// using namespace std;
+
+
+// 호츨가능(Callable) 타입
+
+
+//----
+int main()
+//----
+{
+	std::cout << "메인 호출" << std::endl;
+	int(*t)(void) = (int(*)(void))main;
+	std::cout << sizeof(t);
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 732
+저장시간: 2022-03-24 10:59:03 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+// using namespace std;
+
+
+// 호츨가능(Callable) 타입
+// 호출가능한 타입은 어떤 것들이 있나
+// 1. 함수 - CODE SEGMENT에 기록된 명령어들의 집합의 시작번지
+// 2. 람다 - 이름 없는 함수
+//
+
+//----
+int main()
+//----
+{
+	// lambda
+	[]() {
+		std::cout << "안녕? 나는 람다라고 해! 불러줘서 반가워!" << std::endl;
+	}();
+
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 769
+저장시간: 2022-03-24 10:59:55 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+// using namespace std;
+
+
+// 호츨가능(Callable) 타입
+// 호출가능한 타입은 어떤 것들이 있나
+// 1. 함수 - CODE SEGMENT에 기록된 명령어들의 집합의 시작번지
+// 2. 람다 - 이름 없는 함수
+//
+
+//----
+int main()
+//----
+{
+	// lambda
+	std::cout << typeid([]() {
+		std::cout << "안녕? 나는 람다라고 해! 불러줘서 반가워!" << std::endl;
+	}).name() << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 785
+저장시간: 2022-03-24 11:01:41 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+// using namespace std;
+
+
+// 호츨가능(Callable) 타입
+// 호출가능한 타입은 어떤 것들이 있나
+// 1. 함수 - CODE SEGMENT에 기록된 명령어들의 집합의 시작번지
+// 2. 람다 - 이름 없는 함수
+//
+
+//----
+int main()
+//----
+{
+	// lambda
+	auto x = []() {
+		std::cout << "안녕? 나는 람다라고 해! 불러줘서 반가워!" << std::endl;
+	};
+
+	std::cout << typeid(x).name() << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 855
+저장시간: 2022-03-24 11:05:09 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+// using namespace std;
+
+
+// 호츨가능(Callable) 타입
+// 호출가능한 타입은 어떤 것들이 있나
+// 1. 함수 - CODE SEGMENT에 기록된 명령어들의 집합의 시작번지
+// 2. 람다 - 이름 없는 함수
+//
+
+
+
+//----
+int main()
+//----
+{
+	class Dog{};
+	std::cout << typeid(Dog).name() << std::endl;
+
+	// lambda
+	auto x = []() {
+		std::cout << "안녕? 나는 람다라고 해! 불러줘서 반가워!" << std::endl;
+	};
+	
+	std::cout << typeid(x).name() << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1007
+저장시간: 2022-03-24 11:05:40 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+// using namespace std;
+
+
+// 호츨가능(Callable) 타입
+// 호출가능한 타입은 어떤 것들이 있나
+// 1. 함수 - CODE SEGMENT에 기록된 명령어들의 집합의 시작번지
+// 2. 람다 - 이름 없는 함수
+//
+
+
+
+//----
+int main()
+//----
+{
+	class Dog{};
+	std::cout << typeid(Dog).name() << std::endl;
+
+	// lambda
+	auto x = []() {
+		std::cout << "안녕? 나는 람다라고 해! 불러줘서 반가워!" << std::endl;
+	};
+	
+	std::cout << typeid(x).name() << std::endl;
+	
+	auto x1 = []() {
+		std::cout << "안녕? 나는 람다라고 해! 불러줘서 반가워!" << std::endl;
+	};
+
+	std::cout << typeid(x1).name() << std::endl;
+	
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1067
+저장시간: 2022-03-24 11:06:12 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+// using namespace std;
+
+
+// 호츨가능(Callable) 타입
+// 호출가능한 타입은 어떤 것들이 있나
+// 1. 함수 - CODE SEGMENT에 기록된 명령어들의 집합의 시작번지
+// 2. 람다 - 이름 없는 함수
+//
+
+class Cat{};
+
+//----
+int main()
+//----
+{
+	std::cout << typeid(Cat).name() << std::endl;
+	class Dog{};
+	std::cout << typeid(Dog).name() << std::endl;
+
+	// lambda
+	auto x = []() {
+		std::cout << "안녕? 나는 람다라고 해! 불러줘서 반가워!" << std::endl;
+	};
+	
+	std::cout << typeid(x).name() << std::endl;
+	
+	auto x1 = []() {
+		std::cout << "안녕? 나는 람다라고 해! 불러줘서 반가워!" << std::endl;
+	};
+
+	std::cout << typeid(x1).name() << std::endl;
+	
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 922
+저장시간: 2022-03-24 11:06:54 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+// using namespace std;
+
+
+// 호츨가능(Callable) 타입
+// 호출가능한 타입은 어떤 것들이 있나
+// 1. 함수 - CODE SEGMENT에 기록된 명령어들의 집합의 시작번지
+// 2. 람다 - 이름 없는 함수
+//
+
+class Cat{};
+
+
+auto x = []() {
+	std::cout << "안녕? 나는 람다라고 해! 불러줘서 반가워!" << std::endl;
+};
+
+//----
+int main()
+//----
+{
+	std::cout << typeid(Cat).name() << std::endl;
+	class Dog{};
+	std::cout << typeid(Dog).name() << std::endl;
+
+	// lambda
+	
+	
+	std::cout << typeid(x).name() << std::endl;
+	
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 874
+저장시간: 2022-03-24 11:13:31 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+// using namespace std;
+
+
+// 호츨가능(Callable) 타입
+// 호출가능한 타입은 어떤 것들이 있나
+// 1. 함수 - CODE SEGMENT에 기록된 명령어들의 집합의 시작번지
+// 2. 람다 - 이름 없는 함수, 실제는 클래스로 구현한다.
+// 3. 클래스 객체 -  
+//
+
+// 어떤 클래스가 () 연산자를 오버로딩하였다면 그 객체는 호출 가능하다.
+class Dog {
+public:
+	void operator()() {
+		std::cout << "Dog 호출" << std::endl;
+	}
+};
+
+
+
+//----
+int main()
+//----
+{
+	Dog dog;
+
+	dog();
+
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1048
+저장시간: 2022-03-24 11:16:26 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <array>
+#include <algorithm>
+#include "save.h"
+
+// using namespace std;
+
+
+// 호츨가능(Callable) 타입
+// 호출가능한 타입은 어떤 것들이 있나
+// 1. 함수 - CODE SEGMENT에 기록된 명령어들의 집합의 시작번지
+// 2. 람다 - 이름 없는 함수, 실제는 클래스로 구현한다.
+// 3. 클래스 객체 -  
+//
+
+// 어떤 클래스가 () 연산자를 오버로딩하였다면 그 객체는 호출 가능하다.
+class Dog {
+public:
+	bool operator()(int a, int b) {
+		std::cout << "Dog 호출" << std::endl;
+		return a > b;
+	}
+};
+
+
+
+//----
+int main()
+//----
+{
+	std::array<int, 5> a{ 1,3,5,2,4 };
+	std::sort(a.begin(), a.end(), Dog());
+
+	for (int n : a)
+		std::cout << n << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1090
+저장시간: 2022-03-24 11:17:36 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <array>
+#include <algorithm>
+#include "save.h"
+
+// using namespace std;
+
+
+// 호츨가능(Callable) 타입
+// 호출가능한 타입은 어떤 것들이 있나
+// 1. 함수 - CODE SEGMENT에 기록된 명령어들의 집합의 시작번지
+// 2. 람다 - 이름 없는 함수, 실제는 클래스로 구현한다.
+// 3. 클래스 객체 -  
+//
+
+// 어떤 클래스가 () 연산자를 오버로딩하였다면 그 객체는 호출 가능하다.
+class Dog {
+public:
+	bool operator()(int a, int b) {
+		std::cout << "Dog 호출 - " << a << " - " << b << std::endl;
+		return a > b;
+	}
+};
+
+
+
+//----
+int main()
+//----
+{
+	std::array<int, 5> a{ 1,3,5,2,4 };
+	std::sort(a.begin(), a.end(), Dog());
+
+	for (int n : a)
+		std::cout << n << ' ';
+	std::cout << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1146
+저장시간: 2022-03-24 11:20:04 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <array>
+#include <algorithm>
+#include "save.h"
+
+// using namespace std;
+
+
+// 호츨가능(Callable) 타입
+// 호출가능한 타입은 어떤 것들이 있나
+// 1. 함수 - CODE SEGMENT에 기록된 명령어들의 집합의 시작번지
+// 2. 람다 - 이름 없는 함수, 실제는 클래스로 구현한다.
+// 3. 클래스 객체 - function call operator()을 오버로딩한 클래스
+// 어떤 클래스가 () 연산자를 오버로딩하였다면 그 객체는 호출 가능하다.
+//
+
+
+class Dog {
+public:
+	bool operator()(int a, int b) {
+		std::cout << "Dog 호출 - " << a << " - " << b << std::endl;
+		return a < b;
+	}
+};
+
+
+
+//----
+int main()
+//----
+{
+	std::array<int, 5> a{ 1,3,5,2,4 };
+	Dog dog;
+
+	std::sort(a.begin(), a.end(), dog);
+
+	for (int n : a)
+		std::cout << n << ' ';
+	std::cout << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 880
+저장시간: 2022-03-24 11:35:22 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <array>
+#include <algorithm>
+#include "save.h"
+
+// using namespace std;
+
+
+// 호츨가능(Callable) 타입 - 무한대
+// 호출가능한 타입은 어떤 것들이 있나
+// 1. 함수포인터 - CODE SEGMENT에 기록된 명령어들의 집합의 시작번지
+// 2. 람다 - 이름 없는 함수, 실제는 클래스로 구현한다.
+// 3. operator()을 오버로딩한 클래스
+// 4. 멤버함수포인터
+//
+
+// - 호출가능 카입의 종류가 무한하기 때문에
+// 모든 호출가능타입을 대표하는 클래스를 만들었다 fuction
+
+//----
+int main()
+//----
+{
+	
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 618
+저장시간: 2022-03-24 11:37:28 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 호출가능(Callable) 타입 - 예제는 sort를 사용
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <functional>
+#include "save.h"
+
+// using namespace std;
+
+int add(int a, int b) 
+{
+	return a + b;
+}
+
+//----
+int main()
+//----
+{
+	std::function<int(int, int)> f;
+	f = add;
+	
+	std::cout << f(3, 3) << std::endl;
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1232
+저장시간: 2022-03-24 12:03:16 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//	STRING 
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+// using namespace std;
+
+// [문제] main()이 문제없이 실행되도록 class STRING을 코딩하라.
+// speacial 함수는 동작을 관찰하도록 cout으로 메모리와 동작을 코딩한다.
+// 객체 생성시 고유번호를 갖도록 한다.
+
+class STRING {
+	size_t num;
+	int id;				// 생성 시 부여
+	char* data;
+	static int cid;		// 객체가 생성될 때 1 증가
+public:
+	STRING(const char* str) : num{ strlen(str) }, data { new char[num] } {
+		memcpy(data, str, num);
+
+		id = ++cid;
+		// 관찰메시지를 켜면 출력한다.
+		std::cout << "ctor [" << id << "] " << this << std::endl;
+	}
+
+
+	~STRING() {
+		// 관찰메시지를 켜면 출력한다.
+		std::cout << "dtor [" << id << "] " << this << std::endl;
+		delete[] data;
+	}
+};
+
+int STRING::cid{};
+
+//----
+int main()
+//----
+{
+	STRING a{ "2022 1학기" };
+	STRING b{ "STL" };
+	
+	/*std::cout << a << std::endl;
+	std::cout << b << std::endl;*/
+
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1433
+저장시간: 2022-03-24 12:07:58 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
+// 
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//	STRING 
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+// using namespace std;
+
+// [문제] main()이 문제없이 실행되도록 class STRING을 코딩하라.
+// speacial 함수는 동작을 관찰하도록 cout으로 메모리와 동작을 코딩한다.
+// 객체 생성시 고유번호를 갖도록 한다.
+
+class STRING {
+	size_t num;
+	int id;				// 생성 시 부여
+	char* data;
+	static int cid;		// 객체가 생성될 때 1 증가
+public:
+	STRING(const char* str) : num{ strlen(str) }, data { new char[num] } {
+		memcpy(data, str, num);
+
+		id = ++cid;
+		// 관찰메시지를 켜면 출력한다.
+		std::cout << "ctor [" << id << "] " << this << std::endl;
+	}
+
+
+	~STRING() {
+		// 관찰메시지를 켜면 출력한다.
+		std::cout << "dtor [" << id << "] " << this << std::endl;
+		delete[] data;
+	}
+
+	friend std::ostream& operator<<(std::ostream&, const STRING&);
+};
+
+
+int STRING::cid{};
+std::ostream& operator<<(std::ostream& os, const STRING& s)
+{
+	for (int i = 0; i < s.num; ++i)
+		os << s.data[i];
+
+	return os;
+}
+
+//----
+int main()
+//----
+{
+	STRING a{ "2022 1학기" };
+	STRING b{ "STL" };
+	
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+
+	save("소스.cpp");
+}

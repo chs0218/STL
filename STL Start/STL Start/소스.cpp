@@ -1,53 +1,65 @@
 //-----------------------------------------------------------------------------
-// 2022. 1학기 STL 3월 16일 수요일(3주 2일)
+// 2022. 1학기 STL 3월 16일 수요일(4주 1일)
 // 
-// int[100] 대신에 -> array<int, 100> 사용하자
-// int* 대신에 -> unique_ptr<int> 사용하자
-// int*가 new int[100] 대신에 -> unique_ptr<int[]> 사용하자
-// 
-// 호출가능(Callable) 타입 - 예제는 sort를 사용
 // 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
-// STRING
+//	STRING 
 //-----------------------------------------------------------------------------
 #include <iostream>
-#include <thread>
 #include "save.h"
 
-
-using namespace std::chrono_literals;
 // using namespace std;
-//
-// 실행시킬때 함수 포인터를 계속 바꿔주면 같은 함수를 호출하면서 다른 기능을 사용할 수 있다.
-// 키 입력을 바꾸는 방법이 될 수 있다.
-//
 
-void jump() {
-	std::cout << "점프" << std::endl;
+// [문제] main()이 문제없이 실행되도록 class STRING을 코딩하라.
+// speacial 함수는 동작을 관찰하도록 cout으로 메모리와 동작을 코딩한다.
+// 객체 생성시 고유번호를 갖도록 한다.
+
+class STRING {
+	int id;				// 생성 시 부여
+	size_t num;
+	char* data;
+	static int cid;		// 객체가 생성될 때 1 증가
+public:
+	STRING(const char* str) : num{ strlen(str) }, data { new char[num] } {
+		memcpy(data, str, num);
+
+		id = ++cid;
+		// 관찰메시지를 켜면 출력한다.
+		std::cout << "ctor [" << id << "] " << this << std::endl;
+	}
+
+
+	~STRING() {
+		// 관찰메시지를 켜면 출력한다.
+		std::cout << "dtor [" << id << "] " << this << std::endl;
+		delete[] data;
+	}
+
+	friend std::ostream& operator<<(std::ostream&, const STRING&);
+};
+
+
+int STRING::cid{};
+std::ostream& operator<<(std::ostream& os, const STRING& s)
+{
+	for (int i = 0; i < s.num; ++i)
+		os << s.data[i];
+
+	return os;
 }
 
-void slide() {
-	std::cout << "슬라이드" << std::endl;
-}
 
 //----
 int main()
 //----
 {
-	save("소스.cpp");
-	
-	void(*f)(void)= jump;
+	std::cout << sizeof(STRING) << std::endl;
+	STRING a{ "2022 1학기" };
+	STRING b{ "STL" };
+	// STRING c = a + b;
 
-	// 3초에 한번씩 jump/slide toggle
-	int cnt{};
-	while (true) {
-		f();	// 1초마다 호출
-		// 3초가 지나면 바꾼다
-		std::this_thread::sleep_for(1s);
-		if ((++cnt % 3) == 0) {
-			if (f == jump)
-				f = slide;
-			else
-				f = jump;
-		}
-	}
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	// std::cout << c << std::endl;
+
+	// save("소스.cpp");
 }
