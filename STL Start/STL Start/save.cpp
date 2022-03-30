@@ -7,6 +7,7 @@
 // 2022.3.3	Programmed by HS
 //-----------------------------------------------------------------------------
 
+
 #include <filesystem>
 #include <fstream>
 #include <vector>
@@ -29,7 +30,7 @@ void save(std::string_view fname)
 	out << std::endl << std::endl;
 	out << "파일이름: " << fname << std::endl;
 	out << "파일크기: " << std::filesystem::file_size(fname) << std::endl;
-
+	
 
 	// 현재 날짜와 시간(C++20)을 출력한다.
 	auto time = floor<std::chrono::seconds>(std::chrono::system_clock::now());

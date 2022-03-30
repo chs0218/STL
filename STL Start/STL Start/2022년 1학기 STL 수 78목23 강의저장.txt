@@ -3650,3 +3650,583 @@ int main()
 
 	save("소스.cpp");
 }
+
+
+파일이름: 소스.cpp
+파일크기: 1990
+저장시간: 2022-03-30 15:48:41 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 2일)
+// 
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//	STRING 
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+// using namespace std;
+
+// [문제] main()이 문제없이 실행되도록 class STRING을 코딩하라.
+// speacial 함수는 동작을 관찰하도록 cout으로 메모리와 동작을 코딩한다.
+// 객체 생성시 고유번호를 갖도록 한다.
+
+bool 관찰{ false };
+
+class STRING {
+	int id;				// 생성 시 부여
+	size_t num;			// 자원 갯수
+	char* p;
+	static int cid;		// 객체가 생성될 때 1 증가
+public:
+	STRING(const char* str) : num{ strlen(str) }, id{ ++cid }{
+		p = new char[num];
+		memcpy(p, str, num);
+
+		// 관찰메시지를 켜면 출력한다.
+		if (관찰)
+			print("생성자(*)");
+	}
+
+
+	~STRING() {
+		// 관찰메시지를 켜면 출력한다.
+		if (관찰)
+			print("소멸자");
+		delete[] p;
+	}
+
+	void print(const char* s){
+		std::cout << s << ", [" << id << "] 객체:" << this;
+		if (num) {
+			std::cout << " 자원수: " << num << " 주소: " << (void*)p;
+		}
+		else
+			std::cout << " 자원 없음";
+		std::cout << std::endl;
+	}
+
+	friend std::ostream& operator<<(std::ostream&, const STRING&);
+	friend STRING operator+(STRING, STRING);
+};
+
+
+int STRING::cid{};
+std::ostream& operator<<(std::ostream& os, const STRING& s)
+{
+	for (int i = 0; i < s.num; ++i)
+		os << s.p[i];
+
+	return os;
+}
+
+STRING operator+(STRING a, STRING b)
+{
+	int size = a.num + b.num;
+	char* tmp = new char[size];
+	memcpy(tmp, a.p, a.num);
+	memcpy(&tmp[a.num], b.p, b.num);
+	return STRING(tmp);
+}
+
+
+//----
+int main()
+//----
+{
+	관찰 = true;
+
+	std::cout << sizeof(STRING) << std::endl;
+	STRING a{ "2022 1학기" };
+	STRING b{ "STL" };
+	// STRING c = a + b;
+
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	// std::cout << c << std::endl;
+
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 2413
+저장시간: 2022-03-30 16:25:34 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 2일)
+// 
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//	STRING 
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+// using namespace std;
+
+// [문제] main()이 문제없이 실행되도록 class STRING을 코딩하라.
+// speacial 함수는 동작을 관찰하도록 cout으로 메모리와 동작을 코딩한다.
+// 객체 생성시 고유번호를 갖도록 한다.
+
+bool 관찰{ false };
+
+class STRING {
+	int id;				// 생성 시 부여
+	size_t num;			// 자원 갯수
+	char* p;
+	static int cid;		// 객체가 생성될 때 1 증가
+public:
+	STRING() : num{}, p{}, id{ ++cid } {
+		if (관찰)
+			print("디폴트");
+	}
+
+	STRING(const char* str) : num{ strlen(str) }, id{ ++cid }{
+		p = new char[num];
+		memcpy(p, str, num);
+
+		// 관찰메시지를 켜면 출력한다.
+		if (관찰)
+			print("생성자(*)");
+	}
+
+	STRING(const STRING& other) :num{ other.num }, id{ ++cid } {
+		p = new char[num];
+		memcpy(p, other.p, num);
+
+		if (관찰)
+			print("복사생성");
+	}
+
+	~STRING() {
+		// 관찰메시지를 켜면 출력한다.
+		if (관찰)
+			print("소멸자");
+		delete[] p;
+	}
+
+	STRING operator=(const STRING& other) {
+		if (this == &other)
+			return *this;
+		if (num)
+			delete[] p;
+
+		num = other.num;
+		p = new char[num];
+		memcpy(p, other.p, num);
+		if (관찰)
+			print("복사할당");
+		return *this;
+	}
+
+	STRING operator+(const STRING& rhs) const {
+		STRING temp;
+
+		temp.num = num + rhs.num;
+		temp.p = new char[temp.num];
+		memcpy(temp.p, p, num);
+		memcpy(temp.p + num, rhs.p, rhs.num);
+
+		return temp;
+	}
+
+	void print(const char* s){
+		std::cout << s << ", [" << id << "] 객체:" << this;
+		if (num) {
+			std::cout << " 자원수: " << num << " 주소: " << (void*)p;
+		}
+		else
+			std::cout << " 자원 없음";
+		std::cout << std::endl;
+	}
+
+	friend std::ostream& operator<<(std::ostream&, const STRING&);
+};
+
+
+int STRING::cid{};
+
+std::ostream& operator<<(std::ostream& os, const STRING& s)
+{
+	for (int i = 0; i < s.num; ++i)
+		os << s.p[i];
+
+	return os;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	관찰 = true;
+
+	STRING a{ "2022 1학기" };
+	STRING b{ " - STL 강의" };
+	STRING c{ a + b };
+
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << c << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 2463
+저장시간: 2022-03-30 16:40:53 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 2일)
+// 
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//	STRING 
+// RVO(Return value optimization), Copy Ellision
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+
+// using namespace std;
+
+// [문제] main()이 문제없이 실행되도록 class STRING을 코딩하라.
+// speacial 함수는 동작을 관찰하도록 cout으로 메모리와 동작을 코딩한다.
+// 객체 생성시 고유번호를 갖도록 한다.
+
+bool 관찰{ false };
+
+class STRING {
+	int id;				// 생성 시 부여
+	size_t num;			// 자원 갯수
+	char* p;
+	static int cid;		// 객체가 생성될 때 1 증가
+public:
+	STRING() : num{}, p{}, id{ ++cid } {
+		if (관찰)
+			print("디폴트");
+	}
+
+	STRING(const char* str) : num{ strlen(str) }, id{ ++cid }{
+		p = new char[num];
+		memcpy(p, str, num);
+
+		// 관찰메시지를 켜면 출력한다.
+		if (관찰)
+			print("생성자(*)");
+	}
+
+	STRING(const STRING& other) :num{ other.num }, id{ ++cid } {
+		p = new char[num];
+		memcpy(p, other.p, num);
+
+		if (관찰)
+			print("복사생성");
+	}
+
+	~STRING() {
+		// 관찰메시지를 켜면 출력한다.
+		if (관찰)
+			print("소멸자");
+		delete[] p;
+	}
+
+	STRING operator=(const STRING& other) {
+		if (this == &other)
+			return *this;
+		if (num)
+			delete[] p;
+
+		num = other.num;
+		p = new char[num];
+		memcpy(p, other.p, num);
+		if (관찰)
+			print("복사할당");
+		return *this;
+	}
+
+	STRING operator+(const STRING& rhs) const {
+		STRING temp;
+
+		temp.num = num + rhs.num;
+		temp.p = new char[temp.num];
+		memcpy(temp.p, p, num);
+		memcpy(temp.p + num, rhs.p, rhs.num);
+
+		return temp;
+	}
+
+	void print(const char* s){
+		std::cout << s << ", [" << id << "] 객체:" << this;
+		if (num) {
+			std::cout << " 자원수: " << num << " 주소: " << (void*)p;
+		}
+		else
+			std::cout << " 자원 없음";
+		std::cout << std::endl;
+	}
+
+	friend std::ostream& operator<<(std::ostream&, const STRING&);
+};
+
+
+int STRING::cid{};
+
+std::ostream& operator<<(std::ostream& os, const STRING& s)
+{
+	for (int i = 0; i < s.num; ++i)
+		os << s.p[i];
+
+	return os;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	관찰 = true;
+
+	STRING a{ "2022 1학기" };
+	STRING b{ " - STL 강의" };
+	STRING c{ a + b };
+
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << c << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 909
+저장시간: 2022-03-30 16:56:19 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 2일)
+// 
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//	STRING.h, STRING.cpp로 작성
+// RVO(Return value optimization), Copy Ellision
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+// [문제] main()이 문제없이 실행되도록 class STRING을 코딩하라.
+// speacial 함수는 동작을 관찰하도록 cout으로 메모리와 동작을 코딩한다.
+// 객체 생성시 고유번호를 갖도록 한다.
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	관찰 = true;
+
+	STRING a{ "2022 1학기" };
+	STRING b{ " - STL 강의" };
+	STRING c{ a + b };
+
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << c << std::endl;
+
+}
+
+
+파일이름: STRING.h
+파일크기: 724
+저장시간: 2022-03-30 16:56:50 GMT+9
+
+//-----------------------------------------------------------------------------
+// STRING.h - 자원을 관리하는 STL 관찰용 클래스
+// 
+// 2022.3.30							Programmed by HS
+//-----------------------------------------------------------------------------
+
+#pragma once
+#include <iostream>
+class STRING {
+	int id;				// 생성 시 부여
+	size_t num;			// 자원 갯수
+	char* p;			// 자원이 있는 곳
+	static int cid;		// 객체가 생성될 때 1 증가
+public:
+	STRING();
+	STRING(const char* str);
+	~STRING();
+
+	STRING(const STRING& other);
+	STRING& operator=(const STRING& other);
+
+	STRING operator+(const STRING& rhs) const;
+
+	void print(const char* s);
+
+	friend std::ostream& operator<<(std::ostream&, const STRING&);
+};
+
+파일이름: STRING.cpp
+파일크기: 1739
+저장시간: 2022-03-30 16:56:50 GMT+9
+
+//-----------------------------------------------------------------------------
+// STRING.cpp - 자원을 관리하는 STL 관찰용 클래스
+// 
+// 2022.3.30							Programmed by HS
+//-----------------------------------------------------------------------------
+
+
+#pragma once
+#include "STRING.h"
+
+bool 관찰{ false };		// 메시지를 보려면 true로 바꿔라
+
+
+STRING::STRING() : num{}, p{}, id{ ++cid } 
+{
+	if (관찰)
+		print("디폴트");
+}
+
+STRING::STRING(const char* str) : num{ strlen(str) }, id{ ++cid }
+{
+	p = new char[num];
+	memcpy(p, str, num);
+
+	// 관찰메시지를 켜면 출력한다.
+	if (관찰)
+		print("생성자(*)");
+}
+
+STRING::STRING(const STRING& other) :num{ other.num }, id{ ++cid } {
+	p = new char[num];
+	memcpy(p, other.p, num);
+
+	if (관찰)
+		print("복사생성");
+}
+
+STRING::~STRING() {
+	// 관찰메시지를 켜면 출력한다.
+	if (관찰)
+		print("소멸자");
+	delete[] p;
+}
+
+STRING& STRING::operator=(const STRING& other) {
+	if (this == &other)
+		return *this;
+	if (num)
+		delete[] p;
+
+	num = other.num;
+	p = new char[num];
+	memcpy(p, other.p, num);
+	if (관찰)
+		print("복사할당");
+	return *this;
+}
+
+STRING STRING::operator+(const STRING& rhs) const {
+	STRING temp;
+
+	temp.num = num + rhs.num;
+	temp.p = new char[temp.num];
+	memcpy(temp.p, p, num);
+	memcpy(temp.p + num, rhs.p, rhs.num);
+
+	return temp;
+}
+
+void STRING::print(const char* s) {
+	std::cout << s << ", [" << id << "] 객체:" << this;
+	if (num) {
+		std::cout << " 자원수: " << num << " 주소: " << (void*)p;
+	}
+	else
+		std::cout << " 자원 없음";
+	std::cout << std::endl;
+}
+
+int STRING::cid{};
+
+std::ostream& operator<<(std::ostream& os, const STRING& s)
+{
+	for (int i = 0; i < s.num; ++i)
+		os << s.p[i];
+
+	return os;
+}
+
+파일이름: 소스.cpp
+파일크기: 735
+저장시간: 2022-03-30 17:07:27 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 2일)
+// 
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//	STRING.h, STRING.cpp로 작성
+// RVO(Return value optimization), Copy Ellision
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <array>
+#include "save.h"
+#include "STRING.h"
+
+using namespace std;
+extern bool 관찰;
+
+// 컨체이너 => Containers are objects that store other objects
+
+
+//----
+int main()
+//----
+{
+	관찰 = true;
+	save("소스.cpp");
+	array<STRING, 3> a{ "2022년", "3월", "30일" };
+	for (auto& x : a)
+		std::cout << x << std::endl;
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 734
+저장시간: 2022-03-30 17:07:33 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 3월 16일 수요일(4주 2일)
+// 
+// 자원을 관리하는 클래스를 만들어 관찰하면서 - 컨테이너 / 반복자 / 알고리즘
+//	STRING.h, STRING.cpp로 작성
+// RVO(Return value optimization), Copy Ellision
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <array>
+#include "save.h"
+#include "STRING.h"
+
+using namespace std;
+extern bool 관찰;
+
+// 컨체이너 => Containers are objects that store other objects
+
+
+//----
+int main()
+//----
+{
+	관찰 = true;
+	save("소스.cpp");
+	array<STRING, 3> a{ "2022년", "3월", "30일" };
+	for (auto x : a)
+		std::cout << x << std::endl;
+}	

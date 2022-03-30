@@ -1,23 +1,23 @@
 ﻿  save.cpp
   The contents of <filesystem> are available only with C++17 or later.
   The contents of <string_view> are available only with C++17 or later.
-D:\Visual Studio\Project\STL\STL Start\STL Start\save.h(5,16): error C2039: 'string_view': 'std'의 멤버가 아닙니다.
-D:\Visual Studio 2019\VC\Tools\MSVC\14.29.30133\include\algorithm(40): message : 'std' 선언을 참조하십시오.
-D:\Visual Studio\Project\STL\STL Start\STL Start\save.h(5,6): error C2182: 'save': 'void' 형식을 잘못 사용했습니다.
-D:\Visual Studio\Project\STL\STL Start\STL Start\save.h(5,27): error C2065: 'string_view': 선언되지 않은 식별자입니다.
-D:\Visual Studio\Project\STL\STL Start\STL Start\save.cpp(18,16): error C2039: 'string_view': 'std'의 멤버가 아닙니다.
-D:\Visual Studio 2019\VC\Tools\MSVC\14.29.30133\include\algorithm(40): message : 'std' 선언을 참조하십시오.
-D:\Visual Studio\Project\STL\STL Start\STL Start\save.cpp(18,6): error C2182: 'save': 'void' 형식을 잘못 사용했습니다.
-D:\Visual Studio\Project\STL\STL Start\STL Start\save.cpp(18,6): error C2374: 'save': 재정의. 여러 번 초기화했습니다.
-D:\Visual Studio\Project\STL\STL Start\STL Start\save.h(5): message : 'save' 선언을 참조하십시오.
-D:\Visual Studio\Project\STL\STL Start\STL Start\save.cpp(18,28): error C2065: 'string_view': 선언되지 않은 식별자입니다.
-D:\Visual Studio\Project\STL\STL Start\STL Start\save.cpp(18,28): error C2146: 구문 오류: ')'이(가) 'fname' 식별자 앞에 없습니다.
-D:\Visual Studio\Project\STL\STL Start\STL Start\save.cpp(19,1): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
-D:\Visual Studio\Project\STL\STL Start\STL Start\save.cpp(19,1): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
+D:\Projects\STL\STL Start\STL Start\save.h(5,16): error C2039: 'string_view': 'std'의 멤버가 아닙니다.
+D:\Visual Studio\VC\Tools\MSVC\14.29.30133\include\algorithm(40): message : 'std' 선언을 참조하십시오.
+D:\Projects\STL\STL Start\STL Start\save.h(5,6): error C2182: 'save': 'void' 형식을 잘못 사용했습니다.
+D:\Projects\STL\STL Start\STL Start\save.h(5,27): error C2065: 'string_view': 선언되지 않은 식별자입니다.
+D:\Projects\STL\STL Start\STL Start\save.cpp(18,16): error C2039: 'string_view': 'std'의 멤버가 아닙니다.
+D:\Visual Studio\VC\Tools\MSVC\14.29.30133\include\algorithm(40): message : 'std' 선언을 참조하십시오.
+D:\Projects\STL\STL Start\STL Start\save.cpp(18,6): error C2182: 'save': 'void' 형식을 잘못 사용했습니다.
+D:\Projects\STL\STL Start\STL Start\save.cpp(18,6): error C2374: 'save': 재정의. 여러 번 초기화했습니다.
+D:\Projects\STL\STL Start\STL Start\save.h(5): message : 'save' 선언을 참조하십시오.
+D:\Projects\STL\STL Start\STL Start\save.cpp(18,28): error C2065: 'string_view': 선언되지 않은 식별자입니다.
+D:\Projects\STL\STL Start\STL Start\save.cpp(18,28): error C2146: 구문 오류: ')'이(가) 'fname' 식별자 앞에 없습니다.
+D:\Projects\STL\STL Start\STL Start\save.cpp(19,1): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
+D:\Projects\STL\STL Start\STL Start\save.cpp(19,1): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
   소스.cpp
   The contents of <string_view> are available only with C++17 or later.
-D:\Visual Studio\Project\STL\STL Start\STL Start\save.h(5,16): error C2039: 'string_view': 'std'의 멤버가 아닙니다.
-D:\Visual Studio 2019\VC\Tools\MSVC\14.29.30133\include\fstream(26): message : 'std' 선언을 참조하십시오.
-D:\Visual Studio\Project\STL\STL Start\STL Start\save.h(5,6): error C2182: 'save': 'void' 형식을 잘못 사용했습니다.
-D:\Visual Studio\Project\STL\STL Start\STL Start\save.h(5,27): error C2065: 'string_view': 선언되지 않은 식별자입니다.
+D:\Projects\STL\STL Start\STL Start\save.h(5,16): error C2039: 'string_view': 'std'의 멤버가 아닙니다.
+D:\Visual Studio\VC\Tools\MSVC\14.29.30133\include\iostream(19): message : 'std' 선언을 참조하십시오.
+D:\Projects\STL\STL Start\STL Start\save.h(5,6): error C2182: 'save': 'void' 형식을 잘못 사용했습니다.
+D:\Projects\STL\STL Start\STL Start\save.h(5,27): error C2065: 'string_view': 선언되지 않은 식별자입니다.
   코드를 생성하고 있습니다...
