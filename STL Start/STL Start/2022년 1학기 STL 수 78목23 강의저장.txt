@@ -4996,3 +4996,475 @@ int main()
 {
 	save("소스.cpp");
 }	
+
+
+파일이름: 소스.cpp
+파일크기: 748
+저장시간: 2022-04-06 16:05:25 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+//----
+int main()
+//----
+{
+	관찰 = true;
+
+	std::vector<STRING> v;
+	
+	STRING s{ "12345" };
+
+	save("소스.cpp");
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 750
+저장시간: 2022-04-06 16:06:23 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	관찰 = true;
+
+	std::vector<STRING> v;
+	
+	new STRING("12345");
+
+	save("소스.cpp");
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 779
+저장시간: 2022-04-06 16:07:14 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	관찰 = true;
+
+	std::vector<STRING> v;
+	
+	std::unique_ptr<STRING> p{ new STRING("12345") };
+
+	save("소스.cpp");
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 1172
+저장시간: 2022-04-06 16:23:03 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	// [문제] 키보드에서 int를 입력받아라.
+	// 합계와 평균을 화면에 출력하라.
+
+	std::vector<int> v;
+	int num;
+	while (std::cin >> num)
+		v.push_back(num);
+
+	long long sum = 0;\
+
+	// &는 값을 변경하고 싶을때 혹은 복사생성을 하고 싶지 않을 때
+	// 복사생성이 자료의 크기가 클때 부담이 될 수 있기 때문에
+	// int 4바이트에 쓰는건 과한 일
+
+	for (int num : v)
+		sum += num;
+	
+	std::cout << "합계: " << sum << std::endl;
+	std::cout << "평균: " << (double)sum / v.size() << std::endl;
+	save("소스.cpp");
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 765
+저장시간: 2022-04-06 16:24:22 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::vector v0{ 1,2,3 };			// 권장하지 않는 방법
+	std::vector<int> v{ 1,2,3 };
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 1196
+저장시간: 2022-04-06 16:50:36 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::vector<int> v;
+	v.reserve(10);
+	v.push_back(1);
+	v.push_back(2);
+	v.push_back(3);
+
+
+	std::cout << "벡터의 원소 수 - " << v.size() << std::endl;
+	std::cout << "원소의 주소 - " << v.data() << std::endl;
+	std::cout << "벡터의 용량 - " << v.capacity() << std::endl;
+
+	v.push_back(4);
+
+
+	std::cout << std::endl;
+
+	std::cout << "벡터의 원소 수 - " << v.size() << std::endl;
+	std::cout << "원소의 주소 - " << v.data() << std::endl;
+	std::cout << "벡터의 용량 - " << v.capacity() << std::endl;
+
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 1026
+저장시간: 2022-04-06 16:53:36 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	// 자동으로 늘려나갈때는 1.5배
+	// reserve()를 통해 미리 메모리를 잡아 둘 수 있음
+	
+	save("소스.cpp");
+	
+	std::vector<int> v;
+	
+	while (true)
+	{
+		v.push_back(3);
+
+		std::cout << "벡터의 원소 수 - " << v.size() << std::endl;
+		std::cout << "원소의 주소 - " << v.data() << std::endl;
+		std::cout << "벡터의 용량 - " << v.capacity() << std::endl;
+
+	}
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 1070
+저장시간: 2022-04-06 16:54:29 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	// 자동으로 늘려나갈때는 1.5배
+	// reserve()를 통해 미리 메모리를 잡아 둘 수 있음
+	
+	save("소스.cpp");
+	
+	std::vector<int> v;
+	
+	while (true)
+	{
+		v.push_back(3);
+
+		if (v.size() == v.capacity())
+		{
+			std::cout << "벡터의 원소 수 - " << v.size() << std::endl;
+			std::cout << "원소의 주소 - " << v.data() << std::endl;
+			std::cout << "벡터의 용량 - " << v.capacity() << std::endl;
+		}
+	}
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 1175
+저장시간: 2022-04-06 16:57:41 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	// 자동으로 늘려나갈때는 1.5배
+	// reserve()를 통해 미리 메모리를 잡아 둘 수 있음
+	
+	save("소스.cpp");
+	
+	std::vector<int> v;
+	
+	size_t old_capacity = v.capacity();
+
+	while (true)
+	{
+		v.push_back(3);
+
+		if (v.size() - 1 == old_capacity)
+		{
+			std::cout << "벡터의 원소 수 - " << v.size() << std::endl;
+			std::cout << "원소의 주소 - " << v.data() << std::endl;
+			std::cout << "벡터의 용량 - " << v.capacity() << std::endl;
+			old_capacity = v.capacity();
+			std::cout << std::endl;
+		}
+	}
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 931
+저장시간: 2022-04-06 17:11:25 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	// 스택에 생성되었다가 삭제되고 복사생성으로 힙에 생성?
+	// 임시객체를 만들었다가 깊은 복사로 힙에 생성한 뒤 포인터로 가르킴
+	// RAII를통해 스택 객체가 삭제됨
+	
+	save("소스.cpp");
+	관찰 = true;
+	std::vector<STRING> v{ "1234567"};
+	v.push_back("1234567890");
+
+
+}	

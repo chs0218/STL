@@ -1,7 +1,8 @@
 ﻿  소스.cpp
      D:\Projects\STL\STL Start\x64\Release\STL Start.lib 라이브러리 및 D:\Projects\STL\STL Start\x64\Release\STL Start.exp 개체를 생성하고 있습니다.
   코드를 생성하고 있습니다.
-  Previous IPDB and IOBJ mismatch, fall back to full compilation.
-  All 1721 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  8 of 282 functions ( 2.8%) were compiled, the rest were copied from previous compilation.
+    6 functions were new in current compilation
+    9 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   STL Start.vcxproj -> D:\Projects\STL\STL Start\x64\Release\STL Start.exe
