@@ -5468,3 +5468,367 @@ int main()
 
 
 }	
+
+
+파일이름: 소스.cpp
+파일크기: 993
+저장시간: 2022-04-07 10:45:35 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	// 스택에 생성되었다가 삭제되고 복사생성으로 힙에 생성?
+	// 임시객체를 만들었다가 깊은 복사로 힙에 생성한 뒤 포인터로 가르킴
+	// RAII를통해 스택 객체가 삭제됨
+	
+	save("소스.cpp");
+	관찰 = true;
+	std::vector<STRING> v;
+	v.reserve(10);
+	v.emplace_back("1234567");
+	v.emplace_back("1234567890");
+	std::cout << std::endl;
+	
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 926
+저장시간: 2022-04-07 11:10:50 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	관찰 = true;
+	std::vector<STRING> v;
+	v.reserve(5);
+	v.push_back("1");
+	//	v.push_back(STRING{ "1" });
+	v.push_back("12");
+	//	v.push_back(STRING{ "2" });
+	v.push_back("123");
+	//	v.push_back(STRING{ "3" });
+	std::cout << std::endl;
+
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 933
+저장시간: 2022-04-07 11:11:45 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	관찰 = true;
+	std::vector<STRING> v;
+	v.reserve(5);
+	//	v.push_back("1");
+	//	v.push_back("12");
+	//	v.push_back("123");
+
+	v.push_back(STRING{ "1" });
+	v.push_back(STRING{ "12" });
+	v.push_back(STRING{ "123" });
+
+	std::cout << std::endl;
+
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 966
+저장시간: 2022-04-07 11:12:18 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	관찰 = true;
+	std::vector<STRING> v;
+	v.reserve(5);
+	//	v.push_back("1");
+	//	v.push_back("12");
+	//	v.push_back("123");
+
+	v.push_back(std::move(STRING{ "1" }));
+	v.push_back(std::move(STRING{ "12" }));
+	v.push_back(std::move(STRING{ "123" }));
+
+	std::cout << std::endl;
+
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 805
+저장시간: 2022-04-07 11:13:18 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	관찰 = true;
+	std::vector<STRING> v;
+	v.reserve(5);
+	v.push_back("1");
+	v.push_back("12");
+	std::cout << std::endl;
+
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 789
+저장시간: 2022-04-07 11:14:08 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	관찰 = true;
+	std::vector<STRING> v;
+	v.push_back("1");
+	v.push_back("12");
+	std::cout << std::endl;
+
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 960
+저장시간: 2022-04-07 12:04:52 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 7일 목요일(6주 1일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5,6,7,8,9,10 };
+
+	// [문제] v에서 짝수를 제거하라.
+	// 결과를 출력하라
+
+	v.erase(std::remove_if(v.begin(), v.end(),
+		[](int i) {
+		return !(i & 1);
+	}), v.end());
+
+	for (auto i : v)
+		std::cout << i << std::endl;
+}	
+
+
+파일이름: 소스.cpp
+파일크기: 916
+저장시간: 2022-04-07 12:09:37 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 7일 목요일(6주 1일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// lexicographical comparison
+// 예정: 주간시험 4.27(수) (8주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5,6,7,8,9,10 };
+
+	// [문제] v에서 짝수를 제거하라.
+	// 결과를 출력하라
+
+	std::erase_if(v, [](auto i) {return !(i & 1); });
+
+	for (auto i : v)
+		std::cout << i << std::endl;
+}	

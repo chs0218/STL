@@ -27,12 +27,41 @@ STRING::STRING(const char* str) : num{ strlen(str) }, id{ ++cid }
 		print("생성자(*)");
 }
 
-STRING::STRING(const STRING& other) :num{ other.num }, id{ ++cid } {
+STRING::STRING(const STRING& other) :num{ other.num }, id{ ++cid } 
+{
 	p = new char[num];
 	memcpy(p, other.p, num);
 
 	if (관찰)
 		print("복사생성");
+}
+
+STRING::STRING(STRING&& other) noexcept : num{other.num}, id{++cid}
+{
+	p = other.p;
+	
+	other.p = nullptr;
+	other.num = 0;
+
+	if (관찰)
+		print("이동생성");
+}
+
+STRING& STRING::operator=(STRING&& other) noexcept
+{
+	if (this != &other)
+	{
+		if (num)
+			delete[] p;
+		p = other.p;
+		other.num = 0;
+		other.p = nullptr;
+	}
+
+	if (관찰)
+		print("이동할당");
+	
+	return *this;
 }
 
 STRING::~STRING() {

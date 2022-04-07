@@ -13,12 +13,15 @@ class STRING {
 	static int cid;		// 객체가 생성될 때 1 증가
 public:
 	STRING();
-	STRING(const char* str);
 	~STRING();
-
+	STRING(const char* str);		
 	STRING(const STRING& other);
+
+	// 2022.04.07 추가(이동 생성자, 이동할당연산자)
+	STRING(STRING&& other) noexcept;
+	STRING& operator=(STRING&& other) noexcept;
+
 	STRING& operator=(const STRING& other);
-	
 	STRING operator+(const STRING& rhs) const;
 
 	void print(const char* s);

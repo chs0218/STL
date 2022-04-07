@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// 2022. 1학기 STL 4월 6일 수요일(5주 2일)
+// 2022. 1학기 STL 4월 7일 목요일(6주 1일)
 // 
 //	컨테이너
 //		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
@@ -13,27 +13,33 @@
 //-----------------------------------------------------------------------------
 
 #include <iostream>
+#include <fstream>
+#include <map>
 #include <vector>
 #include "save.h"
 #include "STRING.h"
 
 // using namespace std;
-extern bool 관찰;
+// extern bool 관찰;
 
 
 //----
 int main()
 //----
 {
-	// 스택에 생성되었다가 삭제되고 복사생성으로 힙에 생성?
-	// 임시객체를 만들었다가 깊은 복사로 힙에 생성한 뒤 포인터로 가르킴
-	// RAII를통해 스택 객체가 삭제됨
-	
-	//save("소스.cpp");
-	관찰 = true;
-	std::vector<STRING> v{ "1234567"};
-	v.emplace_back("1234567890");
+	// save("소스.cpp");
 
-	std::cout << std::endl;
+	// [문제] "소스.cpp"을 읽어 영문자갯수를 세서 다음 형식과 같이 출력
+	// 대소문자는 구분하지 않는다.
 
-}	
+	// [a] - 10
+	// [b] - 3
+	// [z] - 1
+
+	std::ifstream in{ "소스.cpp" };
+	std::vector<char> v{ std::istreambuf_iterator{ in }, {}};
+	std::map<char, int> alphamap;
+
+	for (auto i : v)
+		std::cout << i;
+}
