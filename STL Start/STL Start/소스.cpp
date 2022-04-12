@@ -41,5 +41,16 @@ int main()
 	std::map<char, int> alphamap;
 
 	for (auto i : v)
-		std::cout << i;
+	{
+		i = tolower(i);
+		if ('a' <= i && 'z' >= i)
+		{
+			alphamap[i] = alphamap[i] + 1;
+		}
+	}
+
+	for (auto i : alphamap)
+	{
+		std::cout << i.first << " " << i.second << std::endl;
+	}
 }
