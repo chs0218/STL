@@ -1,27 +1,27 @@
 //-----------------------------------------------------------------------------
-// 2022. 1학기 STL 4월 7일 목요일(6주 1일)
+// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
 // 
 //	컨테이너
 //		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
 //			array		-	유일하게 원소갯수 고정
 //			vector		-	깊게 알아볼 가치가 있는 컨테이너
-//			deque		-
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-	contiguous 컨테이너가 아니다.
 //			foward_list	-
 //			list		-
-// lexicographical comparison
-// 예정: 주간시험 4.27(수) (8주 2일)
+// 중간시험 4.20(수) (7주 2일)
 //-----------------------------------------------------------------------------
 
 #include <iostream>
+#include <string>
+#include <algorithm>
 #include <fstream>
-#include <map>
-#include <vector>
+#include <deque>
 #include "save.h"
 #include "STRING.h"
 
 // using namespace std;
 // extern bool 관찰;
-
 
 //----
 int main()
@@ -29,28 +29,21 @@ int main()
 {
 	// save("소스.cpp");
 
-	// [문제] "소스.cpp"을 읽어 영문자갯수를 세서 다음 형식과 같이 출력
-	// 대소문자는 구분하지 않는다.
+	// [문제] "소스.cpp"의 단어를 deque에 읽어라.
+	// 오름차순 정렬하시오
+	// 결과를 출력하시오
 
-	// [a] - 10
-	// [b] - 3
-	// [z] - 1
+	std::ifstream in{ "소스.cpp", std::ios::binary };
 
-	std::ifstream in{ "소스.cpp" };
-	std::vector<char> v{ std::istreambuf_iterator{ in }, {}};
-	std::map<char, int> alphamap;
+	std::deque<std::string> d;
 
-	for (auto i : v)
-	{
-		i = tolower(i);
-		if ('a' <= i && 'z' >= i)
-		{
-			alphamap[i] = alphamap[i] + 1;
-		}
-	}
+	std::string s;
+	while (in >> s)
+		d.push_front(s);
 
-	for (auto i : alphamap)
-	{
-		std::cout << i.first << " " << i.second << std::endl;
-	}
+	std::sort(d.begin(), d.end());
+
+	for (auto i : d)
+		std::cout << i << '\t';
+	std::cout << std::endl;
 }

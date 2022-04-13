@@ -5832,3 +5832,587 @@ int main()
 	for (auto i : v)
 		std::cout << i << std::endl;
 }	
+
+
+파일이름: 소스.cpp
+파일크기: 1074
+저장시간: 2022-04-13 15:42:32 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 7일 목요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <array>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [문제] "소스.cpp"을 읽어 영문자갯수를 세서 다음 형식과 같이 출력
+	// 대소문자는 구분하지 않는다.
+
+	// [a] - 10
+	// [b] - 3
+	// [z] - 1
+
+	std::ifstream in{ "소스.cpp" };
+	char c;
+	std::array<int, 26> arr{};
+	while (in >> c)
+		if(isalpha(c))
+			arr[tolower(c) - 'a']++;
+	for (int i = 0; i < arr.size(); ++i)
+		std::cout << "[" << static_cast<char>(i + 'a') << "] - " << arr[i] << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 898
+저장시간: 2022-04-13 16:09:03 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 7일 목요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//			deque		-
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+
+// [문제] vector의 중간에 원소를 추가한다.
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	std::vector<STRING> v{ "1", "22", "4444", "55555" };
+	// "4444" 앞에 "333"을 끼워넣어라
+	
+	v.insert(v.cbegin() += 2, "333");
+
+	for (int i = 0; i < v.size(); ++i)
+		std::cout << v[i] << std::endl;
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 961
+저장시간: 2022-04-13 16:17:52 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 7일 목요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.(o(1))
+//			deque		-
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+extern bool 관찰;
+
+// [문제] vector의 중간에 원소를 추가한다.
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	std::vector<STRING> v{ "1", "22", "4444", "55555" };
+	// "4444" 앞에 "333"을 끼워넣어라
+
+	v.insert(v.cbegin() + 2, 1, "333");
+
+
+	for (int i = 0; i < v.size(); ++i)
+		std::cout << v[i] << std::endl;
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1142
+저장시간: 2022-04-13 16:50:10 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 7일 목요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <deque>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+class Test {
+	char c[1024];
+public:
+	void show() const {
+		std::cout << this << std::endl;
+	}
+};
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	// [확인] vector는 연속인데 deque는 연속이 아니라고?
+	// 주소를 적어 확인해보자
+	std::vector<Test> v(10);
+	std::deque<Test> d(10);
+	for (auto i : v)
+		i.show();
+
+	for (auto i : d)
+		i.show();
+
+	std::cout << "/---------------------------------------" << std::endl;
+	std::cout << sizeof(d) << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1003
+저장시간: 2022-04-13 16:52:10 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 7일 목요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <deque>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+class Test {
+	char c[1000];
+public:
+	void show() const {
+		std::cout << (long long)this << std::endl;
+	}
+};
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	// [확인] vector는 연속인데 deque는 연속이 아니라고?
+	// 주소를 적어 확인해보자
+	std::vector<Test> v(10);
+
+	for (int i = 0; i < v.size(); ++i)
+		v[i].show();
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1002
+저장시간: 2022-04-13 16:52:41 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 7일 목요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <deque>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+class Test {
+	char c[1000];
+public:
+	void show() const {
+		std::cout << (long long)this << std::endl;
+	}
+};
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	// [확인] vector는 연속인데 deque는 연속이 아니라고?
+	// 주소를 적어 확인해보자
+	std::deque<Test> v(10);
+
+	for (int i = 0; i < v.size(); ++i)
+		v[i].show();
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1024
+저장시간: 2022-04-13 16:54:47 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 7일 목요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <deque>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+class Test {
+	char c[1000];
+public:
+	void show() const {
+		std::cout << (long long)this << std::endl;
+	}
+};
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	// [확인] vector는 연속인데 deque는 연속이 아니라고?
+	// 주소를 적어 확인해보자
+	std::deque<Test> v(10);
+	v.push_front(Test{});
+	for (int i = 0; i < v.size(); ++i)
+		v[i].show();
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1174
+저장시간: 2022-04-13 17:08:27 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-	contiguous 컨테이너가 아니다.
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <deque>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+class Test {
+	char c[1000];
+public:
+	void show() const {
+		std::cout << (long long)this << std::endl;
+	}
+};
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [확인 2] vector보다 deque이 원소를 더 많이 담을 수 있다고?
+	// vector<Test> -
+	// deque<Test> -
+	std::vector<Test> v;
+
+	while (true) {
+		try {
+			v.push_back({});
+		}
+		catch (std::exception& e) {
+			std::cout << "벡터가 저장한 원소 갯수 - " << v.size() << std::endl;
+			return 0;
+		}
+	}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1180
+저장시간: 2022-04-13 17:08:51 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-	contiguous 컨테이너가 아니다.
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <deque>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+class Test {
+	char c[1000];
+public:
+	void show() const {
+		std::cout << (long long)this << std::endl;
+	}
+};
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [확인 2] vector보다 deque이 원소를 더 많이 담을 수 있다고?
+	// vector<Test> - 699913
+	// deque<Test> -
+	std::deque<Test> v;
+
+	while (true) {
+		try {
+			v.push_back({});
+		}
+		catch (std::exception& e) {
+			std::cout << "벡터가 저장한 원소 갯수 - " << v.size() << std::endl;
+			return 0;
+		}
+	}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1190
+저장시간: 2022-04-13 17:09:21 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-	contiguous 컨테이너가 아니다.
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <deque>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+class Test {
+	char c[1000];
+public:
+	void show() const {
+		std::cout << (long long)this << std::endl;
+	}
+};
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [확인 2] vector보다 deque이 원소를 더 많이 담을 수 있다고?
+	// vector<Test> - 699913
+	// deque<Test> - 1984902
+
+	std::deque<Test> v;
+
+	while (true) {
+		try {
+			v.push_back({});
+		}
+		catch (std::exception& e) {
+			std::cout << "벡터가 저장한 원소 갯수 - " << v.size() << std::endl;
+			return 0;
+		}
+	}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1249
+저장시간: 2022-04-13 17:10:38 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-	contiguous 컨테이너가 아니다.
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <deque>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+class Test {
+	char c[1000];
+public:
+	void show() const {
+		std::cout << (long long)this << std::endl;
+	}
+};
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [확인 2] vector보다 deque이 원소를 더 많이 담을 수 있다고?
+	// vector<Test> - 699913
+	// deque<Test> - 1984902
+
+	// vector<int> - 136216567
+	// deque<int> - 268435452
+
+	std::vector<int> v;
+
+	while (true) {
+		try {
+			v.push_back({});
+		}
+		catch (std::exception& e) {
+			std::cout << "벡터가 저장한 원소 갯수 - " << v.size() << std::endl;
+			return 0;
+		}
+	}
+}

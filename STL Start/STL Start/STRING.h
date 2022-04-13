@@ -23,7 +23,7 @@ public:
 
 	STRING& operator=(const STRING& other);
 	STRING operator+(const STRING& rhs) const;
-
+	
 	void print(const char* s);
 	size_t getNum() const;			// 2022.3.30 Ãß°¡
 
