@@ -24,8 +24,32 @@ public:
 	STRING& operator=(const STRING& other);
 	STRING operator+(const STRING& rhs) const;
 	
-	void print(const char* s);
+	// 2022.04.21 begin(), end() 시작
+	STRING_iterator begin() {
+		return STRING_iterator(p);
+	};
+
+	STRING_iterator end() {
+		return STRING_iterator(p + num);
+	}
+
+	STRING_iterator rbegin() {
+		return STRING_iterator(p + num);
+	};
+
+	STRING_iterator rend() {
+		return STRING_iterator(p);
+	}
+
 	size_t getNum() const;			// 2022.3.30 추가
+	void print(const char* s);
 
 	friend std::ostream& operator<<(std::ostream&, const STRING&);
+};
+
+class STRING_iterator {
+	char* p;
+public:
+	STRING_iterator() = default;
+	STRING_iterator(char* p) : p{ p }{};
 };

@@ -6416,3 +6416,634 @@ int main()
 		}
 	}
 }
+
+
+파일이름: 소스.cpp
+파일크기: 1134
+저장시간: 2022-04-14 10:47:57 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-	contiguous 컨테이너가 아니다.
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <fstream>
+#include <deque>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [문제] "소스.cpp"의 단어를 deque에 읽어라.
+	// 오름차순 정렬하시오
+	// 결과를 출력하시오
+
+	std::ifstream in{ "소스.cpp"};
+
+	std::deque<std::string> d;
+
+	std::string s;
+	while (in >> s)
+		d.push_back(s);
+
+	std::sort(d.begin(), d.end());
+
+	for (const std::string& s : d)
+		std::cout << s << '\t';
+	std::cout << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1355
+저장시간: 2022-04-14 11:18:15 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-	contiguous 컨테이너가 아니다.
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <fstream>
+#include <deque>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [문제] "컨테이너.txt" 파일의 단어를 deque에 읽어라.
+	// deque에 저장된 각 단어를 오름차순으로 정렬하시오.
+	// deque의 단어를 길이 오름차순 정렬하시오.
+	// 결과를 출력하시오.
+
+	std::ifstream in{ "컨테이너.txt" };
+	std::deque<std::string> d{ std::istream_iterator<std::string>{in}, {} };
+	
+	std::sort(d.begin(), d.end(), [](const std::string& a, const std::string& b) {return a.length() < b.length(); });
+	for (std::string& s : d)
+		std::sort(s.begin(), s.end());
+
+	copy(d.begin(), d.end(), std::ostream_iterator<std::string>(std::cout, "\n"));
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1357
+저장시간: 2022-04-14 11:40:46 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-	contiguous 컨테이너가 아니다.
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <fstream>
+#include <deque>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [문제] "컨테이너.txt" 파일의 단어를 deque에 읽어라.
+	// deque에 저장된 각 단어를 오름차순으로 정렬하시오.
+	// deque의 단어를 길이 오름차순 정렬하시오.
+	// 결과를 출력하시오.
+
+	std::ifstream in{ "컨테이너.txt" };
+
+	// in 단어를 d로 읽어 옴
+	std::deque<std::string> d{ std::istream_iterator<std::string>{in}, {} };
+
+	// space란 단어는 몇 번째 단어인가?
+	// 참고로 라이브러리는 3번째 단어이다.
+	auto p = std::find(d.begin(), d.end(), std::string{ "space" });
+	if (p != d.end())
+		std::cout << "찾은 단어의 위치 - " << p - d.begin() << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1104
+저장시간: 2022-04-14 11:44:53 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-	contiguous 컨테이너가 아니다.
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <fstream>
+#include <list>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [문제] "컨테이너.txt" 파일의 단어를 list에 읽어라.
+	// 오름차순 정렬하라
+	// 결과를 출력하시오.
+
+	std::ifstream in{ "컨테이너.txt" };
+
+	std::list<std::string> cont;
+	
+	std::string str;
+	while (in >> str)
+		cont.push_back(str);
+
+	for (const std::string& s : cont)
+		std::cout << s << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1199
+저장시간: 2022-04-14 11:53:19 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-	contiguous 컨테이너가 아니다.
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <fstream>
+#include <list>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [문제] "컨테이너.txt" 파일의 단어를 deque에 읽어라.
+	// deque에 저장된 각 단어를 오름차순으로 정렬하시오.
+	// deque의 단어를 길이 오름차순 정렬하시오.
+	// 결과를 출력하시오.
+
+	std::ifstream in{ "컨테이너.txt" };
+
+	std::list<std::string> cont;
+
+	std::string str;
+	while (in >> str)
+		cont.push_back(str);
+
+	cont.sort();
+	for (const std::string& s : cont)
+		std::cout << s << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1255
+저장시간: 2022-04-14 11:57:12 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-	contiguous 컨테이너가 아니다.
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <fstream>
+#include <list>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [문제] "컨테이너.txt" 파일의 단어를 deque에 읽어라.
+	// deque에 저장된 각 단어를 오름차순으로 정렬하시오.
+	// deque의 단어를 길이 오름차순 정렬하시오.
+	// 앞에서부터 10개만 출력하라
+	// 결과를 출력하시오.
+
+	std::ifstream in{ "컨테이너.txt" };
+
+	std::list<std::string> cont;
+
+	std::string str;
+	while (in >> str)
+		cont.push_back(str);
+
+	cont.sort();
+	auto p = cont.cbegin();
+	for (int i = 0; i < 10; ++i)
+		std::cout << *p++ << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1261
+저장시간: 2022-04-14 11:59:29 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-	contiguous 컨테이너가 아니다.
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <fstream>
+#include <list>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [문제] "컨테이너.txt" 파일의 단어를 deque에 읽어라.
+	// deque에 저장된 각 단어를 오름차순으로 정렬하시오.
+	// deque의 단어를 길이 오름차순 정렬하시오.
+	// 앞에서부터 10개만 출력하라
+	// 결과를 출력하시오.
+
+	std::ifstream in{ "컨테이너.txt" };
+
+	std::list<std::string> cont;
+
+	std::string str;
+	while (in >> str)
+		cont.push_back(str);
+	
+	cont.sort();
+	auto p = cont.cend();
+	--p;
+	for (int i = 0; i < 10; ++i)
+		std::cout << *p-- << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1257
+저장시간: 2022-04-14 12:00:11 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-	contiguous 컨테이너가 아니다.
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <fstream>
+#include <list>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [문제] "컨테이너.txt" 파일의 단어를 deque에 읽어라.
+	// deque에 저장된 각 단어를 오름차순으로 정렬하시오.
+	// deque의 단어를 길이 오름차순 정렬하시오.
+	// 앞에서부터 10개만 출력하라
+	// 결과를 출력하시오.
+
+	std::ifstream in{ "컨테이너.txt" };
+
+	std::list<std::string> cont;
+
+	std::string str;
+	while (in >> str)
+		cont.push_back(str);
+	
+	cont.sort();
+	auto p = cont.crbegin();
+	for (int i = 0; i < 10; ++i)
+		std::cout << *p++ << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1298
+저장시간: 2022-04-14 12:14:10 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//			deque		-	contiguous 컨테이너가 아니다.
+//			foward_list	-
+//			list		-
+// 중간시험 4.20(수) (7주 2일)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <fstream>
+#include <list>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [문제] "컨테이너.txt" 파일의 단어를 list에 읽어라.
+	// 오름차순 정렬하라
+	// space는 몇 번째 단어인가 출력하라.
+	// 주의 1번째부터 시작함
+
+	std::ifstream in{ "컨테이너.txt" };
+
+	std::list<std::string> cont;
+	std::string str;
+	while (in >> str)
+		cont.push_back(str);
+
+	cont.sort();
+	auto p = std::find(cont.cbegin(), cont.cend(), "space");
+	if (p == cont.cend())
+		std::cout << "그런 단어 없어요" << std::endl;
+	else
+		std::cout << (std::distance(cont.cbegin(), p) + 1) << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 867
+저장시간: 2022-04-21 11:34:31 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 21일 수요일(8주 1일)
+// 
+//	컨테이너
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//			array		-	유일하게 원소갯수 고정
+//			vector		-	깊게 알아볼 가치가 있는 컨테이너
+//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
+//						-	random access
+//			deque		-	contiguous 컨테이너가 아니다.
+//						-	마지막 위치 추가 삭제
+//						-	반복자 무효화 없음
+//						-	random access 지원(실제론 살짝 느림)
+//			foward_list	-	single linked list
+//			list		-	임의의 위치에서 삽입과 삭제가 O(1)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+#include "STRING.h"
+
+using namespace std;
+// extern bool 관찰;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1130
+저장시간: 2022-04-21 12:11:37 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 21일 수요일(8주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//	
+//	반복자 - 포인터를 추상화한 것
+//		
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <iterator>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+// using namespace std;
+// extern bool 관찰;
+//
+//template <class Iter>
+//void show(Iter)
+//{
+//	// concept, modeul, range => c++ 20
+//	std::iterator_traits<Iter>::iterator_category c;
+//	std::cout << "반복자의 종류 - " << typeid(Iter).name() << typeid(c).name() << std::endl;
+//}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	save("STRING.h");
+
+	// 반복자의 종류(category)를 구분하고 알아본다.
+	// 반복자를 인수로 받는 함수를 만들어 어떤 종류 반복자인지 출력하도록 하자
+	
+	/*std::vector<int> v;
+	show(1);
+	show(v.begin());*/
+
+	STRING s{ "1234567890" };
+
+	for (char c : s)
+		std::cout << c << " * ";
+	std::cout << std::endl;
+	
+}
+
+
+파일이름: STRING.h
+파일크기: 1016
+저장시간: 2022-04-21 12:11:37 GMT+9
+
+//-----------------------------------------------------------------------------
+// STRING.h - 자원을 관리하는 STL 관찰용 클래스
+// 
+// 2022.3.30							Programmed by HS
+//-----------------------------------------------------------------------------
+
+#pragma once
+#include <iostream>
+class STRING {
+	int id;				// 생성 시 부여
+	size_t num;			// 자원 갯수
+	char* p;			// 자원이 있는 곳
+	static int cid;		// 객체가 생성될 때 1 증가
+public:
+	STRING();
+	~STRING();
+	STRING(const char* str);		
+	STRING(const STRING& other);
+
+	// 2022.04.07 추가(이동 생성자, 이동할당연산자)
+	STRING(STRING&& other) noexcept;
+	STRING& operator=(STRING&& other) noexcept;
+
+	STRING& operator=(const STRING& other);
+	STRING operator+(const STRING& rhs) const;
+	
+	// 2022.04.21 begin(), end() 시작
+	char* begin() {
+		return p;
+	};
+
+	char* end() {
+		return p + num;
+	}
+	size_t getNum() const;			// 2022.3.30 추가
+	void print(const char* s);
+
+	friend std::ostream& operator<<(std::ostream&, const STRING&);
+};

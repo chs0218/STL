@@ -1,49 +1,46 @@
 //-----------------------------------------------------------------------------
-// 2022. 1학기 STL 4월 13일 수요일(6주 2일)
+// 2022. 1학기 STL 4월 21일 수요일(8주 1일)
 // 
-//	컨테이너
+//	컨테이너 - 다른 객체를 저장하는 객체
 //		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
-//			array		-	유일하게 원소갯수 고정
-//			vector		-	깊게 알아볼 가치가 있는 컨테이너
-//						-	원소를 마지막 위치에 추가하는데 특화되어있다.
-//			deque		-	contiguous 컨테이너가 아니다.
-//			foward_list	-
-//			list		-
-// 중간시험 4.20(수) (7주 2일)
+//	
+//	반복자 - 포인터를 추상화한 것
+//		
 //-----------------------------------------------------------------------------
 
 #include <iostream>
-#include <string>
-#include <algorithm>
-#include <fstream>
-#include <deque>
+#include <iterator>
+#include <vector>
 #include "save.h"
 #include "STRING.h"
 
 // using namespace std;
 // extern bool 관찰;
+//
+//template <class Iter>
+//void show(Iter)
+//{
+//	// concept, modeul, range => c++ 20
+//	std::iterator_traits<Iter>::iterator_category c;
+//	std::cout << "반복자의 종류 - " << typeid(Iter).name() << typeid(c).name() << std::endl;
+//}
 
 //----
 int main()
 //----
 {
-	// save("소스.cpp");
+	//save("소스.cpp");
 
-	// [문제] "소스.cpp"의 단어를 deque에 읽어라.
-	// 오름차순 정렬하시오
-	// 결과를 출력하시오
+	// 반복자의 종류(category)를 구분하고 알아본다.
+	// 반복자를 인수로 받는 함수를 만들어 어떤 종류 반복자인지 출력하도록 하자
+	
+	/*std::vector<int> v;
+	show(1);
+	show(v.begin());*/
+	STRING s{ "1234567890" };
 
-	std::ifstream in{ "소스.cpp", std::ios::binary };
-
-	std::deque<std::string> d;
-
-	std::string s;
-	while (in >> s)
-		d.push_front(s);
-
-	std::sort(d.begin(), d.end());
-
-	for (auto i : d)
-		std::cout << i << '\t';
+	for (char c : s)
+		std::cout << c << " * ";
 	std::cout << std::endl;
+	
 }
