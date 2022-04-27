@@ -7047,3 +7047,232 @@ public:
 
 	friend std::ostream& operator<<(std::ostream&, const STRING&);
 };
+
+파일이름: 소스.cpp
+파일크기: 662
+저장시간: 2022-04-27 15:52:31 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 27일 수요일(8주 2일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//	
+//	It is intended that forward_list have zero space or time overhead
+// relative to a hand - written C - style singly linked list
+// 
+// 반복자 - 포인터를 추상화한 것
+//	
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <iterator>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 700
+저장시간: 2022-04-27 15:53:08 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 27일 수요일(8주 2일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//	
+// 표준문서의 forward_list 설명
+// 
+//	It is intended that forward_list have zero space or time overhead
+// relative to a hand - written C - style singly linked list
+// 
+// 반복자 - 포인터를 추상화한 것
+//	
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <iterator>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 707
+저장시간: 2022-04-27 16:03:44 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 27일 수요일(8주 2일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//	
+//
+// 반복자 - 포인터를 추상화한 것
+//	
+// Iterators are a generalization of pointers that allow a C++ program
+// to work with different data structures.
+// (for example, containers and ranges) in a uniform manner.
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <iterator>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 958
+저장시간: 2022-04-27 16:24:50 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 27일 수요일(8주 2일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//	
+//	오늘 할일
+// STRING 반복자를 제공하도록 코딩하자.(표준 컨테이너가 될 수도 있다)
+// 반복자는 컨테이너가 제공하는 데이터 타입이다.
+// STRING이 iterator와 reverse_iterator를 제공하도록 한다.
+// 
+// 관계연산자: <, >, <=, >=, ==, !=
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <iterator>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	STRING str{ "Hello" };
+
+	/*for (auto i = str.begin(); i != str.end(); ++i)
+		std::cout << *i << " ";
+	std::cout << std::endl;*/
+
+	for (char c : str)					// syntactic sugar
+		std::cout << c << " ";
+	std::cout << std::endl;
+	
+
+	
+}
+
+
+파일이름: STRING.h
+파일크기: 1787
+저장시간: 2022-04-27 16:32:12 GMT+9
+
+//-----------------------------------------------------------------------------
+// STRING.h - 자원을 관리하는 STL 관찰용 클래스
+// 
+// 2022.3.30							Programmed by HS
+//-----------------------------------------------------------------------------
+
+
+#pragma once
+#include <iostream>
+#include <compare>
+class STRING_iterator {
+	char* p;
+public:
+	STRING_iterator(char* p) : p{ p } {}
+
+	char& operator*() const{
+		return *p;
+	}
+
+	STRING_iterator& operator++() {
+		++p;
+		return *this;
+	}
+
+	// 관계연산자: <, >, <=, >=, ==, !=
+	// 관계연산자를 자동으로 생성하는 우주선 연산자를 사용한다.
+	// spaceship operator(three-way comparison operator)
+
+	// withordering, stringordering
+	auto operator<=>(const STRING_iterator& rhs) const = default;
+
+	bool operator!=(const STRING_iterator& rhs) const {
+		std::cout << "이게 우선 사용" << "\n";
+		return p != rhs.p;
+	}
+
+};
+
+
+class STRING {
+public:
+	// 2022. 4. 27
+	using iterator = STRING_iterator;
+
+
+private:
+	int id;				// 생성 시 부여
+	size_t num;			// 자원 갯수
+	char* p;			// 자원이 있는 곳
+	static int cid;		// 객체가 생성될 때 1 증가
+public:
+	STRING();
+	~STRING();
+	STRING(const char* str);		
+	STRING(const STRING& other);
+
+	// 2022.04.07 추가(이동 생성자, 이동할당연산자)
+	STRING(STRING&& other) noexcept;
+	STRING& operator=(STRING&& other) noexcept;
+
+	STRING& operator=(const STRING& other);
+	STRING operator+(const STRING& rhs) const;
+	
+	// 2022.04.21 begin(), end() 시작
+	// 2022.04.27 begin(), end() 다시 코딩
+	iterator begin() const {
+		return iterator{ p };
+	}
+
+	iterator end() const {
+		return iterator{ p + num };
+	}
+
+	size_t getNum() const;			// 2022.3.30 추가
+	void print(const char* s);
+
+	friend std::ostream& operator<<(std::ostream&, const STRING&);
+};

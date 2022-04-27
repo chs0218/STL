@@ -1,46 +1,33 @@
 //-----------------------------------------------------------------------------
-// 2022. 1학기 STL 4월 21일 수요일(8주 1일)
+// 2022. 1학기 STL 4월 27일 수요일(8주 2일)
 // 
 //	컨테이너 - 다른 객체를 저장하는 객체
 //		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
 //	
-//	반복자 - 포인터를 추상화한 것
-//		
+//	오늘 할일
+// STRING 반복자를 제공하도록 코딩하자.(표준 컨테이너가 될 수도 있다)
+// 반복자는 컨테이너가 제공하는 데이터 타입이다.
+// STRING이 iterator와 reverse_iterator를 제공하도록 한다.
+// 반복자 adapter
+// insertion operator
 //-----------------------------------------------------------------------------
 
 #include <iostream>
-#include <iterator>
-#include <vector>
+#include <string>
+#include <algorithm>
 #include "save.h"
 #include "STRING.h"
-
-// using namespace std;
-// extern bool 관찰;
-//
-//template <class Iter>
-//void show(Iter)
-//{
-//	// concept, modeul, range => c++ 20
-//	std::iterator_traits<Iter>::iterator_category c;
-//	std::cout << "반복자의 종류 - " << typeid(Iter).name() << typeid(c).name() << std::endl;
-//}
 
 //----
 int main()
 //----
 {
+
 	//save("소스.cpp");
+	//std::string str{ "The quick brown fox jumps over the lazy dog" };
+	STRING str{ "The quick brown fox jumps over the lazy dog" };
+	// [도전] 다음 코드가 실행되도록 필요한 코딩을 하자.
+	std::sort(str.begin(), str.end());
 
-	// 반복자의 종류(category)를 구분하고 알아본다.
-	// 반복자를 인수로 받는 함수를 만들어 어떤 종류 반복자인지 출력하도록 하자
-	
-	/*std::vector<int> v;
-	show(1);
-	show(v.begin());*/
-	STRING s{ "1234567890" };
-
-	for (char c : s)
-		std::cout << c << " * ";
-	std::cout << std::endl;
-	
+	std::cout << str << std::endl;
 }

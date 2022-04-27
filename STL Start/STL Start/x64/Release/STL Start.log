@@ -1,43 +1,20 @@
-﻿  STRING.cpp
-D:\Projects\STL\STL Start\STL Start\STRING.h(28,18): error C3646: 'begin': 알 수 없는 재정의 지정자입니다.
-D:\Projects\STL\STL Start\STL Start\STRING.h(28,23): error C2059: 구문 오류: '('
-D:\Projects\STL\STL Start\STL Start\STRING.h(28,26): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
-D:\Projects\STL\STL Start\STL Start\STRING.h(32,18): error C3646: 'end': 알 수 없는 재정의 지정자입니다.
-D:\Projects\STL\STL Start\STL Start\STRING.h(32,21): error C2059: 구문 오류: '('
-D:\Projects\STL\STL Start\STL Start\STRING.h(32,24): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
-D:\Projects\STL\STL Start\STL Start\STRING.h(36,18): error C3646: 'rbegin': 알 수 없는 재정의 지정자입니다.
-D:\Projects\STL\STL Start\STL Start\STRING.h(36,24): error C2059: 구문 오류: '('
-D:\Projects\STL\STL Start\STL Start\STRING.h(36,27): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
-D:\Projects\STL\STL Start\STL Start\STRING.h(40,18): error C3646: 'rend': 알 수 없는 재정의 지정자입니다.
-D:\Projects\STL\STL Start\STL Start\STRING.h(40,22): error C2059: 구문 오류: '('
-D:\Projects\STL\STL Start\STL Start\STRING.h(40,25): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
-  소스.cpp
-D:\Projects\STL\STL Start\STL Start\STRING.h(28,18): error C3646: 'begin': 알 수 없는 재정의 지정자입니다.
-D:\Projects\STL\STL Start\STL Start\STRING.h(28,23): error C2059: 구문 오류: '('
-D:\Projects\STL\STL Start\STL Start\STRING.h(28,26): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
-D:\Projects\STL\STL Start\STL Start\STRING.h(32,18): error C3646: 'end': 알 수 없는 재정의 지정자입니다.
-D:\Projects\STL\STL Start\STL Start\STRING.h(32,21): error C2059: 구문 오류: '('
-D:\Projects\STL\STL Start\STL Start\STRING.h(32,24): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
-D:\Projects\STL\STL Start\STL Start\STRING.h(36,18): error C3646: 'rbegin': 알 수 없는 재정의 지정자입니다.
-D:\Projects\STL\STL Start\STL Start\STRING.h(36,24): error C2059: 구문 오류: '('
-D:\Projects\STL\STL Start\STL Start\STRING.h(36,27): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
-D:\Projects\STL\STL Start\STL Start\STRING.h(40,18): error C3646: 'rend': 알 수 없는 재정의 지정자입니다.
-D:\Projects\STL\STL Start\STL Start\STRING.h(40,22): error C2059: 구문 오류: '('
-D:\Projects\STL\STL Start\STL Start\STRING.h(40,25): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
-D:\Projects\STL\STL Start\STL Start\소스.cpp(42,16): error C2672: 'begin': 일치하는 오버로드된 함수가 없습니다.
-D:\Projects\STL\STL Start\STL Start\소스.cpp(43,3): error C2893: 함수 템플릿 'unknown-type std::begin(_Container &)'을(를) 특수화하지 못했습니다.
-D:\Visual Studio\VC\Tools\MSVC\14.29.30133\include\xutility(1916): message : 'std::begin' 선언을 참조하십시오.
-D:\Projects\STL\STL Start\STL Start\소스.cpp(43,3): message : 다음 템플릿 인수 사용:
-D:\Projects\STL\STL Start\STL Start\소스.cpp(43,3): message : '_Container=STRING'
-D:\Projects\STL\STL Start\STL Start\소스.cpp(43,3): error C2784: 'const _Elem *std::begin(std::initializer_list<_Elem>) noexcept': 'std::initializer_list<_Elem>'의 템플릿 인수를 'STRING'에서 추론할 수 없습니다.
-D:\Visual Studio\VC\Tools\MSVC\14.29.30133\include\initializer_list(57): message : 'std::begin' 선언을 참조하십시오.
-D:\Projects\STL\STL Start\STL Start\소스.cpp(42,16): error C2672: 'end': 일치하는 오버로드된 함수가 없습니다.
-D:\Projects\STL\STL Start\STL Start\소스.cpp(43,3): error C2893: 함수 템플릿 'unknown-type std::end(_Container &)'을(를) 특수화하지 못했습니다.
-D:\Visual Studio\VC\Tools\MSVC\14.29.30133\include\xutility(1926): message : 'std::end' 선언을 참조하십시오.
-D:\Projects\STL\STL Start\STL Start\소스.cpp(43,3): message : 다음 템플릿 인수 사용:
-D:\Projects\STL\STL Start\STL Start\소스.cpp(43,3): message : '_Container=STRING'
-D:\Projects\STL\STL Start\STL Start\소스.cpp(43,3): error C2784: 'const _Elem *std::end(std::initializer_list<_Elem>) noexcept': 'std::initializer_list<_Elem>'의 템플릿 인수를 'STRING'에서 추론할 수 없습니다.
-D:\Visual Studio\VC\Tools\MSVC\14.29.30133\include\initializer_list(63): message : 'std::end' 선언을 참조하십시오.
-D:\Projects\STL\STL Start\STL Start\소스.cpp(43,3): error C3536: '<begin>$L0': 초기화되기 전에 사용할 수 없습니다.
-D:\Projects\STL\STL Start\STL Start\소스.cpp(43,3): error C3536: '<end>$L0': 초기화되기 전에 사용할 수 없습니다.
-D:\Projects\STL\STL Start\STL Start\소스.cpp(42,17): error C2100: 간접 참조가 잘못되었습니다.
+﻿  소스.cpp
+D:\Visual Studio\VC\Tools\MSVC\14.29.30133\include\algorithm(7399,45): error C2676: 이항 '-': 'const _RanIt'이(가) 이 연산자를 정의하지 않거나 미리 정의된 연산자에 허용되는 형식으로의 변환을 정의하지 않습니다.
+          with
+          [
+              _RanIt=STRING::iterator
+          ]
+D:\Visual Studio\VC\Tools\MSVC\14.29.30133\include\algorithm(7404): message : 컴파일되는 함수 템플릿 인스턴스화 'void std::sort<_RanIt,std::less<void>>(const _RanIt,const _RanIt,_Pr)'에 대한 참조를 확인하세요.
+          with
+          [
+              _RanIt=STRING::iterator,
+              _Pr=std::less<void>
+          ]
+D:\Projects\STL\STL Start\STL Start\소스.cpp(30): message : 컴파일되는 함수 템플릿 인스턴스화 'void std::sort<STRING::iterator>(const _RanIt,const _RanIt)'에 대한 참조를 확인하세요.
+          with
+          [
+              _RanIt=STRING::iterator
+          ]
+D:\Visual Studio\VC\Tools\MSVC\14.29.30133\include\algorithm(7399,5): error C2672: '_Sort_unchecked': 일치하는 오버로드된 함수가 없습니다.
+D:\Visual Studio\VC\Tools\MSVC\14.29.30133\include\algorithm(7399,1): error C2780: 'void std::_Sort_unchecked(_RanIt,_RanIt,conditional_t<std::_Is_from_primary<std::iterator_traits<remove_cv<remove_reference<_Ty>::type>::type>>,std::incrementable_traits<remove_cv<remove_reference<_Ty>::type>::type>,std::iterator_traits<remove_cv<remove_reference<_Ty>::type>::type>>::difference_type,_Pr)': 인수가 4개 있어야 하는데 3개를 사용했습니다.
+D:\Visual Studio\VC\Tools\MSVC\14.29.30133\include\algorithm(7365): message : 'std::_Sort_unchecked' 선언을 참조하십시오.
