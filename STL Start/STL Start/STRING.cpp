@@ -6,6 +6,7 @@
 
 
 #pragma once
+#include <algorithm>
 #include "STRING.h"
 
 bool 관찰{ false };		// 메시지를 보려면 true로 바꿔라
@@ -39,7 +40,7 @@ STRING::STRING(const STRING& other) :num{ other.num }, id{ ++cid }
 STRING::STRING(STRING&& other) noexcept : num{other.num}, id{++cid}
 {
 	p = other.p;
-	
+
 	other.p = nullptr;
 	other.num = 0;
 
@@ -54,6 +55,8 @@ STRING& STRING::operator=(STRING&& other) noexcept
 		if (num)
 			delete[] p;
 		p = other.p;
+		num = other.num;
+
 		other.num = 0;
 		other.p = nullptr;
 	}
@@ -118,4 +121,17 @@ std::ostream& operator<<(std::ostream& os, const STRING& s)
 		os << s.p[i];
 
 	return os;
+}
+
+std::istream& operator>>(std::istream& is, STRING& s)
+{
+	std::string str;
+	is >> str;
+	s = STRING{ str.c_str() };
+	return is;
+}
+
+bool STRING::operator<(const STRING& rhs) const
+{
+	return std::lexicographical_compare(begin(), end(), rhs.begin(), rhs.end());
 }

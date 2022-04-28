@@ -7276,3 +7276,427 @@ public:
 
 	friend std::ostream& operator<<(std::ostream&, const STRING&);
 };
+
+
+파일이름: 소스.cpp
+파일크기: 984
+저장시간: 2022-04-28 11:02:08 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//	
+//	오늘 할일
+// STRING 반복자를 제공하도록 코딩하자.(표준 컨테이너가 될 수도 있다)
+// 반복자는 컨테이너가 제공하는 데이터 타입이다.
+// STRING의 반복자가 sort()에 사용될 수 있도록 필요한 코딩을 한다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <array>
+#include <string>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+
+	save("소스.cpp");
+	save("STRING.h");
+
+	//std::string str{ "The quick brown fox jumps over the lazy dog" };
+	STRING str{ "The quick brown fox jumps over the lazy dog" };
+	// [도전] 다음 코드가 실행되도록 필요한 코딩을 하자.
+	std::sort(str.begin(), str.end());
+	std::cout << str << std::endl;
+}
+
+
+파일이름: STRING.h
+파일크기: 3497
+저장시간: 2022-04-28 11:02:08 GMT+9
+
+//-----------------------------------------------------------------------------
+// STRING.h - 자원을 관리하는 STL 관찰용 클래스
+// 
+// 2022.3.30							Programmed by HS
+//-----------------------------------------------------------------------------
+
+
+#pragma once
+#include <iostream>
+#include <compare>
+class STRING_iterator {
+public:	//	표준 반복자라면 이 다섯가지 타입을 제공해야 한다.
+	using iterator_category = std::random_access_iterator_tag;
+	using value_type = char;
+	using difference_type = ptrdiff_t;
+	using pointer = char*;
+	using reference = char&;
+private:
+	char* p;
+public:
+	STRING_iterator(char* p) : p{ p } {}
+
+	reference operator*() const{
+		return *p;
+	}
+
+	STRING_iterator& operator++() {
+		++p;
+		return *this;
+	}
+
+	// 2022. 4. 28 sort가 요구하는 --연산
+	STRING_iterator& operator--() {
+		--p;
+		return *this;
+	}
+
+	// 관계연산자: <, >, <=, >=, ==, !=
+	// 관계연산자를 자동으로 생성하는 우주선 연산자를 사용한다.
+	// spaceship operator(three-way comparison operator)
+
+	// withordering, stringordering
+	auto operator<=>(const STRING_iterator& rhs) const = default;
+
+	// 강순서(strong order), 약순서(week order), 부분순서(partial order)
+
+	//bool operator!=(const STRING_iterator& rhs) const {
+	//	std::cout << "이게 우선 사용" << "\n";
+	//	return p != rhs.p;
+	//}
+
+	// 2022. 4. 27 sort가 요구하는 - 연산
+	difference_type operator-(const STRING_iterator& rhs) const{
+		return p - rhs.p;
+	}
+
+	// 2022. 4. 28 sort가 요구하는 -연산
+	STRING_iterator operator-(const difference_type& d) const {
+		return STRING_iterator{ p - d };
+	}
+
+	// 2022. 4. 28 sort가 요구하는 +연산
+	STRING_iterator operator+(const difference_type& d) const {
+		return STRING_iterator{ p + d };
+	}
+
+	
+};
+
+class STRING_reverse_iterator {
+public:	//	표준 반복자라면 이 다섯가지 타입을 제공해야 한다.
+	using iterator_category = std::random_access_iterator_tag;
+	using value_type = char;
+	using difference_type = ptrdiff_t;
+	using pointer = char*;
+	using reference = char&;
+private:
+	char* p;
+public:
+	STRING_reverse_iterator(char* p) : p{ p } {}
+	reference operator*() const {
+		return *(p - 1);
+	}
+
+	STRING_reverse_iterator& operator++() {
+		--p;
+		return *this;
+	}
+	auto operator<=>(const STRING_reverse_iterator& rhs) const = default;
+	bool operator!=(const STRING_reverse_iterator& rhs) const {
+		return p != rhs.p;
+	}
+
+};
+
+
+class STRING {
+public:
+	// 2022. 4. 27
+	using iterator = STRING_iterator;
+	using reverse_iterator = STRING_reverse_iterator;
+
+private:
+	int id;				// 생성 시 부여
+	size_t num;			// 자원 갯수
+	char* p;			// 자원이 있는 곳
+	static int cid;		// 객체가 생성될 때 1 증가
+public:
+	STRING();
+	~STRING();
+	STRING(const char* str);		
+	STRING(const STRING& other);
+
+	// 2022.04.07 추가(이동 생성자, 이동할당연산자)
+	STRING(STRING&& other) noexcept;
+	STRING& operator=(STRING&& other) noexcept;
+
+	STRING& operator=(const STRING& other);
+	STRING operator+(const STRING& rhs) const;
+	
+	// 2022.04.21 begin(), end() 시작
+	// 2022.04.27 begin(), end() 다시 코딩
+	iterator begin() const {
+		return iterator{ p };
+	}
+
+	iterator end() const {
+		return iterator{ p + num };
+	}
+
+	reverse_iterator rbegin() const {
+		return reverse_iterator{ p + num };
+	}
+
+	reverse_iterator rend() const {
+		return reverse_iterator{ p };
+	}
+
+
+	size_t getNum() const;			// 2022.3.30 추가
+	void print(const char* s);
+
+	friend std::ostream& operator<<(std::ostream&, const STRING&);
+};
+
+
+파일이름: 소스.cpp
+파일크기: 1123
+저장시간: 2022-04-28 11:47:56 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//	
+//	오늘 할일
+// STRING 반복자를 제공하도록 코딩하자.(표준 컨테이너가 될 수도 있다)
+// 반복자는 컨테이너가 제공하는 데이터 타입이다.
+// STRING의 반복자가 sort()에 사용될 수 있도록 필요한 코딩을 한다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::ifstream in{ "소스.cpp" };
+	std::vector<STRING> v{ std::istream_iterator<STRING>{in}, {} };
+	
+	// [문제] v의 원소를 오름차순으로 정렬하라.
+
+	std::sort(v.begin(), v.end(), [](STRING& a, STRING& b) {
+		std::string tmpA{ a.getChar() };
+		std::string tmpB{ b.getChar() };
+
+		return tmpA < tmpB;
+	});
+
+
+	for (const STRING& i : v)
+		std::cout << i << "\t";
+	std::cout << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1118
+저장시간: 2022-04-28 11:51:05 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//	
+//	오늘 할일
+// STRING 반복자를 제공하도록 코딩하자.(표준 컨테이너가 될 수도 있다)
+// 반복자는 컨테이너가 제공하는 데이터 타입이다.
+// STRING의 반복자가 sort()에 사용될 수 있도록 필요한 코딩을 한다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::ifstream in{ "소스.cpp" };
+	std::vector<STRING> v{ std::istream_iterator<STRING>{in}, {} };
+	
+	// [문제] v의 원소를 오름차순으로 정렬하라.
+
+	std::sort(v.begin(), v.end(), [](STRING& lhs, STRING& rhs) {
+		return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+	});
+
+
+	for (const STRING& i : v)
+		std::cout << i << "\t";
+	std::cout << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 994
+저장시간: 2022-04-28 11:52:48 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//	
+//	오늘 할일
+// STRING 반복자를 제공하도록 코딩하자.(표준 컨테이너가 될 수도 있다)
+// 반복자는 컨테이너가 제공하는 데이터 타입이다.
+// STRING의 반복자가 sort()에 사용될 수 있도록 필요한 코딩을 한다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::ifstream in{ "소스.cpp" };
+	std::vector<STRING> v{ std::istream_iterator<STRING>{in}, {} };
+	
+	// [문제] v의 원소를 오름차순으로 정렬하라.
+
+	std::sort(v.begin(), v.end());
+
+
+	for (const STRING& i : v)
+		std::cout << i << "\t";
+	std::cout << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1142
+저장시간: 2022-04-28 11:58:43 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//	
+//	오늘 할일
+// STRING 반복자를 제공하도록 코딩하자.(표준 컨테이너가 될 수도 있다)
+// 반복자는 컨테이너가 제공하는 데이터 타입이다.
+// STRING의 반복자가 sort()에 사용될 수 있도록 필요한 코딩을 한다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::ifstream in{ "소스.cpp" };
+	std::vector<STRING> v{ std::istream_iterator<STRING>{in}, {} };
+	
+	// [문제] v의 원소를 오름차순으로 정렬하라.
+	// 어디서든 비교가능하도록 < 가 있으면 됨
+	
+	std::sort(v.begin(), v.end());
+
+	// v의 원소인 STRING을 오름차순으로 정렬하라.
+	for(STRING& s : v)
+		std::sort(s.begin(), s.end());
+
+	for (const STRING& i : v)
+		std::cout << i << "\t";
+	std::cout << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1182
+저장시간: 2022-04-28 11:59:55 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+//	
+//	오늘 할일
+// STRING 반복자를 제공하도록 코딩하자.(표준 컨테이너가 될 수도 있다)
+// 반복자는 컨테이너가 제공하는 데이터 타입이다.
+// STRING의 반복자가 sort()에 사용될 수 있도록 필요한 코딩을 한다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::ifstream in{ "소스X.txt" };
+	std::vector<STRING> v{ std::istream_iterator<STRING>{in}, {} };
+	
+	// [문제] v의 원소를 오름차순으로 정렬하라.
+	// 어디서든 비교가능하도록 < 가 있으면 됨
+	
+	std::sort(v.begin(), v.end());
+
+	// v의 원소인 STRING을 오름차순으로 정렬하라.
+	for (STRING& s : v)
+		std::sort(s.begin(), s.end(), [](char a, char b) { return a > b; });
+
+	for (const STRING& i : v)
+		std::cout << i << "\t";
+	std::cout << std::endl;
+
+}

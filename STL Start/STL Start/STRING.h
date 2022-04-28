@@ -9,16 +9,29 @@
 #include <iostream>
 #include <compare>
 class STRING_iterator {
+public:	//	표준 반복자라면 이 다섯가지 타입을 제공해야 한다.
+	using iterator_category = std::random_access_iterator_tag;
+	using value_type = char;
+	using difference_type = ptrdiff_t;
+	using pointer = char*;
+	using reference = char&;
+private:
 	char* p;
 public:
 	STRING_iterator(char* p) : p{ p } {}
 
-	char& operator*() const{
+	reference operator*() const{
 		return *p;
 	}
 
 	STRING_iterator& operator++() {
 		++p;
+		return *this;
+	}
+
+	// 2022. 4. 28 sort가 요구하는 --연산
+	STRING_iterator& operator--() {
+		--p;
 		return *this;
 	}
 
@@ -31,23 +44,41 @@ public:
 
 	// 강순서(strong order), 약순서(week order), 부분순서(partial order)
 
-	bool operator!=(const STRING_iterator& rhs) const {
-		std::cout << "이게 우선 사용" << "\n";
-		return p != rhs.p;
-	}
+	//bool operator!=(const STRING_iterator& rhs) const {
+	//	std::cout << "이게 우선 사용" << "\n";
+	//	return p != rhs.p;
+	//}
 
 	// 2022. 4. 27 sort가 요구하는 - 연산
-	char* STRING_iterator operator-(const STRING_iterator& rhs) const{
+	difference_type operator-(const STRING_iterator& rhs) const{
 		return p - rhs.p;
 	}
 
+	// 2022. 4. 28 sort가 요구하는 -연산
+	STRING_iterator operator-(const difference_type& d) const {
+		return STRING_iterator{ p - d };
+	}
+
+	// 2022. 4. 28 sort가 요구하는 +연산
+	STRING_iterator operator+(const difference_type& d) const {
+		return STRING_iterator{ p + d };
+	}
+
+	
 };
 
 class STRING_reverse_iterator {
+public:	//	표준 반복자라면 이 다섯가지 타입을 제공해야 한다.
+	using iterator_category = std::random_access_iterator_tag;
+	using value_type = char;
+	using difference_type = ptrdiff_t;
+	using pointer = char*;
+	using reference = char&;
+private:
 	char* p;
 public:
 	STRING_reverse_iterator(char* p) : p{ p } {}
-	char& operator*() const {
+	reference operator*() const {
 		return *(p - 1);
 	}
 
@@ -87,6 +118,9 @@ public:
 	STRING& operator=(const STRING& other);
 	STRING operator+(const STRING& rhs) const;
 	
+	// 2022. 4. 28 sort용 디폴트 정렬기준
+	bool operator<(const STRING& rhs) const;
+
 	// 2022.04.21 begin(), end() 시작
 	// 2022.04.27 begin(), end() 다시 코딩
 	iterator begin() const {
@@ -105,9 +139,11 @@ public:
 		return reverse_iterator{ p };
 	}
 
-
 	size_t getNum() const;			// 2022.3.30 추가
 	void print(const char* s);
 
 	friend std::ostream& operator<<(std::ostream&, const STRING&);
+
+	// 2022. 4. 28 추가
+	friend std::istream& operator>>(std::istream&, STRING&);
 };
