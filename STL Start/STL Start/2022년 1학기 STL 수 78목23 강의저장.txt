@@ -7700,3 +7700,1730 @@ int main()
 	std::cout << std::endl;
 
 }
+
+
+파일이름: 소스.cpp
+파일크기: 1329
+저장시간: 2022-05-04 15:37:31 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+// 반복자 => 포인터를 일반화하고 추상화한 것
+// Pointer => 무언가를 가르키고 있는 것
+// Pointer로 할 수 있는 일 => 가르키고 있는 값을 알아올 수 있다, 
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+template <class T, class Ty>
+T my_find(T begin, T end, Ty target);
+
+template <class T, class Ty>
+T my_find(T begin, T end, Ty target)
+{
+	// While 문으로 쓰기
+	while (begin != end)
+	{
+		if (*begin == target)
+			return begin;
+		++begin;
+	}
+	return end;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	STRING s{"Hello, world"};
+	
+	// [문제] s에 어떤 문자가 몇번째 출력하자.
+	while (true)
+	{
+		std::cout << "찾으려는 문자는? :";
+		char c;
+		std::cin >> c;
+		auto p = my_find(s.begin(), s.end(), c);
+		if (p != s.end())
+			std::cout << std::distance(s.begin(), p) + 1 << "번째 문자입니다." << std::endl;
+		else
+			std::cout << c << "는 없는 문자입니다." << std::endl;
+	}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1412
+저장시간: 2022-05-04 15:46:44 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+// 반복자 => 포인터를 일반화하고 추상화한 것
+// Pointer => 무언가를 가르키고 있는 것
+// Pointer로 할 수 있는 일 => 가르키고 있는 값을 알아올 수 있다, 
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+template <class T, class Ty>
+T my_find(T begin, T end, Ty target);
+
+template <class T, class Ty>
+T my_find(T begin, T end, Ty target)
+{
+	// While 문으로 쓰기
+	while (begin != end)
+	{
+		if (*begin == target)
+			return begin;
+		++begin;
+	}
+	return end;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	// [문제] STRING에서 'k'보다 큰 문자가 몇번째인지 출력하라
+	
+	while (true)
+	{
+		std::cout << "단어를 입력하세요: ";
+		STRING s;		// 컴파일러가 루프 최적화를 시켜줌 (loop optimization)
+
+		std::cin >> s;
+		auto p = std::find_if(s.begin(), s.end(), [](char c) {return 'k' < c; });
+	
+		if (p == s.end())
+			std::cout << "k보다 큰 글자 없다" << std::endl;
+		else
+			std::cout << std::distance(s.begin(), p) + 1 << " 위치에서 발견" << std::endl;
+
+	}
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1141
+저장시간: 2022-05-04 15:47:47 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+// 반복자 => 포인터를 일반화하고 추상화한 것
+// Pointer => 무언가를 가르키고 있는 것
+// Pointer로 할 수 있는 일 => 가르키고 있는 값을 알아올 수 있다, 
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	// [문제] STRING에서 처음 대문자가 출현하는 위치를 출력하라
+	
+	while (true)
+	{
+		std::cout << "단어를 입력하세요: ";
+		STRING s;		// 컴파일러가 루프 최적화를 시켜줌 (loop optimization)
+
+		std::cin >> s;
+		auto p = std::find_if(s.begin(), s.end(), [](char c) {return isupper(c); });
+	
+		if (p == s.end())
+			std::cout << "대문자는 없다" << std::endl;
+		else
+			std::cout << std::distance(s.begin(), p) + 1 << " 위치에서 발견" << std::endl;
+
+	}
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1217
+저장시간: 2022-05-04 16:03:59 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+template <class Iter,  class Call>
+Iter my_find_if(Iter b, Iter e, Call f);
+
+template <class Iter, class Call>
+Iter my_find_if(Iter b, Iter e, Call f)
+{
+	while (b != e)
+	{
+		if (f(*b))
+			return b;
+		++b;
+	}
+	return e;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");	
+	// [문제] STRING에서 처음 대문자가 출현하는 위치를 출력하라
+	while (true)
+	{
+		std::cout << "단어를 입력하세요: ";
+		STRING s;		// 컴파일러가 루프 최적화를 시켜줌 (loop optimization)
+
+		std::cin >> s;
+		auto p = my_find_if(s.begin(), s.end(), [](char c) {return isupper(c); });
+	
+		if (p == s.end())
+			std::cout << "대문자는 없다" << std::endl;
+		else
+			std::cout << std::distance(s.begin(), p) + 1 << " 위치에서 발견" << std::endl;
+
+	}
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1231
+저장시간: 2022-05-04 16:04:51 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+template <class Iter,  class Call>
+Iter my_find_if(Iter b, Iter e, Call f);
+
+template <class Iter, class Call>
+Iter my_find_if(Iter b, Iter e, Call f)
+{
+	while (b != e)
+	{
+		if (f(*b))
+			return b;
+		++b;
+	}
+	return e;
+}
+
+bool f(char c)
+{
+	return isupper(c);
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");	
+	// [문제] STRING에서 처음 대문자가 출현하는 위치를 출력하라
+	while (true)
+	{
+		std::cout << "단어를 입력하세요: ";
+		STRING s;		// 컴파일러가 루프 최적화를 시켜줌 (loop optimization)
+
+		std::cin >> s;
+		auto p = my_find_if(s.begin(), s.end(), f);
+	
+		if (p == s.end())
+			std::cout << "대문자는 없다" << std::endl;
+		else
+			std::cout << std::distance(s.begin(), p) + 1 << " 위치에서 발견" << std::endl;
+
+	}
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1326
+저장시간: 2022-05-04 16:08:12 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+template <class Iter,  class Call>
+Iter my_find_if(Iter b, Iter e, Call f);
+
+template <class Iter, class Call>
+Iter my_find_if(Iter b, Iter e, Call f)
+{
+	while (b != e)
+	{
+		if (f(*b))
+			return b;
+		++b;
+	}
+	return e;
+}
+
+class XXX
+{
+public:
+	bool operator()(char c)
+	{
+		std::cout << "이거 호출되고 있음" << std::endl;
+		return isupper(c);
+	}
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");	
+	// [문제] STRING에서 처음 대문자가 출현하는 위치를 출력하라
+	while (true)
+	{
+		std::cout << "단어를 입력하세요: ";
+		STRING s;		// 컴파일러가 루프 최적화를 시켜줌 (loop optimization)
+
+		std::cin >> s;
+		auto p = my_find_if(s.begin(), s.end(), XXX());
+	
+		if (p == s.end())
+			std::cout << "대문자는 없다" << std::endl;
+		else
+			std::cout << std::distance(s.begin(), p) + 1 << " 위치에서 발견" << std::endl;
+
+	}
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1355
+저장시간: 2022-05-04 16:09:04 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+template <class Iter,  class Call>
+Iter my_find_if(Iter b, Iter e, Call f);
+
+template <class Iter, class Call>
+Iter my_find_if(Iter b, Iter e, Call f)
+{
+	while (b != e)
+	{
+		if (f(*b))
+			return b;
+		++b;
+	}
+	return e;
+}
+
+// function object(Functor)
+class XXX
+{
+public:
+	bool operator()(char c)
+	{
+		std::cout << "이거 호출되고 있음" << std::endl;
+		return isupper(c);
+	}
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");	
+	// [문제] STRING에서 처음 대문자가 출현하는 위치를 출력하라
+	while (true)
+	{
+		std::cout << "단어를 입력하세요: ";
+		STRING s;		// 컴파일러가 루프 최적화를 시켜줌 (loop optimization)
+
+		std::cin >> s;
+		auto p = my_find_if(s.begin(), s.end(), XXX());
+	
+		if (p == s.end())
+			std::cout << "대문자는 없다" << std::endl;
+		else
+			std::cout << std::distance(s.begin(), p) + 1 << " 위치에서 발견" << std::endl;
+
+	}
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 713
+저장시간: 2022-05-04 16:16:05 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");	
+	
+	//	키보드에서 입력한 문자를 그대로 화면에 출력하라.
+	//	copy를 사용할 것
+
+	std::copy(std::istream_iterator<char> {std::cin}, {}, std::ostream_iterator<char>{std::cout, "-"});
+	
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 937
+저장시간: 2022-05-04 16:22:08 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+template<class Input_Iter, class Output_Iter>
+Output_Iter my_copy(Input_Iter first, Input_Iter last, Output_Iter d_first)
+{
+	while (first != last)
+	{
+		*d_first = *first;
+		++first;
+		++d_first;
+	}
+	return d_first;
+}
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	//	키보드에서 입력한 문자를 그대로 화면에 출력하라.
+	//	copy를 사용할 것
+
+	my_copy(std::istream_iterator<char> {std::cin}, {}, std::ostream_iterator<char>{std::cout, "-"});
+	
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 932
+저장시간: 2022-05-04 16:30:40 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+template<class Input_Iter, class Output_Iter>
+Output_Iter my_copy(Input_Iter first, Input_Iter last, Output_Iter d_first)
+{
+	while (first != last)
+	{
+		*d_first = *first;
+		++first;
+		++d_first;
+	}
+	return d_first;
+}
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	//	키보드에서 입력한 문자를 그대로 화면에 출력하라.
+	//	copy를 사용할 것
+
+	my_copy(std::istream_iterator<char> {std::cin}, {}, std::ostream_iterator<char>{std::cout});
+	
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 853
+저장시간: 2022-05-04 16:33:14 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+template<class SrcIter, class DestIter>
+DestIter my_copy(SrcIter b, SrcIter e, DestIter d)
+{
+	while (b != e)
+		*d++ = *b++;
+	return d;
+}
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	//	키보드에서 입력한 문자를 그대로 화면에 출력하라.
+	//	copy를 사용할 것
+
+	my_copy(std::istream_iterator<char> {std::cin}, {}, std::ostream_iterator<char>{std::cout, "-"});
+	
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 853
+저장시간: 2022-05-04 16:33:54 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+template<class SrcIter, class DestIter>
+DestIter my_copy(SrcIter b, SrcIter e, DestIter d)
+{
+	while (b != e)
+		*d++ = *b++;
+	return d;
+}
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	//	키보드에서 입력한 문자를 그대로 화면에 출력하라.
+	//	copy를 사용할 것
+
+	my_copy(std::istream_iterator<char> {std::cin}, {}, std::ostream_iterator<char>{std::cout, "-"});
+	
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 873
+저장시간: 2022-05-04 16:34:09 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+template<class SrcIter, class DestIter>
+DestIter my_copy(SrcIter b, SrcIter e, DestIter d)
+{
+	while (b != e)
+	{
+		*d = *b;
+		++b;
+		++d;
+	}
+	return d;
+}
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	//	키보드에서 입력한 문자를 그대로 화면에 출력하라.
+	//	copy를 사용할 것
+
+	my_copy(std::istream_iterator<char> {std::cin}, {}, std::ostream_iterator<char>{std::cout, "-"});
+	
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 873
+저장시간: 2022-05-04 16:34:18 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 4월 28일 목요일(9주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+template<class SrcIter, class DestIter>
+DestIter my_copy(SrcIter b, SrcIter e, DestIter d)
+{
+	while (b != e)
+	{
+		*d = *b;
+		++b;
+		++d;
+	}
+	return d;
+}
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	//	키보드에서 입력한 문자를 그대로 화면에 출력하라.
+	//	copy를 사용할 것
+
+	my_copy(std::istream_iterator<char> {std::cin}, {}, std::ostream_iterator<char>{std::cout, "-"});
+	
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 941
+저장시간: 2022-05-04 16:41:53 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(9주 2일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+template<class SrcIter, class DestIter>
+void my_copy(SrcIter b, SrcIter e, DestIter d)
+{
+	while (b != e)
+	{
+		*d = *b;
+		++b;
+		++d;
+	}
+}
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	//	키보드에서 입력한 문자를 벡터에 저장하라.
+	//	copy를 사용할 것
+	std::vector<char> v;
+	v.reserve(100);
+	my_copy(std::istream_iterator<char> {std::cin}, {}, v.begin());
+	
+	for (char c : v)
+		std::cout << c << "-";
+	std::cout << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 955
+저장시간: 2022-05-04 16:51:38 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(9주 2일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+template<class SrcIter, class DestIter>
+void my_copy(SrcIter b, SrcIter e, DestIter d)
+{
+	while (b != e)
+	{
+		*d = *b;
+		++b;
+		++d;
+	}
+}
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	//	키보드에서 입력한 문자를 벡터에 저장하라.
+	//	copy를 사용할 것
+	std::vector<char> v;
+	v.reserve(100);
+	std::copy(std::istream_iterator<char> {std::cin}, {}, std::back_inserter(v));
+	
+	for (char c : v)
+		std::cout << c << "-";
+	std::cout << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 824
+저장시간: 2022-05-04 17:05:04 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(9주 2일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+#include "STRING.h"
+
+void print(int a[]);		// 배열은 인자로 전달되면 포인터가 된다(decay);
+void print(int a[])
+{
+	for (int i = 0; i < 10; ++i)
+		std::cout << a[i] << "-";
+	std::cout << std::endl;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	int a[10]{ 1,2,3,4,5 };
+	// [문제] print 함수는 a를 인자로 받아 전체 원소를 출력한다.
+	// 선언하고 정의하고 호출하라
+
+	print(a);
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 824
+저장시간: 2022-05-04 17:05:48 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(9주 2일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+#include "STRING.h"
+
+void print(int*);		// 배열이 인자로 전달되면 포인터가 된다(type decay)
+void print(int* a)
+{
+	for (int i = 0; i < 10; ++i)
+		std::cout << a[i] << "-";
+	std::cout << std::endl;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	int a[10]{ 1,2,3,4,5 };
+	// [문제] print 함수는 a를 인자로 받아 전체 원소를 출력한다.
+	// 선언하고 정의하고 호출하라
+
+	print(a);
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1151
+저장시간: 2022-05-04 17:11:44 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(9주 2일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// 반복자를 이해했다면 제네릭 함수를 만들어 볼 수 있겠다
+// 
+// C++20 span - contiguous 컨테이너와 연결된 view를 말함.
+//				배열이 인자로 전달될 때 size()를 알 수 없는 문제를 해결
+//				[], array, vector, string, STRING
+//				-> 얘들을 일관되게 취급하려고 만든 view
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <span>
+#include "save.h"
+#include "STRING.h"
+
+void print(std::span<int>);		// 배열이 인자로 전달되면 포인터가 된다(type decay)
+void print(std::span<int> a)
+{
+	std::cout << "전체 메모리 크기 - " << a.size_bytes() << std::endl;
+	for (int i = 0; i < a.size(); ++i)
+		std::cout << a[i] << "-";
+	std::cout << std::endl;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	int a[10]{ 1,2,3,4,5 };
+	// [문제] print 함수는 a를 인자로 받아 전체 원소를 출력한다.
+	// 선언하고 정의하고 호출하라
+
+	print(a);
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1309
+저장시간: 2022-05-05 10:51:50 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(10주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <span>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+void print(std::span<int>);
+void print(std::span<int> a)
+{
+	std::cout << "전체 메모리 크기 - " << a.size_bytes() << std::endl;
+	for (int i = 0; i < a.size(); ++i)
+		std::cout << a[i] << "-";
+	std::cout << std::endl;
+}
+
+void print(std::span<char> a)
+{
+	std::cout << "전체 char 메모리 크기 - " << a.size_bytes() << std::endl;
+	for (int i = 0; i < a.size(); ++i)
+		std::cout << a[i] << "-";
+	std::cout << std::endl;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	// [문제] print 함수는 a를 인자로 받아 전체 원소를 출력한다.
+	// 선언하고 정의하고 호출하라
+
+	int a[10]{ 1,2,3,4,5 };
+	print(a);
+
+	std::vector<int> v{ 1,2,3,4,5 };
+	print(v);
+
+	STRING s{ "1234567890" };
+	print(std::span<char>((char*)&(*s.begin()), 10));
+}
+
+
+파일이름: 소스.cpp
+파일크기: 808
+저장시간: 2022-05-05 10:55:39 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(10주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <numeric>
+#include <vector>
+#include <format>
+#include "save.h"
+#include "STRING.h"
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::vector<int> v(100);
+	std::iota(v.begin(), v.end(), 1);
+
+	for (int i = 0; i < v.size(); ++i)
+		std::cout << std::format("{:4}", v[i]);
+	std::cout << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1300
+저장시간: 2022-05-05 11:09:31 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(10주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <numeric>
+#include <set>
+#include <vector>
+#include <format>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::vector<int> v(100);
+	std::iota(v.begin(), v.end(), 1);		// 1 - 100;
+	std::shuffle(v.begin(), v.end(), dre);
+
+
+	// 아무 컨테이너나 다른 컨테이너를 생성하는데 사용가능
+	std::set<int> s(v.begin(), v.end(), std::less<int>());
+
+	// 반복자를 이용해서 역방향 출력하라
+	for (std::set<int>::reverse_iterator i = s.crbegin(); i != s.crend(); ++i)
+		std::cout << std::format("{:4}", *i);
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+	/*for (int i = 0; i < v.size(); ++i)
+		std::cout << std::format("{:4}", v[i]);
+	std::cout << std::endl;*/
+
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1540
+저장시간: 2022-05-05 11:21:35 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(10주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <numeric>
+#include <set>
+#include <vector>
+#include <format>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+
+class 기준 {
+public:
+	bool operator()(int a, int b) const
+	{
+		return a > b;
+	}
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	//std::vector<int> v(100);
+	//std::iota(v.begin(), v.end(), 1);		// 1 - 100;
+	//std::shuffle(v.begin(), v.end(), dre);
+
+
+	//// 아무 컨테이너나 다른 컨테이너를 생성하는데 사용가능
+	//// 내림차순으로 정렬하는 set 생성
+	//std::set<int> s(v.begin(), v.end(), 비교);
+
+	//// 반복자를 이용해서 출력하라
+	//for (std::set<int>::iterator i = s.cbegin(); i != s.cend(); ++i)
+	//	std::cout << std::format("{:4}", *i);
+	//std::cout << std::endl;
+	//std::cout << std::endl;
+
+	///*for (int i = 0; i < v.size(); ++i)
+	//	std::cout << std::format("{:4}", v[i]);
+	//std::cout << std::endl;*/
+
+	std::set<int, 기준> s{ 1, 3, 5, 2, 4 };
+
+	for (int n : s)
+		std::cout << n << " ";
+	std::cout << std::endl;
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 945
+저장시간: 2022-05-05 11:33:22 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(10주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <numeric>
+#include <set>
+#include <vector>
+#include <format>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+
+class 기준 {
+public:
+	bool operator()(int a, int b) const
+	{
+		return a > b;
+	}
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	std::set<int, 기준> s{ 1, 3, 5, 2, 4 };
+
+	for (int n : s)
+		std::cout << n << " ";
+	std::cout << std::endl;
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1086
+저장시간: 2022-05-05 11:46:22 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(10주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//		- set의 주요 동작을 알아본다. (빨리 찾기 위한 컨테이너)
+//		- 내가 만든 자료형(class Dog)을 set에 넣어 관리
+//		- 중복되는 데이터를 하나로만 저장(multiset을 이용해야함)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <set>
+#include <string>
+#include <fstream>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [문제] "소스.cpp"의 단어를 set에 저장한 후 출려하라.
+	std::ifstream in{ "소스.cpp" };
+	std::multiset<std::string> s{ std::istream_iterator<std::string> {in}, {} };
+
+	for (auto i{ s.cbegin() }; i != s.cend(); ++i)
+		std::cout << *i << "\n";
+	std::cout << std::endl;
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1231
+저장시간: 2022-05-05 11:52:24 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(10주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//		- set의 주요 동작을 알아본다. (빨리 찾기 위한 컨테이너)
+//		- 내가 만든 자료형(class Dog)을 set에 넣어 관리
+//		- 중복되는 데이터를 하나로만 저장(multiset을 이용해야함)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <set>
+#include <string>
+#include <fstream>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	std::ifstream in{ "소스.cpp" };
+	std::multiset<std::string> s{ std::istream_iterator<std::string> {in}, {} };
+
+	// [문제] 찾는 단어를 물어보고 찾아주자.
+	while (true)
+	{
+		std::string str;
+		std::cout << "찾는 단어는? ";
+
+		if (std::cin >> str)
+		{
+			auto p = s.find(str);
+			if (p != s.end())
+				std::cout << "찾았습니다.\n";
+			else
+				std::cout << "없는 단어입니다.\n";
+		}
+		else
+			break;
+	}
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1175
+저장시간: 2022-05-05 11:54:10 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(10주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//		- set의 주요 동작을 알아본다. (빨리 찾기 위한 컨테이너)
+//		- 내가 만든 자료형(class Dog)을 set에 넣어 관리
+//		- 중복되는 데이터를 하나로만 저장(multiset을 이용해야함)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <set>
+#include <string>
+#include <fstream>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	std::ifstream in{ "소스.cpp" };
+	std::multiset<std::string> s{ std::istream_iterator<std::string> {in}, {} };
+
+	// [문제] 찾는 단어를 물어보고 찾아주자.
+	while (true)
+	{
+		std::string str;
+		std::cout << "찾는 단어는? ";
+
+		if (std::cin >> str)
+		{
+			std::cout << std::boolalpha << s.contains(str) << std::endl;		// c++ 20
+		}
+		else
+			break;
+	}
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1787
+저장시간: 2022-05-05 12:08:58 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(10주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//		- set의 주요 동작을 알아본다. (빨리 찾기 위한 컨테이너)
+//		- 내가 만든 자료형(class Dog)을 set에 넣어 관리
+//		- 중복되는 데이터를 하나로만 저장(multiset을 이용해야함)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <list>
+#include <set>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+
+std::default_random_engine dre;
+std::uniform_int_distribution<int> uid{ 'a', 'z' };
+std::uniform_int_distribution<int> uidN{ 1, 10000 };
+
+class Dog {
+	std::string name;
+	int n;
+public:
+	Dog() {
+		for (int i = 0; i < 10; ++i)
+			name += uid(dre);
+		n = uidN(dre);
+	}
+
+	void show() const {
+		std::cout << name << " - " << n << std::endl;
+	}
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	std::list<Dog> s;
+	for (int i = 0; i < 1000; ++i)
+		s.insert(s.begin(), Dog{});
+
+	for (auto i = s.cbegin(); i != s.cend(); ++i)
+		i->show();
+
+
+	//// [문제] 찾는 단어를 물어보고 몇 개인지 알려주자.(multiset)
+	//while (true)
+	//{
+	//	std::string str;
+	//	std::cout << "찾는 단어는? ";
+
+	//	std::cin >> str;
+	//	auto [상한, 하한] = s.equal_range(str);		//	structured-binding
+	//	
+	//	if (int cnt = std::distance(하한, 상한)) {
+	//		std::cout << str << " - " << cnt << "개 발견" << std::endl;
+	//	}
+
+	//	else
+	//	{
+	//		std::cout << "없는 단어입니다." << std::endl;
+	//	}
+	//}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1500
+저장시간: 2022-05-05 12:17:02 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(10주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//		- set의 주요 동작을 알아본다. (빨리 찾기 위한 컨테이너)
+//		- 내가 만든 자료형(class Dog)을 set에 넣어 관리
+//		- 중복되는 데이터를 하나로만 저장(multiset을 이용해야함)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <list>
+#include <set>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+
+std::default_random_engine dre;
+std::uniform_int_distribution<int> uid{ 'a', 'z' };
+std::uniform_int_distribution<int> uidN{ 1, 10000 };
+
+class Dog {
+	std::string name;
+	int n;
+public:
+	Dog() {
+		for (int i = 0; i < 10; ++i)
+			name += uid(dre);
+		n = uidN(dre);
+	}
+
+	void show() const {
+		std::cout << name << " - " << n << std::endl;
+	}
+	
+	friend class 기준;
+};
+
+class 기준 {
+public:
+	bool operator() (const Dog& a, const Dog& b) const{
+		return a.name < b.name;
+	}
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	std::set<Dog, 기준> s;		// 이름 오름차순 정렬하는 set
+	for (int i = 0; i < 1000; ++i)
+		s.insert(Dog{});
+
+	for (auto i = s.cbegin(); i != s.cend(); ++i)
+		i->show();
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1549
+저장시간: 2022-05-05 12:19:26 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(10주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//		- set의 주요 동작을 알아본다. (빨리 찾기 위한 컨테이너)
+//		- 내가 만든 자료형(class Dog)을 set에 넣어 관리
+//		- 중복되는 데이터를 하나로만 저장(multiset을 이용해야함)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <list>
+#include <set>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+
+std::default_random_engine dre;
+std::uniform_int_distribution<int> uid{ 'a', 'z' };
+std::uniform_int_distribution<int> uidN{ 1, 10000 };
+
+class Dog {
+	std::string name;
+	int n;
+public:
+	Dog() {
+		for (int i = 0; i < 10; ++i)
+			name += uid(dre);
+		n = uidN(dre);
+	}
+
+	void show() const {
+		std::cout << name << " - " << n << std::endl;
+	}
+	
+	std::string getName() const{
+		return name;
+	}
+};
+
+class 정렬기준 {
+public:
+	bool operator() (const Dog& a, const Dog& b) const{
+		return a.getName() < b.getName();
+	};
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	std::set<Dog, 정렬기준> s;		// 이름 오름차순 정렬하는 set
+	for (int i = 0; i < 1000; ++i)
+		s.insert(Dog{});
+
+	for (auto i = s.cbegin(); i != s.cend(); ++i)
+		i->show();
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1645
+저장시간: 2022-05-05 12:21:14 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(10주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//		- set의 주요 동작을 알아본다. (빨리 찾기 위한 컨테이너)
+//		- 내가 만든 자료형(class Dog)을 set에 넣어 관리
+//		- 중복되는 데이터를 하나로만 저장(multiset을 이용해야함)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <list>
+#include <set>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+
+std::default_random_engine dre;
+std::uniform_int_distribution<int> uid{ 'a', 'z' };
+std::uniform_int_distribution<int> uidN{ 1, 10000 };
+
+class Dog {
+	std::string name;
+	int n;
+public:
+	Dog() {
+		for (int i = 0; i < 10; ++i)
+			name += uid(dre);
+		n = uidN(dre);
+	}
+
+	void show() const {
+		std::cout << name << " - " << n << std::endl;
+	}
+	
+	std::string getName() const {
+		return name;
+	}
+
+	int getN() const {
+		return n;
+	}
+};
+
+class 정렬기준 {
+public:
+	bool operator() (const Dog& a, const Dog& b) const{
+		return a.getN() < b.getN();
+	};
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	std::set<Dog, 정렬기준> s;		// n 기준 오름차순 정렬하는 set
+	for (int i = 0; i < 1000; ++i)
+		s.insert(Dog{});
+
+	for (auto i = s.cbegin(); i != s.cend(); ++i)
+		i->show();
+
+	std::cout << "셋의 원소 수 - " << s.size() << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1650
+저장시간: 2022-05-05 12:21:23 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 4일 목요일(10주 1일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//		- set의 주요 동작을 알아본다. (빨리 찾기 위한 컨테이너)
+//		- 내가 만든 자료형(class Dog)을 set에 넣어 관리
+//		- 중복되는 데이터를 하나로만 저장(multiset을 이용해야함)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <list>
+#include <set>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+
+std::default_random_engine dre;
+std::uniform_int_distribution<int> uid{ 'a', 'z' };
+std::uniform_int_distribution<int> uidN{ 1, 10000 };
+
+class Dog {
+	std::string name;
+	int n;
+public:
+	Dog() {
+		for (int i = 0; i < 10; ++i)
+			name += uid(dre);
+		n = uidN(dre);
+	}
+
+	void show() const {
+		std::cout << name << " - " << n << std::endl;
+	}
+	
+	std::string getName() const {
+		return name;
+	}
+
+	int getN() const {
+		return n;
+	}
+};
+
+class 정렬기준 {
+public:
+	bool operator() (const Dog& a, const Dog& b) const{
+		return a.getN() < b.getN();
+	};
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	std::multiset<Dog, 정렬기준> s;		// n 기준 오름차순 정렬하는 set
+	for (int i = 0; i < 1000; ++i)
+		s.insert(Dog{});
+
+	for (auto i = s.cbegin(); i != s.cend(); ++i)
+		i->show();
+
+	std::cout << "셋의 원소 수 - " << s.size() << std::endl;
+}
