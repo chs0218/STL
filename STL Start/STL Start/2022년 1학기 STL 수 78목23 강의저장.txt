@@ -9427,3 +9427,499 @@ int main()
 
 	std::cout << "셋의 원소 수 - " << s.size() << std::endl;
 }
+
+
+파일이름: 소스.cpp
+파일크기: 1651
+저장시간: 2022-05-11 15:42:55 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 11일 목요일(10주 2일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//		- set의 주요 동작을 알아본다. (빨리 찾기 위한 컨테이너)
+//		- 내가 만든 자료형(class Dog)을 set에 넣어 관리
+//		- 중복되는 데이터를 하나로만 저장(multiset을 이용해야함)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <list>
+#include <set>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+
+std::default_random_engine dre;
+std::uniform_int_distribution<int> uid{ 'a', 'z' };
+std::uniform_int_distribution<int> uidN{ 1, 10000 };
+
+class Dog {
+	std::string name;
+	int n;
+public:
+	Dog() {
+		for (int i = 0; i < 10; ++i)
+			name += uid(dre);
+		n = uidN(dre);
+	}
+
+	void show() const {
+		std::cout << name << " - " << n << std::endl;
+	}
+	
+	std::string getName() const {
+		return name;
+	}
+
+	int getN() const {
+		return n;
+	}
+};
+
+class 정렬기준 {
+public:
+	bool operator() (const Dog& a, const Dog& b) const{
+		return a.getN() < b.getN();
+	};
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	std::multiset<Dog, 정렬기준> s;		// n 기준 오름차순 정렬하는 set
+	for (int i = 0; i < 1000; ++i)
+		s.insert(Dog{});
+
+	for (auto i = s.cbegin(); i != s.cend(); ++i)
+		i->show();
+
+	std::cout << "셋의 원소 수 - " << s.size() << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1994
+저장시간: 2022-05-11 16:02:44 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 11일 목요일(10주 2일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//		- set의 주요 동작을 알아본다. (빨리 찾기 위한 컨테이너)
+//		- 내가 만든 자료형(class Dog)을 set에 넣어 관리
+//		- 중복되는 데이터를 하나로만 저장(multiset을 이용해야함)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <list>
+#include <set>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+
+std::default_random_engine dre;
+std::uniform_int_distribution<int> uid{ 'a', 'z' };
+std::uniform_int_distribution<int> uidN{ 1, 10000 };
+
+class Dog {
+	std::string name;
+	int n;
+public:
+	Dog() {
+		for (int i = 0; i < 10; ++i)
+			name += uid(dre);
+		n = uidN(dre);
+	}
+
+	bool operator<(const Dog& rhs) const {
+		return n < rhs.n;
+	}
+	
+	std::string getName() const {
+		return name;
+	}
+
+	int getN() const {
+		return n;
+	}
+
+	void show() const {
+		std::cout << name << " - " << n << std::endl;
+	}
+};
+
+class 정렬기준{
+public:
+	bool operator()(const Dog& a, const Dog& b) const{
+		return a.getN() < b.getN();
+	}
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// set에 내가 만든 자료형 Dog 을 넣고 싶다.
+	// 정렬기준 n 오름차순으로 항상 정렬하는 set을 만들고 싶다
+
+	std::set<Dog, 정렬기준> s;
+	for (int i = 0; i < 1000; ++i)
+		s.emplace();	// 생성자 인자만 넘기면 됨
+
+	for (const Dog& dog : s)
+		dog.show();
+
+	// 기준이 없다면?
+	// 1. less<Dog>가  있나 살펴본다.
+	// 2. class Dog이 < 연산자를 제공하나?
+	// - 2.1 멤버 - 코딩가능하면 멤버로 만드는게 우선이다.
+	// - 2.2 전역 - 멤버로 코딩하는게 곤란하면 만든다
+	// 3. 기준을 직접 템플릿의 인자로 제공한다. decltype
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1970
+저장시간: 2022-05-11 16:03:32 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 11일 목요일(10주 2일)
+// 
+//	컨테이너 - 다른 객체를 저장하는 객체
+//		Sequence		-	임의의 원소의 값을 읽고 쓰거나 추가할 수 있다.
+// 
+// Associative Container - set, multi_set, map, multi_map
+// set - 언제나 key를 compare로 정렬하고 있다. 찾기/추가/삭제가 O(log N)
+//		- set의 주요 동작을 알아본다. (빨리 찾기 위한 컨테이너)
+//		- 내가 만든 자료형(class Dog)을 set에 넣어 관리
+//		- 중복되는 데이터를 하나로만 저장(multiset을 이용해야함)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <list>
+#include <set>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+
+std::default_random_engine dre;
+std::uniform_int_distribution<int> uid{ 'a', 'z' };
+std::uniform_int_distribution<int> uidN{ 1, 10000 };
+
+class Dog {
+	std::string name;
+	int n;
+public:
+	Dog() {
+		for (int i = 0; i < 10; ++i)
+			name += uid(dre);
+		n = uidN(dre);
+	}
+
+	bool operator<(const Dog& rhs) const {
+		return n < rhs.n;
+	}
+	
+	std::string getName() const {
+		return name;
+	}
+
+	int getN() const {
+		return n;
+	}
+
+	void show() const {
+		std::cout << name << " - " << n << std::endl;
+	}
+};
+
+auto 정렬기준 = [](const Dog& a, const Dog& b) {
+	return a.getN() < b.getN();
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// set에 내가 만든 자료형 Dog 을 넣고 싶다.
+	// 정렬기준 n 오름차순으로 항상 정렬하는 set을 만들고 싶다
+
+	std::set<Dog, decltype(정렬기준)> s;
+	for (int i = 0; i < 1000; ++i)
+		s.emplace();	// 생성자 인자만 넘기면 됨
+
+	for (const Dog& dog : s)
+		dog.show();
+
+	// 기준이 없다면?
+	// 1. less<Dog>가  있나 살펴본다.
+	// 2. class Dog이 < 연산자를 제공하나?
+	// - 2.1 멤버 - 코딩가능하면 멤버로 만드는게 우선이다.
+	// - 2.2 전역 - 멤버로 코딩하는게 곤란하면 만든다
+	// 3. 기준을 직접 템플릿의 인자로 제공한다. decltype
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 894
+저장시간: 2022-05-11 16:35:39 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 11일 목요일(10주 2일)
+// 
+// Associative Container - set, multi_set, map, multi_map
+// 5/25(수) - 졸업연구설명회
+// 15주차 수요일 기말시험 예정
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <set>
+#include <format>
+#include "save.h"
+#include "STRING.h"
+
+class 길이순 {
+public:
+	bool operator()(const STRING& a, const STRING& b) const{
+		return a.getNum() < b.getNum();
+	}
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// 키보드에서 입력한 단어를 set<STRING>에 넣어라
+	// set<STRING>의 정렬기준은 단어길이 오름차순이다.
+	// set을 화면출력하라.
+
+	std::set<STRING, 길이순> s{ std::istream_iterator<STRING>{std::cin}, {} };
+
+	for (const STRING& string : s)
+		std::cout << string << "\n";
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1573
+저장시간: 2022-05-11 17:05:18 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 11일 목요일(10주 2일)
+// 
+// Sequential - array, vector, deque, forwawrd_list, list
+// Associative Container - set, multi_set, map, multi_map
+// Unordered Associative - unordered_set, unordered_multiset, unordered_map
+//							unoredered_multimap
+// 
+// map<key, value, key_compare>
+// 
+// C++ 20 Range
+// => 코딩하면서 에러를 더 줄이기 위해
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// key: 영화제목, value: 배우들
+
+	std::map<std::string, std::vector<std::string>> movie;
+	movie.insert({ "기생충", {"이선균", "조여정", "최우식", "박소담"} });
+
+	std::pair<std::string, std::vector<std::string>>p{ "쇼생크탈출", {"팀로빈스"} };
+	movie.insert(p);
+
+	movie.insert(std::make_pair(std::string("메멘토"), std::vector<std::string>{ "가이피어스" }));
+
+	// 현재 리스트 출력
+	for (const std::pair<std::string, std::vector<std::string>>& m : movie){
+		std::cout << m.first << " - ";
+		for (const std::string& actor : m.second)
+			std::cout << actor << " ";
+		std::cout << std::endl;
+	}
+	
+	// 영화제목을 입력받아 있으면 배우를 출력한다.
+	while (true)
+	{
+		std::cout << "영화 제목을 입력해주세요: ";
+		std::string title;
+		std::cin >> title;
+
+		auto p = movie.find(title);
+	}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1528
+저장시간: 2022-05-11 17:07:09 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 11일 목요일(10주 2일)
+// 
+// Sequential - array, vector, deque, forwawrd_list, list
+// Associative Container - set, multi_set, map, multi_map
+// Unordered Associative - unordered_set, unordered_multiset, unordered_map
+//							unoredered_multimap
+// 
+// map<key, value, key_compare>
+// 
+// C++ 20 Range
+// => 코딩하면서 에러를 더 줄이기 위해
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// key: 영화제목, value: 배우들
+
+	std::map<std::string, std::vector<std::string>> movie;
+	movie.insert({ "기생충", {"이선균", "조여정", "최우식", "박소담"} });
+
+	std::pair<std::string, std::vector<std::string>>p{ "쇼생크탈출", {"팀로빈스"} };
+	movie.insert(p);
+
+	movie.insert(std::make_pair(std::string("메멘토"), std::vector<std::string>{ "가이피어스" }));
+
+	// 현재 리스트 출력
+	for (const auto& [제목, 배우들] : movie){
+		std::cout << 제목 << " - ";
+		for (const auto& 배우 : 배우들)
+			std::cout << 배우 << " ";
+		std::cout << std::endl;
+	}
+	
+	// 영화제목을 입력받아 있으면 배우를 출력한다.
+	while (true)
+	{
+		std::cout << "영화 제목을 입력해주세요: ";
+		std::string title;
+		std::cin >> title;
+
+		auto p = movie.find(title);
+	}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1780
+저장시간: 2022-05-11 17:14:25 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 11일 목요일(10주 2일)
+// 
+// Sequential - array, vector, deque, forwawrd_list, list
+// Associative Container - set, multi_set, map, multi_map
+// Unordered Associative - unordered_set, unordered_multiset, unordered_map
+//							unoredered_multimap
+// 
+// map<key, value, key_compare>
+// 
+// C++ 20 Range
+// => 코딩하면서 에러를 더 줄이기 위해
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// key: 영화제목, value: 배우들
+
+	std::map<std::string, std::vector<std::string>> movie;
+	movie.insert({ "기생충", {"이선균", "조여정", "최우식", "박소담"} });
+
+	std::pair<std::string, std::vector<std::string>>p{ "쇼생크탈출", {"팀로빈스"} };
+	movie.insert(p);
+
+	movie.insert(std::make_pair(std::string("메멘토"), std::vector<std::string>{ "가이피어스" }));
+
+	// 현재 리스트 출력
+	for (const auto& [제목, 배우들] : movie){
+		std::cout << 제목 << " - ";
+		for (const auto& 배우 : 배우들)
+			std::cout << 배우 << " ";
+		std::cout << std::endl;
+	}
+	
+	// 영화제목을 입력받아 있으면 배우를 출력한다.
+	while (true)
+	{
+		std::cout << "영화 제목을 입력해주세요: ";
+		std::string title;
+		std::cin >> title;
+
+		auto p = movie.find(title);
+		if (p != movie.end())
+		{
+			const auto& [제목, 배우들] = *p;
+			std::cout << 제목 << " - ";
+			for (const auto& 배우 : 배우들)
+				std::cout << 배우 << " ";
+			std::cout << std::endl;
+		}
+
+		else
+			std::cout << "없습니다." << std::endl;
+	}
+}

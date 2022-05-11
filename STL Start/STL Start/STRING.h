@@ -146,4 +146,8 @@ public:
 
 	// 2022. 4. 28 Ãß°¡
 	friend std::istream& operator>>(std::istream&, STRING&);
+
+	char getC() const {
+		return p[0];
+	}
 };
