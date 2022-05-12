@@ -9923,3 +9923,610 @@ int main()
 			std::cout << "없습니다." << std::endl;
 	}
 }
+
+
+파일이름: 소스.cpp
+파일크기: 843
+저장시간: 2022-05-12 10:38:59 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 11일 목요일(10주 2일)
+// 
+// Associative Container - set, multi_set, map, multi_map
+// 
+// map<key, value, key_compare>
+//		- 연관배열(associative array)로 사용할 수 있다.
+// 
+// => 코딩하면서 에러를 더 줄이기 위해
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <map>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// 이름과 전화번호
+	std::map<std::string, std::string> m;
+	m.insert(std::pair("홍길동", "01012345678"));
+	m["마우스"] = "12345678";
+	for (auto [이름, 번호] : m)
+		std::cout << 이름 << " - " << 번호 << std::endl;
+
+
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1204
+저장시간: 2022-05-12 10:44:37 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 12일 목요일(11주 1일)
+// 
+// Associative Container - set, multi_set, map, multi_map
+// 
+// map<key, value, key_compare>
+//		- 연관배열(associative array)로 사용할 수 있다.
+// 
+// => 코딩하면서 에러를 더 줄이기 위해
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <map>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// 이름과 전화번호
+	std::map<std::string, std::string> m;
+	m.insert(std::pair("홍길동", "01012345678"));
+	m["마우스"] = "12345678";
+	for (auto [이름, 번호] : m)
+		std::cout << 이름 << " - " << 번호 << std::endl;
+
+	// [문제] e-class에서 frankenstein.txt를 다운받아라.
+	// 파일을 읽어 std::vector<string>에 저장한 후 모두 몇 단어인지 화면에 출력하라.
+
+	std::ifstream in{ "Frankenstein.txt" };
+	std::vector<std::string> v{ std::istream_iterator<std::string> {in}, {} };
+
+	std::cout << "총 " << v.size() << "단어 입니다." << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1204
+저장시간: 2022-05-12 10:44:46 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 12일 목요일(11주 1일)
+// 
+// Associative Container - set, multi_set, map, multi_map
+// 
+// map<key, value, key_compare>
+//		- 연관배열(associative array)로 사용할 수 있다.
+// 
+// => 코딩하면서 에러를 더 줄이기 위해
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <map>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// 이름과 전화번호
+	std::map<std::string, std::string> m;
+	m.insert(std::pair("홍길동", "01012345678"));
+	m["마우스"] = "12345678";
+	for (auto [이름, 번호] : m)
+		std::cout << 이름 << " - " << 번호 << std::endl;
+
+	// [문제] e-class에서 frankenstein.txt를 다운받아라.
+	// 파일을 읽어 std::vector<string>에 저장한 후 모두 몇 단어인지 화면에 출력하라.
+
+	std::ifstream in{ "Frankenstein.txt" };
+	std::vector<std::string> v{ std::istream_iterator<std::string> {in}, {} };
+
+	std::cout << "총 " << v.size() << "단어 입니다." << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1290
+저장시간: 2022-05-12 10:49:26 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 12일 목요일(11주 1일)
+// 
+// Associative Container - set, multi_set, map, multi_map
+// 
+// map<key, value, key_compare>
+//		- 연관배열(associative array)로 사용할 수 있다.
+// 
+// => 코딩하면서 에러를 더 줄이기 위해
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <map>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// 이름과 전화번호
+	std::map<std::string, std::string> m;
+	m.insert(std::pair("홍길동", "01012345678"));
+	m["마우스"] = "12345678";
+	for (auto [이름, 번호] : m)
+		std::cout << 이름 << " - " << 번호 << std::endl;
+
+	// [문제] e-class에서 frankenstein.txt를 다운받아라.
+	// 파일을 읽어 std::vector<string>에 저장한 후 모두 몇 단어인지 화면에 출력하라.
+
+	std::ifstream in{ "Frankenstein.txt" };
+	std::vector<std::string> v{ std::istream_iterator<std::string> {in}, {} };
+
+	for (const std::string& s : v)
+		std::cout << s << " ";
+	std::cout<<std::endl;
+	std::cout << "총 " << v.size() << "단어 입니다." << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 2569
+저장시간: 2022-05-12 11:16:49 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 12일 목요일(11주 1일)
+// 
+// Associative Container - set, multi_set, map, multi_map
+// 
+// map<key, value, key_compare>
+//		- 연관배열(associative array)로 사용할 수 있다.
+// 
+// => 코딩하면서 에러를 더 줄이기 위해
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <map>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// 이름과 전화번호
+	std::map<std::string, std::string> m;
+	m.insert(std::pair("홍길동", "01012345678"));
+	m["마우스"] = "12345678";
+	for (auto [이름, 번호] : m)
+		std::cout << 이름 << " - " << 번호 << std::endl;
+
+	// [문제] e-class에서 frankenstein.txt를 다운받아라.
+	// 파일을 읽어 std::vector<string>에 저장한 후 모두 몇 단어인지 화면에 출력하라.
+
+	std::ifstream in{ "Frankenstein.txt" };
+	std::vector<std::string> v{ std::istream_iterator<std::string> {in}, {} };
+
+	std::cout << "총 " << v.size() << "단어 입니다." << std::endl;
+
+	std::cout << "가장 긴 단어는 " << *std::max_element(v.begin(), v.end(), [](const std::string& a, const std::string& b) { return a.length() < b.length(); }) 
+		<< "입니다" << std::endl;
+
+	// [문제] 이 소설에서 각 소문자의 갯수를 세서 출력하라.
+	std::map<char, int> alphanum;
+	for (const std::string& s : v)
+	{
+		for (char c : s)
+		{
+			if (islower(c))
+				alphanum[c]++;
+		}
+	}
+
+	// 결과 출력
+	for (auto [소문자, 갯수] : alphanum)
+		std::cout << "[" << 소문자 << "] - " << 갯수 << std::endl;
+
+	alphanum.begin();
+	// [문제] 갯수 기준 내림차순으로 출력하라
+	std::cout << "==================================================================" << std::endl;
+	std::map<int, char, std::greater<int>> ic;
+	for (auto [소문자, 갯수] : alphanum)
+		ic[갯수] = 소문자;
+	
+	for (auto [갯수, 소문자] : ic)
+		std::cout << "[" << 소문자 << "] - " << 갯수 << std::endl;
+
+	std::vector<std::pair<char, int>> tmpV{ std::map<char, int>::iterator {alphanum.begin()},  std::map<char, int>::iterator {alphanum.end()} };
+	std::sort(tmpV.begin(), tmpV.end(), [](std::pair<char, int>& a, std::pair<char, int>& b) {return a.second > b.second; });
+	std::cout << "==================================================================" << std::endl;
+	for (auto [소문자, 갯수] : tmpV)
+		std::cout << "[" << 소문자 << "] - " << 갯수 << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 2485
+저장시간: 2022-05-12 11:23:23 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 12일 목요일(11주 1일)
+// 
+// Associative Container - set, multi_set, map, multi_map
+// 
+// map<key, value, key_compare>
+//		- 연관배열(associative array)로 사용할 수 있다.
+// 
+// => 코딩하면서 에러를 더 줄이기 위해
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <map>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// 이름과 전화번호
+	std::map<std::string, std::string> m;
+	m.insert(std::pair("홍길동", "01012345678"));
+	m["마우스"] = "12345678";
+	for (auto [이름, 번호] : m)
+		std::cout << 이름 << " - " << 번호 << std::endl;
+
+	// [문제] e-class에서 frankenstein.txt를 다운받아라.
+	// 파일을 읽어 std::vector<string>에 저장한 후 모두 몇 단어인지 화면에 출력하라.
+
+	std::ifstream in{ "Frankenstein.txt" };
+	std::vector<std::string> v{ std::istream_iterator<std::string> {in}, {} };
+
+	std::cout << "총 " << v.size() << "단어 입니다." << std::endl;
+
+	std::cout << "가장 긴 단어는 " << *std::max_element(v.begin(), v.end(), [](const std::string& a, const std::string& b) { return a.length() < b.length(); }) 
+		<< "입니다" << std::endl;
+
+	// [문제] 이 소설에서 각 소문자의 갯수를 세서 출력하라.
+	std::map<char, int> alphanum;
+	for (const std::string& s : v)
+	{
+		for (char c : s)
+		{
+			if (islower(c))
+				alphanum[c]++;
+		}
+	}
+
+	// 결과 출력
+	for (auto [소문자, 갯수] : alphanum)
+		std::cout << "[" << 소문자 << "] - " << 갯수 << std::endl;
+
+	alphanum.begin();
+	// [문제] 갯수 기준 내림차순으로 출력하라
+	std::cout << "==================================================================" << std::endl;
+	std::map<int, char, std::greater<int>> ic;
+	for (auto [소문자, 갯수] : alphanum)
+		ic[갯수] = 소문자;
+	
+	for (auto [갯수, 소문자] : ic)
+		std::cout << "[" << 소문자 << "] - " << 갯수 << std::endl;
+
+	std::vector<std::pair<char, int>> 벡터{ alphanum.begin(),  alphanum.end() };
+	std::sort(벡터.begin(), 벡터.end(), [](const auto& a, const auto& b) {return a.second > b.second; });
+	std::cout << "==================================================================" << std::endl;
+	for (auto [소문자, 갯수] : 벡터)
+		std::cout << "[" << 소문자 << "] - " << 갯수 << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1774
+저장시간: 2022-05-12 11:43:28 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 12일 목요일(11주 1일)
+// 
+// Associative Container - set, multi_set, map, multi_map
+// 
+// map<key, value, key_compare>
+//		- 연관배열(associative array)로 사용할 수 있다.
+// 
+// => 코딩하면서 에러를 더 줄이기 위해
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <map>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// 이름과 전화번호
+	std::map<std::string, std::string> m;
+	m.insert(std::pair("홍길동", "01012345678"));
+	m["마우스"] = "12345678";
+	for (auto [이름, 번호] : m)
+		std::cout << 이름 << " - " << 번호 << std::endl;
+
+	// [문제] e-class에서 frankenstein.txt를 다운받아라.
+	// 파일을 읽어 std::vector<string>에 저장한 후 모두 몇 단어인지 화면에 출력하라.
+
+	std::ifstream in{ "Frankenstein.txt" };
+	std::vector<std::string> v{ std::istream_iterator<std::string> {in}, {} };
+
+	std::cout << "총 " << v.size() << "단어 입니다." << std::endl;
+	
+	// [문제] 가장 많이 사용된 단어 순으로 출력하라.
+	std::map<std::string, int> simap;
+	for (const std::string& s : v)
+		simap[s]++;
+
+	std::map<int, std::string, std::greater<int>> ismap;
+	for (const auto& [단어, 숫자] : simap)
+		ismap[숫자] = 단어;
+
+	//// 다 출력
+	//for (const auto& [숫자, 단어] : ismap)
+	//	std::cout << "[ " << 단어 << " ] - " << 숫자 << std::endl;
+
+	// 20개만 출력
+	auto p = ismap.begin();
+	for (int i = 0; i < 20; ++i)
+	{
+		std::cout << "[ " << p->second << " ] - " << p->first << std::endl;
+		++p;
+	}
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 2017
+저장시간: 2022-05-12 11:56:45 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 12일 목요일(11주 1일)
+// 
+// Associative Container - set, multi_set, map, multi_map
+// 
+// map<key, value, key_compare>
+//		- 연관배열(associative array)로 사용할 수 있다.
+// 
+// => 코딩하면서 에러를 더 줄이기 위해
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <map>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// 이름과 전화번호
+	std::map<std::string, std::string> m;
+	m.insert(std::pair("홍길동", "01012345678"));
+	m["마우스"] = "12345678";
+	for (auto [이름, 번호] : m)
+		std::cout << 이름 << " - " << 번호 << std::endl;
+
+	// [문제] e-class에서 frankenstein.txt를 다운받아라.
+	// 파일을 읽어 std::vector<string>에 저장한 후 모두 몇 단어인지 화면에 출력하라.
+
+	std::ifstream in{ "Frankenstein.txt" };
+	std::vector<std::string> v{ std::istream_iterator<std::string> {in}, {} };
+
+	std::cout << "총 " << v.size() << "단어 입니다." << std::endl;
+	// v - 75041
+
+	// [문제] 가장 많이 사용된 단어 순으로 출력하라.
+	std::map<std::string, int> simap;
+	for (const std::string& s : v)
+		simap[s]++;
+
+	int num = 0;
+	// [문제] 검증해보자.
+	for (const auto& [단어, 숫자] : simap)
+		num += 숫자;
+	// simap - 75041
+	std::cout << "총 " << num << "단어입니다." << std::endl;
+	
+	std::multimap<int, std::string, std::greater<int>> ismap;
+	for (const auto& [단어, 숫자] : simap)
+		ismap.insert({ 숫자, 단어 });
+
+	
+	// 뒤에서 20개만 출력
+	auto p = ismap.begin();
+	for (int i = 0; i < 20; ++i)
+	{
+		std::cout << "[" << p->second << "] - " << p->first << std::endl;
+		++p;
+	}
+
+	num = 0;
+	// [문제] 검증해보자.
+	for (const auto& [숫자, 단어] : ismap)
+		num += 숫자;
+
+	std::cout << "총 " << num << "단어입니다." << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1206
+저장시간: 2022-05-12 12:03:56 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 12일 목요일(11주 1일)
+// 
+// Associative Container - set, multi_set, map, multi_map
+// 
+// map<key, value, key_compare>
+//		- 연관배열(associative array)로 사용할 수 있다.
+// 
+// => 코딩하면서 에러를 더 줄이기 위해
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <map>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	// [문제] e-class에서 frankenstein.txt를 다운받아라.
+	// 파일을 읽어 std::vector<string>에 저장한 후 모두 몇 단어인지 화면에 출력하라.
+
+	std::ifstream in{ "Frankenstein.txt" };
+	std::vector<std::string> v{ std::istream_iterator<std::string> {in}, {} };
+
+	std::cout << "총 " << v.size() << "단어 입니다." << std::endl;
+
+	// 길이가 10글자인 단어만 화면에 출력하라.
+	std::copy_if(v.begin(), v.end(), std::ostream_iterator<std::string> {std::cout, "\n"},
+		[](const std::string& s) {
+		return s.length() == 16;
+	});
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1090
+저장시간: 2022-05-12 12:13:55 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 12일 목요일(11주 1일)
+// 
+// Associative Container - set, multi_set, map, multi_map
+// 
+// map<key, value, key_compare>
+//		- 연관배열(associative array)로 사용할 수 있다.
+// 
+// => 코딩하면서 에러를 더 줄이기 위해
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <map>
+#include <array>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+std::array<int, 1000'0000> a;
+std::default_random_engine dre;
+std::uniform_int_distribution uid{1, 1000'0000};
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	//[문제] 유니폼분포가 진짜 유니폼하냐?
+	// 결과를 출력해서 알아본다.
+	
+	for (int& n : a)
+		n = uid(dre);
+	
+	// 이때 a의 값을 10구간으로 나누어 갯수를 센후 출력하라
+	std::map<int, int> iimap;
+	for (int n : a)
+		iimap[n / 100'000]++;
+
+	for (auto [구간, 갯수] : iimap)
+	{
+		std::cout << 구간 << " - " << 갯수 << std::endl;
+	}
+}
