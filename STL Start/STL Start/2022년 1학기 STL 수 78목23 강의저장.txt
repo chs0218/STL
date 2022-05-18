@@ -10530,3 +10530,821 @@ int main()
 		std::cout << 구간 << " - " << 갯수 << std::endl;
 	}
 }
+
+
+파일이름: 소스.cpp
+파일크기: 1100
+저장시간: 2022-05-18 15:37:09 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// Unoredered Associative Container - set, multi_set, map, multi_map
+//	- 어떻게 메모리가 구성되어 있나? - 그림으로 알아본다.
+//  - 내가 만든 STRING이 순서 없는 set의 원소가 되려면?
+// 
+// 컨테이너의 찾기 실력 비교 - vector / set /  unordered_set
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <unordered_set>
+#include "save.h"
+#include "STRING.h"
+
+//--- 
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::unordered_set<int> us{ 1,3,2,4 };
+	for (int n : us)
+		std::cout << n << " ";
+	std::cout << std::endl;
+
+	us.insert(-1);
+	std::cout << "=============================================\n";
+
+	for (int n : us)
+		std::cout << n << " ";
+	std::cout << std::endl;
+
+	us.insert(100);
+	std::cout << "=============================================\n";
+
+	for (int n : us)
+		std::cout << n << " ";
+	std::cout << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 967
+저장시간: 2022-05-18 15:48:56 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// Unoredered Associative Container - set, multi_set, map, multi_map
+//	- 어떻게 메모리가 구성되어 있나? - 그림으로 알아본다.
+//  - 내가 만든 STRING이 순서 없는 set의 원소가 되려면?
+// 
+// 컨테이너의 찾기 실력 비교 - vector / set /  unordered_set
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <unordered_set>
+#include "save.h"
+#include "STRING.h"
+
+//
+//
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::unordered_set<int> us{ 1,3,2,4 };		//일 대 일 대응하게 만드는게 제일 빨리 원소를 찾는 방법, 해시함수(hasher), bucket, rehashing
+	
+	while (true){
+		// 메모리 내용 출력
+		for (int i = 0; i < us.bucket_count(); ++i)
+			std::cout << "[" << i << "] " << std::endl;
+		
+		// 원소 추가
+	}
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1180
+저장시간: 2022-05-18 15:53:22 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// Unoredered Associative Container - set, multi_set, map, multi_map
+//	- 어떻게 메모리가 구성되어 있나? - 그림으로 알아본다.
+//  - 내가 만든 STRING이 순서 없는 set의 원소가 되려면?
+// 
+// 컨테이너의 찾기 실력 비교 - vector / set /  unordered_set
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <unordered_set>
+#include "save.h"
+#include "STRING.h"
+
+//
+//
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::unordered_set<int> us{ 1,3,2,4 };		//일 대 일 대응하게 만드는게 제일 빨리 원소를 찾는 방법, 해시함수(hasher), bucket, rehashing
+	
+	while (true){
+		// 메모리 내용 출력
+		for (int i = 0; i < us.bucket_count(); ++i) {
+			std::cout << "[" << i << "]";
+			for (auto p = us.begin(i); p != us.end(i); ++p)
+				std::cout << " -> " << *p;
+			std::cout << std::endl;
+		}
+		std::cout << std::endl;
+		// 원소 추가
+		int num;
+		std::cout << "추가할 int는? ";
+		std::cin >> num;
+		us.insert(num);
+	}
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1185
+저장시간: 2022-05-18 15:55:10 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// Unoredered Associative Container - set, multi_set, map, multi_map
+//	- 어떻게 메모리가 구성되어 있나? - 그림으로 알아본다.
+//  - 내가 만든 STRING이 순서 없는 set의 원소가 되려면?
+// 
+// 컨테이너의 찾기 실력 비교 - vector / set /  unordered_set
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <unordered_set>
+#include "save.h"
+#include "STRING.h"
+
+//
+//
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::unordered_multiset<int> us{ 1,3,2,4 };		//일 대 일 대응하게 만드는게 제일 빨리 원소를 찾는 방법, 해시함수(hasher), bucket, rehashing
+	
+	while (true){
+		// 메모리 내용 출력
+		for (int i = 0; i < us.bucket_count(); ++i) {
+			std::cout << "[" << i << "]";
+			for (auto p = us.begin(i); p != us.end(i); ++p)
+				std::cout << " -> " << *p;
+			std::cout << std::endl;
+		}
+		std::cout << std::endl;
+		// 원소 추가
+		int num;
+		std::cout << "추가할 int는? ";
+		std::cin >> num;
+		us.insert(num);
+	}
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1509
+저장시간: 2022-05-18 16:14:36 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// Unoredered Associative Container - set, multi_set, map, multi_map
+//	- 어떻게 메모리가 구성되어 있나? - 그림으로 알아본다.
+//  - 내가 만든 STRING이 순서 없는 set의 원소가 되려면?
+// 
+// 컨테이너의 찾기 실력 비교 - vector / set /  unordered_set
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <unordered_set>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+// 템플릿의 특수화
+template <>
+class std::hash<STRING> {
+public:
+	size_t operator()(const STRING& str) const {
+		auto val = std::hash<std::string>()({ str.begin(), str.end() });
+		std::cout << "해셔의 출력 - " << val << ", 메모리 위치 - " 
+			<< val % 8 << std::endl;	// 모듈레이션
+		return val;
+	};
+};
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::unordered_multiset<STRING, std::hash<STRING>> us{ "Standard", "Template", "Library" };
+
+	
+	while (true){
+		// 메모리 내용 출력
+		for (int i = 0; i < us.bucket_count(); ++i) {
+			std::cout << "[" << i << "]";
+			for (auto p = us.begin(i); p != us.end(i); ++p)
+				std::cout << " -> " << *p;
+			std::cout << std::endl;
+		}
+		std::cout << std::endl;
+		// 원소 추가
+		STRING str;
+		std::cout << "추가할 STRING는? ";
+		std::cin >> str;
+		us.insert(str);
+	}
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1807
+저장시간: 2022-05-18 16:44:32 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 컨테이너의 찾기 실력 비교 - vector/ set/ unordered_set
+// int 1000'0000개에서 int 1'000개가 있는지 확인
+// 
+// 컨테이너의 찾기 실력 비교 - vector / set /  unordered_set
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <array>
+#include <vector>
+#include <set>
+#include <algorithm>
+#include <random>
+#include <chrono>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+// 정수 1000만개 저장할 메모리
+std::array<int, 1000'0000> numbers;
+
+// 컨테이너에 있는지 찾아볼 int 값들
+std::array<int, 10000> toFind;
+
+std::default_random_engine dre;
+std::uniform_int_distribution<int> uid{ 1, 1'0000'0000 };
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	// 1000만개의 random int
+	for (int& n : numbers)
+		n = uid(dre);
+	
+	// 찾아야할 int
+	for (int& n : toFind)
+		n = uid(dre);
+
+	
+	{	// 벡터의 찾기 실력을 알아본다.
+		std::vector<int> v{ numbers.begin(), numbers.end() };
+		
+		std::cout << "벡터의 원소 수 - " << v.size() << std::endl;
+
+		// 시간 재기 시작
+		int cnt{};
+		auto start = std::chrono::steady_clock::now();
+		for (int n : toFind)
+		{
+			auto p = std::find(v.begin(), v.end(), n);
+			if (p != v.end())
+				cnt++;
+		}
+		auto stop = std::chrono::steady_clock::now();
+		// 시간 재기 끝
+
+		auto et = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+		std::cout << "걸린 시간 - " << et << "μs" << std::endl;
+		std::cout << "찾아야 할 int 개수 - " << toFind.size() << std::endl;
+		std::cout << cnt << std::endl << std::endl;
+	}
+	std::cout << "끝\n";
+}
+
+
+파일이름: 소스.cpp
+파일크기: 2445
+저장시간: 2022-05-18 16:47:38 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 컨테이너의 찾기 실력 비교 - vector/ set/ unordered_set
+// int 1000'0000개에서 int 1'000개가 있는지 확인
+// 
+// 컨테이너의 찾기 실력 비교 - vector / set /  unordered_set
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <array>
+#include <vector>
+#include <set>
+#include <algorithm>
+#include <random>
+#include <chrono>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+// 정수 1000만개 저장할 메모리
+std::array<int, 1000'0000> numbers;
+
+// 컨테이너에 있는지 찾아볼 int 값들
+std::array<int, 1000> toFind;
+
+std::default_random_engine dre;
+std::uniform_int_distribution<int> uid{ 1, 1'0000'0000 };
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	// 1000만개의 random int
+	for (int& n : numbers)
+		n = uid(dre);
+	
+	// 찾아야할 int
+	for (int& n : toFind)
+		n = uid(dre);
+
+	
+	{	// 벡터의 찾기 실력을 알아본다.
+		std::vector<int> v{ numbers.begin(), numbers.end() };
+		
+		std::cout << "벡터의 원소 수 - " << v.size() << std::endl;
+
+		// 시간 재기 시작
+		int cnt{};
+		auto start = std::chrono::steady_clock::now();
+		for (int n : toFind)
+		{
+			auto p = std::find(v.begin(), v.end(), n);
+			if (p != v.end())
+				cnt++;
+		}
+		auto stop = std::chrono::steady_clock::now();
+		// 시간 재기 끝
+
+		auto et = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+		std::cout << "걸린 시간 O(n) - " << et << "μs" << std::endl;
+		std::cout << "찾아야 할 int 개수 - " << toFind.size() << std::endl;
+		std::cout << cnt << std::endl << std::endl;
+	}
+
+	{	// 셋의 찾기 실력을 알아본다.
+		std::set<int> s{ numbers.begin(), numbers.end() };
+
+		std::cout << "셋의 원소 수 - " << s.size() << std::endl;
+
+		// 시간 재기 시작
+		int cnt{};
+		auto start = std::chrono::steady_clock::now();
+		for (int n : toFind)
+		{
+			if (s.contains(n))
+				++cnt;
+		}
+		auto stop = std::chrono::steady_clock::now();
+		// 시간 재기 끝
+
+		auto et = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+		std::cout << "걸린 시간 O(log n) - " << et << "μs" << std::endl;
+		std::cout << "셋에서 찾은 개수 - " << toFind.size() << std::endl;
+		std::cout << cnt << std::endl << std::endl;
+	}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 3161
+저장시간: 2022-05-18 16:49:41 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 컨테이너의 찾기 실력 비교 - vector/ set/ unordered_set
+// int 1000'0000개에서 int 1'000개가 있는지 확인
+// 
+// 컨테이너의 찾기 실력 비교 - vector / set /  unordered_set
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <array>
+#include <vector>
+#include <set>
+#include <unordered_set>
+#include <algorithm>
+#include <random>
+#include <chrono>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+// 정수 1000만개 저장할 메모리
+std::array<int, 1000'0000> numbers;
+
+// 컨테이너에 있는지 찾아볼 int 값들
+std::array<int, 1000> toFind;
+
+std::default_random_engine dre;
+std::uniform_int_distribution<int> uid{ 1, 1'0000'0000 };
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	// 1000만개의 random int
+	for (int& n : numbers)
+		n = uid(dre);
+	
+	// 찾아야할 int
+	for (int& n : toFind)
+		n = uid(dre);
+
+	
+	{	// 벡터의 찾기 실력을 알아본다.
+		std::vector<int> v{ numbers.begin(), numbers.end() };
+		
+		std::cout << "벡터의 원소 수 - " << v.size() << std::endl;
+
+		// 시간 재기 시작
+		int cnt{};
+		auto start = std::chrono::steady_clock::now();
+		for (int n : toFind)
+		{
+			auto p = std::find(v.begin(), v.end(), n);
+			if (p != v.end())
+				cnt++;
+		}
+		auto stop = std::chrono::steady_clock::now();
+		// 시간 재기 끝
+
+		auto et = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+		std::cout << "걸린 시간 O(n) - " << et << "μs" << std::endl;
+		std::cout << "찾아야 할 int 개수 - " << toFind.size() << std::endl;
+		std::cout << cnt << std::endl << std::endl;
+	}
+
+	{	// 셋의 찾기 실력을 알아본다.
+		std::set<int> s{ numbers.begin(), numbers.end() };
+
+		std::cout << "셋의 원소 수 - " << s.size() << std::endl;
+
+		// 시간 재기 시작
+		int cnt{};
+		auto start = std::chrono::steady_clock::now();
+		for (int n : toFind)
+		{
+			if (s.contains(n))
+				++cnt;
+		}
+		auto stop = std::chrono::steady_clock::now();
+		// 시간 재기 끝
+
+		auto et = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+		std::cout << "걸린 시간 O(log n) - " << et << "μs" << std::endl;
+		std::cout << "셋에서 찾은 개수 - " << toFind.size() << std::endl;
+		std::cout << cnt << std::endl << std::endl;
+	}
+
+	{	// 언오더드셋의 찾기 실력을 알아본다.
+		std::unordered_set<int> us{ numbers.begin(), numbers.end() };
+
+		std::cout << "언오더드셋의 원소 수 - " << us.size() << std::endl;
+
+		// 시간 재기 시작
+		int cnt{};
+		auto start = std::chrono::steady_clock::now();
+		for (int n : toFind)
+		{
+			if (us.contains(n))
+				++cnt;
+		}
+		auto stop = std::chrono::steady_clock::now();
+		// 시간 재기 끝
+
+		auto et = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+		std::cout << "걸린 시간 O(1) - " << et << "μs" << std::endl;
+		std::cout << "언오더드셋에서 찾은 개수 - " << toFind.size() << std::endl;
+		std::cout << cnt << std::endl << std::endl;
+	}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 3215
+저장시간: 2022-05-18 16:56:12 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 컨테이너의 찾기 실력 비교 - vector/ set/ unordered_set
+// int 1000'0000개에서 int 1'000개가 있는지 확인
+// 
+// 컨테이너의 찾기 실력 비교 - vector / set /  unordered_set
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <array>
+#include <vector>
+#include <set>
+#include <unordered_set>
+#include <algorithm>
+#include <random>
+#include <chrono>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+// 정수 저장할 메모리
+std::array<int, 1000> numbers;
+
+// 컨테이너에 있는지 찾아볼 int 값들
+std::array<int, 10> toFind;
+
+std::default_random_engine dre;
+std::uniform_int_distribution<int> uid{ 1, 1'0000'0000 };
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	// random int
+	for (int& n : numbers)
+		n = uid(dre);
+	
+	// 찾아야할 int
+	for (int& n : toFind)
+		n = uid(dre);
+
+	
+	{	// 벡터의 찾기 실력을 알아본다.
+		std::vector<int> v{ numbers.begin(), numbers.end() };
+		
+		std::cout << "벡터의 원소 수 - " << v.size() << std::endl;
+
+		// 시간 재기 시작
+		int cnt{};
+		auto start = std::chrono::steady_clock::now();
+		for (int n : toFind)
+		{
+			auto p = std::find(v.begin(), v.end(), n);
+			if (p != v.end())
+				cnt++;
+		}
+		auto stop = std::chrono::steady_clock::now();
+		// 시간 재기 끝
+
+		auto et = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+		std::cout << "걸린 시간 O(n) - " << et << "μs" << std::endl;
+		std::cout << "찾아야 할 int 개수 - " << toFind.size() << std::endl;
+		std::cout << "벡처에서 찾은 개수 - " << cnt << std::endl << std::endl;
+	}
+
+	{	// 셋의 찾기 실력을 알아본다.
+		std::set<int> s{ numbers.begin(), numbers.end() };
+
+		std::cout << "셋의 원소 수 - " << s.size() << std::endl;
+
+		// 시간 재기 시작
+		int cnt{};
+		auto start = std::chrono::steady_clock::now();
+		for (int n : toFind)
+		{
+			if (s.contains(n))
+				++cnt;
+		}
+		auto stop = std::chrono::steady_clock::now();
+		// 시간 재기 끝
+
+		auto et = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+		std::cout << "걸린 시간 O(log n) - " << et << "μs" << std::endl;
+		std::cout << "찾아야 할 int 개수 - " << toFind.size() << std::endl;
+		std::cout << "셋에서 찾은 개수 - " << cnt << std::endl << std::endl;
+	}
+
+	{	// 언오더드셋의 찾기 실력을 알아본다.
+		std::unordered_set<int> us{ numbers.begin(), numbers.end() };
+
+		std::cout << "언오더드셋의 원소 수 - " << us.size() << std::endl;
+
+		// 시간 재기 시작
+		int cnt{};
+		auto start = std::chrono::steady_clock::now();
+		for (int n : toFind)
+		{
+			if (us.contains(n))
+				++cnt;
+		}
+		auto stop = std::chrono::steady_clock::now();
+		// 시간 재기 끝
+
+		auto et = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+		std::cout << "걸린 시간 O(1) - " << et << "μs" << std::endl;
+		std::cout << "찾아야 할 int 개수 - " << toFind.size() << std::endl;
+		std::cout << "언오더드셋에서 찾은 개수 - " << cnt << std::endl << std::endl;
+	}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 3995
+저장시간: 2022-05-18 17:00:57 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 컨테이너의 찾기 실력 비교 - vector/ set/ unordered_set
+// int 1000'0000개에서 int 1'000개가 있는지 확인
+// 
+// 컨테이너의 찾기 실력 비교 - vector / set /  unordered_set
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <array>
+#include <vector>
+#include <set>
+#include <unordered_set>
+#include <algorithm>
+#include <random>
+#include <chrono>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+// 정수 저장할 메모리
+std::array<int, 1000'0000> numbers;
+
+// 컨테이너에 있는지 찾아볼 int 값들
+std::array<int, 3000> toFind;
+
+std::default_random_engine dre;
+std::uniform_int_distribution<int> uid{ 1, 1'0000'0000 };
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	// random int
+	for (int& n : numbers)
+		n = uid(dre);
+	
+	// 찾아야할 int
+	for (int& n : toFind)
+		n = uid(dre);
+
+	
+	{	// 벡터의 찾기 실력을 알아본다.
+		std::vector<int> v{ numbers.begin(), numbers.end() };
+		
+		std::cout << "벡터의 원소 수 - " << v.size() << std::endl;
+
+		// 시간 재기 시작
+		int cnt{};
+		auto start = std::chrono::steady_clock::now();
+		for (int n : toFind)
+		{
+			auto p = std::find(v.begin(), v.end(), n);
+			if (p != v.end())
+				cnt++;
+		}
+		auto stop = std::chrono::steady_clock::now();
+		// 시간 재기 끝
+
+		auto et = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+		std::cout << "걸린 시간 O(n) - " << et << "μs" << std::endl;
+		std::cout << "찾아야 할 int 개수 - " << toFind.size() << std::endl;
+		std::cout << "벡처에서 찾은 개수 - " << cnt << std::endl << std::endl;
+	}
+
+	{	// 정렬된 벡터의 찾기 실력을 알아본다.
+		std::vector<int> v{ numbers.begin(), numbers.end() };
+		std::sort(v.begin(), v.end());
+		std::cout << "정렬된 벡터의 원소 수 - " << v.size() << std::endl;
+
+		// 시간 재기 시작
+		int cnt{};
+		auto start = std::chrono::steady_clock::now();
+		for (int n : toFind)
+		{
+			if(std::binary_search(v.begin(), v.end(), n))
+				cnt++;
+		}
+		auto stop = std::chrono::steady_clock::now();
+		// 시간 재기 끝
+
+		auto et = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+		std::cout << "걸린 시간 O(log n) - " << et << "μs" << std::endl;
+		std::cout << "찾아야 할 int 개수 - " << toFind.size() << std::endl;
+		std::cout << "정렬된 벡처에서 찾은 개수 - " << cnt << std::endl << std::endl;
+	}
+
+	{	// 셋의 찾기 실력을 알아본다.
+		std::set<int> s{ numbers.begin(), numbers.end() };
+
+		std::cout << "셋의 원소 수 - " << s.size() << std::endl;
+
+		// 시간 재기 시작
+		int cnt{};
+		auto start = std::chrono::steady_clock::now();
+		for (int n : toFind)
+		{
+			if (s.contains(n))
+				++cnt;
+		}
+		auto stop = std::chrono::steady_clock::now();
+		// 시간 재기 끝
+
+		auto et = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+		std::cout << "걸린 시간 O(log n) - " << et << "μs" << std::endl;
+		std::cout << "찾아야 할 int 개수 - " << toFind.size() << std::endl;
+		std::cout << "셋에서 찾은 개수 - " << cnt << std::endl << std::endl;
+	}
+
+	{	// 언오더드셋의 찾기 실력을 알아본다.
+		std::unordered_set<int> us{ numbers.begin(), numbers.end() };
+
+		std::cout << "언오더드셋의 원소 수 - " << us.size() << std::endl;
+
+		// 시간 재기 시작
+		int cnt{};
+		auto start = std::chrono::steady_clock::now();
+		for (int n : toFind)
+		{
+			if (us.contains(n))
+				++cnt;
+		}
+		auto stop = std::chrono::steady_clock::now();
+		// 시간 재기 끝
+
+		auto et = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+		std::cout << "걸린 시간 O(1) - " << et << "μs" << std::endl;
+		std::cout << "찾아야 할 int 개수 - " << toFind.size() << std::endl;
+		std::cout << "언오더드셋에서 찾은 개수 - " << cnt << std::endl << std::endl;
+	}
+}

@@ -7,6 +7,7 @@
 
 #pragma once
 #include <iostream>
+#include <string>
 #include <compare>
 class STRING_iterator {
 public:	//	표준 반복자라면 이 다섯가지 타입을 제공해야 한다.
@@ -120,6 +121,11 @@ public:
 	
 	// 2022. 4. 28 sort용 디폴트 정렬기준
 	bool operator<(const STRING& rhs) const;
+
+	// 2022. 5. 18 unordered_set이 요구하는 ==
+	bool operator==(const STRING& rhs) const {
+		return std::string{ begin(), end() } == std::string{ rhs.begin(), rhs.end() };
+	};
 
 	// 2022.04.21 begin(), end() 시작
 	// 2022.04.27 begin(), end() 다시 코딩
