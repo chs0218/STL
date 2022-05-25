@@ -11348,3 +11348,1437 @@ int main()
 		std::cout << "언오더드셋에서 찾은 개수 - " << cnt << std::endl << std::endl;
 	}
 }
+
+
+파일이름: 소스.cpp
+파일크기: 975
+저장시간: 2022-05-19 10:50:54 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::vector<STRING> v{ "Standard", "Template", "Library" };
+
+	// v에 STRING이 있는데 첫글자가 다 대문자야?
+	bool res = std::all_of(v.cbegin(), v.cend(), [](const STRING& s) {return isupper(s.getC()); });
+
+	if (res)
+		std::cout << "첫 글자는 다 대문자" << std::endl;
+	else
+		std::cout << "소문자로 시작하는 단어도 있다" << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1164
+저장시간: 2022-05-19 10:56:45 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+template<class InputIt, class pred>
+bool allof(InputIt begin, InputIt end, pred mypred)
+{
+	for (; begin != end; ++begin)
+	{
+		if (!mypred(*begin))
+			return false;
+	}
+	return true;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::vector<STRING> v{ "Standard", "Template", "Library" };
+
+	// v에 STRING이 있는데 첫글자가 다 대문자야?
+	bool res = allof(v.cbegin(), v.cend(), [](const STRING& s) {return isupper(s.getC()); });
+
+	if (res)
+		std::cout << "첫 글자는 다 대문자" << std::endl;
+	else
+		std::cout << "소문자로 시작하는 단어도 있다" << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1171
+저장시간: 2022-05-19 11:00:57 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+template<class 반복자, class 단항판단함수>
+bool allof(반복자 시작, 반복자 끝, 단항판단함수 함수)
+{
+	while (시작 != 끝){
+		if (!함수(*시작))
+			return false;
+		++시작;
+	}
+	return true;
+}
+
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::vector<STRING> v{ "Standard", "Template", "Library" };
+
+	// v에 STRING이 있는데 첫글자가 다 대문자야?
+	bool res = allof(v.cbegin(), v.cend(), [](const STRING& s) {return isupper(s.getC()); });
+
+	if (res)
+		std::cout << "첫 글자는 다 대문자" << std::endl;
+	else
+		std::cout << "소문자로 시작하는 단어도 있다" << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 923
+저장시간: 2022-05-19 11:05:14 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::vector<STRING> v{ "Standard", "Template", "Library" };
+
+	// v에 STRING이 있는데 첫글자가 다 대문자야?
+	
+	std::for_each(v.begin(), v.end(), [](const STRING& s) {
+		for (auto& c : s)
+			c = toupper(c);
+	});
+
+	for (const auto& string : v)
+		std::cout << string << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 809
+저장시간: 2022-05-19 11:06:58 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::vector<STRING> v{ "Standard", "Template", "Library" };
+
+	STRING toFind = STRING{ "Template" };
+	std::cout << std::count(v.begin(), v.end(), toFind) << std::endl;
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 853
+저장시간: 2022-05-19 11:08:29 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::vector<STRING> v{ "Standard", "Template", "Library" };
+
+	STRING toFind = STRING{ "Template" };
+	std::cout << std::count_if(v.begin(), v.end(), [](const STRING& s) { return s.getC() == 'T'; }) << std::endl;
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 943
+저장시간: 2022-05-19 11:32:22 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::string s1{ "abcdefghij" };
+	std::string s2{ "abcdfghikklll" };
+
+	auto [시작, 끝] = std::mismatch(s1.begin(), s1.end(), s2.begin(), s2.end());
+	std::string s3{ 시작, s1.end() };
+	std::string s4{ 끝, s2.end() };
+
+	std::cout << s3 << std::endl;
+	std::cout << s4 << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1066
+저장시간: 2022-05-19 11:41:20 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <format>
+#include <algorithm>
+#include <string>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+using namespace std::chrono_literals;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::string str{ "South Korea and Japan just don't get along. " };
+	// 전광판처럼 흘러가게 코딩할래?
+
+	for (int i = 0; i < 8; ++i)
+		std::cout << std::endl;
+	while (true){
+		std::rotate(str.rbegin(), str.rbegin() + 1, str.rend());
+		std::cout << std::format("{:^80}", str) << "\r";
+		std::this_thread::sleep_for(100ms);
+	}
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1068
+저장시간: 2022-05-19 11:43:16 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <format>
+#include <algorithm>
+#include <string>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+using namespace std::chrono_literals;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::string str{ "South Korea and Japan just don't get along. " };
+	// 전광판처럼 흘러가게 코딩할래?
+
+	for (int i = 0; i < 8; ++i)
+		std::cout << std::endl;
+	while (true){
+		std::rotate(str.rbegin(), str.rbegin() + 1, str.rend());
+		std::cout << std::format("[{:^80}]", str) << "\r";
+		std::this_thread::sleep_for(100ms);
+	}
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1075
+저장시간: 2022-05-19 11:43:47 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <format>
+#include <algorithm>
+#include <string>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+using namespace std::chrono_literals;
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::string str{ "[South Korea and Japan just don't get along.]" };
+	// 전광판처럼 흘러가게 코딩할래?
+
+	for (int i = 0; i < 8; ++i)
+		std::cout << std::endl;
+	while (true){
+		std::rotate(str.rbegin() + 1, str.rbegin() + 2, str.rend() - 1);
+		std::cout << std::format("{:^80}", str) << "\r";
+		std::this_thread::sleep_for(100ms);
+	}
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1040
+저장시간: 2022-05-25 15:36:08 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 18일 목요일(11주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <format>
+#include <algorithm>
+#include <string>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	
+	std::string str{ "abcdefghijklmnopqrstuvwxyz" };
+	
+	// str에서 opq라는 string이 있니?
+
+	std::string toFind{ "opq" };
+	
+	if (std::search(str.begin(), str.end(), toFind.begin(), toFind.end()) != str.end())
+		std::cout << "있음" << std::endl;
+	else
+		std::cout << "없음" << std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 949
+저장시간: 2022-05-25 15:38:48 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 25일 목요일(12주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [문제] copy는 왜 mutating 알고리즘인가?
+	std::vector v{ 1, 2, 3 };
+	std::copy(v.begin(), v.end(), std::ostream_iterator<int> {std::cout});
+	std::cout << std::endl;
+	for (int n : v)
+		std::cout << n << ' ';
+	std::cout<< std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 983
+저장시간: 2022-05-25 15:43:21 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 25일 목요일(12주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [문제] copy는 왜 mutating 알고리즘인가? - 목적지가 자기 자신이 될 수도 있으니까!
+	std::vector v{ 1, 2, 3 };
+
+	std::copy(v.begin(), v.end(), inserter(v, v.begin() + 1));
+	
+	std::cout << std::endl;
+	for (int n : v)
+		std::cout << n << ' ';
+	std::cout<< std::endl;
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1179
+저장시간: 2022-05-25 15:51:22 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 25일 목요일(12주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::vector tmp{ 1, 2, 3 };
+	std::vector v{ 1, 2, 3, 4, 5, 6,7, 8, 9, 10 };
+	// [문제] v에서 짝수를 제거하라. erase-remove idiom이 원칙이지만
+	// C++20부터는 지원되는 전역 erase 함수로도 해결할 수 있다.
+
+	// remove_if는 일치 하지 않는 반복자를 리턴
+	v.erase(std::remove_if(v.begin(), v.end(), [](int i) {return i % 2 == 0; }), v.end());
+	std::erase_if(v, [](int n) {return n % 2 == 0; });
+
+	for (int n : v)
+		std::cout << n << " ";
+	std::cout << std::endl;
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1183
+저장시간: 2022-05-25 15:54:00 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 25일 목요일(12주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::vector tmp{ 1, 2, 3 };
+	std::vector v{ 1, 2, 3, 4, 5, 6,7, 8, 9, 10 };
+	// [문제] v에서 짝수를 제거하라. erase-remove idiom이 원칙이지만
+	// C++20부터는 지원되는 전역 erase 함수로도 해결할 수 있다.
+
+	// remove_if는 일치 하지 않는 반복자를 리턴
+	v.erase(std::remove_if(v.begin(), v.end(), [](int i) {return i % 2 == 0; }), v.end());
+	std::erase_if(v, [](int n) {return n % 2 == 0; });
+
+
+	for (int n : tmp)
+		std::cout << n << " ";
+	std::cout << std::endl;
+	
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1185
+저장시간: 2022-05-25 16:04:38 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 25일 목요일(12주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <random>
+#include <numeric>	// iota
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// [문제] 로또 예산 번호를 출력
+	std::vector<int> v(45);		// int{}를 45번 호출
+	std::iota(v.begin(), v.end(), 1);
+	/*for (int n : v)
+		std::cout << n << " ";
+	std::cout << std::endl;*/
+
+	// 랜덤한 수 n개를 화면에 출력
+	for (int i = 0; i < 10; ++i)
+	{
+		std::sample(v.begin(), v.end(), std::ostream_iterator<int> {std::cout, " "}, 6, dre);
+		std::cout << std::endl;
+	}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 887
+저장시간: 2022-05-25 16:09:33 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 25일 목요일(12주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// unique - 연속된 중복 원소를 삭제한다.
+	std::vector<int> v{ 1, 2, 3, 3, 3, 5, 3 };
+	std::unique(v.begin(), v.end());
+	
+	for (int n : v)
+		std::cout << n << " ";
+	std::cout << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 905
+저장시간: 2022-05-25 16:09:54 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 25일 목요일(12주 2일)
+// 
+// 알고리즘
+// - non-modifying sequence operations (원소를 수정하지 않는 알고리즘)
+// - modifying sequence operations
+// - sorting operations
+// - partition
+// 
+// 
+// 5/25(수) - 졸업연구설명회(6교시 2:30 ~ 3:20)
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+
+	// unique - 연속된 중복 원소를 삭제한다.
+	std::vector<int> v{ 1, 2, 3, 3, 3, 5, 3 };
+	v.erase(std::unique(v.begin(), v.end()), v.end());
+	
+	for (int n : v)
+		std::cout << n << " ";
+	std::cout << std::endl;
+
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1412
+저장시간: 2022-05-25 16:46:44 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 25일 목요일(12주 2일)
+// 
+// 알고리즘 - 분리 / 정렬 관련 함수들
+//		partition
+//		nth_element
+//		partial_sort
+//		stable_sort
+// 
+//
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <numeric>
+#include <random>
+#include <format>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+std::default_random_engine dre;
+
+template <class Iter>
+void print(Iter begin, Iter end)
+{
+	while (begin != end)
+	{
+		std::cout << std::format("{:4d}", *begin);
+		++begin;
+	}
+	std::cout << std::endl;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::vector<int> v(100);
+	std::iota(v.begin(), v.end(), 1);
+	std::cout << "vector<int>의 값" << std::endl;
+	print(v.begin(), v.end());
+	{
+		std::shuffle(v.begin(), v.end(), dre);
+		std::cout << "partition 이전" << std::endl;
+		print(v.begin(), v.end());
+
+		// [문제] 홀수와 짝수로 분리한 수 출력하라.
+		auto p = std::partition(v.begin(), v.end(), [](int n) { return n % 2; });
+		std::cout << "partition 후" << std::endl;
+		std::cout << "홀수" << std::endl;
+		print(v.begin(), p);
+		std::cout << "짝수" << std::endl;
+		print(p, v.end());
+	}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1929
+저장시간: 2022-05-25 16:55:27 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 25일 목요일(12주 2일)
+// 
+// 알고리즘 - 분리 / 정렬 관련 함수들
+//		partition
+//		nth_element
+//		partial_sort
+//		stable_sort
+// 
+//
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <numeric>
+#include <random>
+#include <format>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+std::default_random_engine dre;
+
+template <class Iter>
+void print(Iter begin, Iter end)
+{
+	while (begin != end)
+	{
+		std::cout << std::format("{:4d}", *begin);
+		++begin;
+	}
+	std::cout << std::endl;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::vector<int> v(100);
+	std::iota(v.begin(), v.end(), 1);
+	std::cout << "vector<int>의 값" << std::endl;
+	print(v.begin(), v.end());
+	{
+		// 기준에 따라 분리
+		std::shuffle(v.begin(), v.end(), dre);
+		std::cout << "partition 이전" << std::endl;
+		print(v.begin(), v.end());
+
+		// [문제] 홀수와 짝수로 분리한 수 출력하라.
+		auto p = std::partition(v.begin(), v.end(), [](int n) { return n % 2; });
+		std::cout << "partition 후" << std::endl;
+		std::cout << "홀수" << std::endl;
+		print(v.begin(), p);
+		std::cout << "짝수" << std::endl;
+		print(p, v.end());
+	}
+
+	{
+		// 선착순 20등까지만 통과 - 1등부터 20등까지 순서는 중요하지 않다.
+		std::shuffle(v.begin(), v.end(), dre);
+		std::cout << "nth_element 이전" << std::endl;
+		print(v.begin(), v.end());
+
+		// 20등까지만 통과
+		// 리턴값이 없음(어차피 내가 주는 값 까지만 보여주니까)
+		std::nth_element(v.begin(), v.begin() + 20, v.end());
+		std::cout << "20등 이내" << std::endl;
+		print(v.begin(), v.begin() + 20);
+		std::cout << "나머지" << std::endl;
+		print(v.begin() + 20, v.end());
+	}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 2390
+저장시간: 2022-05-25 17:00:30 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 25일 목요일(12주 2일)
+// 
+// 알고리즘 - 분리 / 정렬 관련 함수들
+//		partition
+//		nth_element
+//		partial_sort
+//		stable_sort
+// 
+// 복잡도 확인해야함
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <numeric>
+#include <random>
+#include <format>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+
+template <class Iter>
+void print(Iter begin, Iter end)
+{
+	while (begin != end)
+	{
+		std::cout << std::format("{:4d}", *begin);
+		++begin;
+	}
+	std::cout << std::endl;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::vector<int> v(100);
+	std::iota(v.begin(), v.end(), 1);
+	std::cout << "vector<int>의 값" << std::endl;
+	print(v.begin(), v.end());
+	{
+		// 기준에 따라 분리
+		std::shuffle(v.begin(), v.end(), dre);
+		std::cout << "partition 이전" << std::endl;
+		print(v.begin(), v.end());
+
+		// [문제] 홀수와 짝수로 분리한 수 출력하라.
+		auto p = std::partition(v.begin(), v.end(), [](int n) { return n % 2; });
+		std::cout << "partition 후" << std::endl;
+		std::cout << "홀수" << std::endl;
+		print(v.begin(), p);
+		std::cout << "짝수" << std::endl;
+		print(p, v.end());
+	}
+
+	{
+		// 선착순 40등까지만 통과 - 1등부터 40등까지 순서는 중요하지 않다.
+		std::shuffle(v.begin(), v.end(), dre);
+		std::cout << "nth_element 이전" << std::endl;
+		print(v.begin(), v.end());
+
+		// 40등까지만 통과
+		// 리턴값이 없음(어차피 내가 주는 값 까지만 보여주니까)
+		std::nth_element(v.begin(), v.begin() + 40, v.end());
+		std::cout << "40등 이내" << std::endl;
+		print(v.begin(), v.begin() + 40);
+		std::cout << "나머지" << std::endl;
+		print(v.begin() + 40, v.end());
+	}
+
+	{
+		// 1등부터 50등까지만 정렬 나머지는 무시
+		std::shuffle(v.begin(), v.end(), dre);
+		std::cout << "partial_sort 이전" << std::endl;
+		print(v.begin(), v.end());
+
+		// 50등까지만 정렬
+		std::partial_sort(v.begin(), v.begin() + 50, v.end());
+		std::cout << "50등 이내" << std::endl;
+		print(v.begin(), v.begin() + 50);
+		std::cout << "나머지" << std::endl;
+		print(v.begin() + 50, v.end());
+	}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 2676
+저장시간: 2022-05-25 17:03:33 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 25일 목요일(12주 2일)
+// 
+// 알고리즘 - 분리 / 정렬 관련 함수들
+//		partition
+//		nth_element
+//		partial_sort
+//		stable_sort
+// 
+// 복잡도 확인해야함
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <numeric>
+#include <random>
+#include <format>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+
+template <class Iter>
+void print(Iter begin, Iter end)
+{
+	while (begin != end)
+	{
+		std::cout << std::format("{:4d}", *begin);
+		++begin;
+	}
+	std::cout << std::endl << std::endl;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::vector<int> v(100);
+	std::iota(v.begin(), v.end(), 1);
+	std::cout << "vector<int>의 값" << std::endl;
+	print(v.begin(), v.end());
+	{
+		// 기준에 따라 분리
+		std::shuffle(v.begin(), v.end(), dre);
+		std::cout << "partition 이전" << std::endl;
+		print(v.begin(), v.end());
+
+		// [문제] 홀수와 짝수로 분리한 수 출력하라.
+		auto p = std::partition(v.begin(), v.end(), [](int n) { return n % 2; });
+		std::cout << "partition 후" << std::endl;
+		std::cout << "홀수" << std::endl;
+		print(v.begin(), p);
+		std::cout << "짝수" << std::endl;
+		print(p, v.end());
+	}
+
+	{
+		// 선착순 40등까지만 통과 - 1등부터 40등까지 순서는 중요하지 않다.
+		std::shuffle(v.begin(), v.end(), dre);
+		std::cout << "nth_element 이전" << std::endl;
+		print(v.begin(), v.end());
+
+		// 40등까지만 통과
+		// 리턴값이 없음(어차피 내가 주는 값 까지만 보여주니까)
+		std::nth_element(v.begin(), v.begin() + 40, v.end());
+		std::cout << "40등 이내" << std::endl;
+		print(v.begin(), v.begin() + 40);
+		std::cout << "나머지" << std::endl;
+		print(v.begin() + 40, v.end());
+	}
+
+	{
+		// 1등부터 50등까지만 정렬 나머지는 무시
+		std::shuffle(v.begin(), v.end(), dre);
+		std::cout << "partial_sort 이전" << std::endl;
+		print(v.begin(), v.end());
+
+		// 50등까지만 정렬
+		std::partial_sort(v.begin(), v.begin() + 50, v.end());
+		std::cout << "50등까지 정렬" << std::endl;
+		print(v.begin(), v.begin() + 50);
+		std::cout << "나머지" << std::endl;
+		print(v.begin() + 50, v.end());
+	}
+
+	{
+		// 전체 정렬
+		std::shuffle(v.begin(), v.end(), dre);
+		std::cout << "sort 이전" << std::endl;
+		print(v.begin(), v.end());
+
+		// 전체 정렬
+		std::sort(v.begin(), v.end());
+		std::cout << "전체 정렬 결과" << std::endl;
+		print(v.begin(), v.end());
+	}
+}
+
+
+파일이름: 소스.cpp
+파일크기: 1109
+저장시간: 2022-05-25 17:12:40 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 25일 목요일(12주 2일)
+// 
+// 알고리즘 - 분리 / 정렬 관련 함수들
+//		partition
+//		nth_element
+//		partial_sort
+//		stable_sort
+// 
+// 복잡도 확인해야함
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <numeric>
+#include <random>
+#include <format>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+std::uniform_int_distribution uid{ 1, 10 };
+struct Dog
+{
+	int num1;
+	int num2;
+
+	Dog() {
+		num1 = uid(dre);
+		num2 = uid(dre);
+	}
+
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::vector<Dog> dogs(10);	//Dog{} 20번 호출
+	// num1기준 오름차순 정렬
+	std::sort(dogs.begin(), dogs.end(), [](Dog a, Dog b) {return a.num1 < b.num1; });
+	for (Dog dog : dogs)
+		std::cout << dog.num1 << ", " << dog.num2 << std::endl;
+}
+
+파일이름: 소스.cpp
+파일크기: 1183
+저장시간: 2022-05-25 17:14:27 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 25일 목요일(12주 2일)
+// 
+// 알고리즘 - 분리 / 정렬 관련 함수들
+//		partition
+//		nth_element
+//		partial_sort
+//		stable_sort
+// 
+// 복잡도 확인해야함
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+std::uniform_int_distribution uid{ 1, 9};
+struct Dog
+{
+	int num1;
+	int num2;
+
+	Dog() {
+		num1 = uid(dre);
+		num2 = uid(dre);
+	}
+
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::vector<Dog> dogs(10);	//Dog{} 20번 호출
+	// num1기준 오름차순 정렬
+	std::sort(dogs.begin(), dogs.end(), [](Dog a, Dog b) {return a.num1 < b.num1; });
+	std::sort(dogs.begin(), dogs.end(), [](Dog a, Dog b) {return a.num2 < b.num2; });
+	for (Dog dog : dogs)
+		std::cout << dog.num1 << " - " << dog.num2 << std::endl;
+	// num2기준 오름차순 정렬
+
+}
+
+파일이름: 소스.cpp
+파일크기: 1191
+저장시간: 2022-05-25 17:17:30 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 25일 목요일(12주 2일)
+// 
+// 알고리즘 - 분리 / 정렬 관련 함수들
+//		partition
+//		nth_element
+//		partial_sort
+//		stable_sort
+// 
+// 복잡도 확인해야함
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+//
+// using namespace std;
+//
+
+std::random_device rd;
+std::default_random_engine dre{ rd() };
+std::uniform_int_distribution uid{ 1, 9};
+struct Dog
+{
+	int num1;
+	int num2;
+
+	Dog() {
+		num1 = uid(dre);
+		num2 = uid(dre);
+	}
+
+};
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::vector<Dog> dogs(100);	//Dog{} 20번 호출
+	// num1기준 오름차순 정렬
+	std::sort(dogs.begin(), dogs.end(), [](Dog a, Dog b) {return a.num1 < b.num1; });
+	std::stable_sort(dogs.begin(), dogs.end(), [](Dog a, Dog b) {return a.num2 < b.num2; });
+	for (Dog dog : dogs)
+		std::cout << dog.num1 << " - " << dog.num2 << std::endl;
+	// num2기준 오름차순 정렬
+
+}
