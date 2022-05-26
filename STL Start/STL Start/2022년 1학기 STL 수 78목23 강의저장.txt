@@ -12782,3 +12782,752 @@ int main()
 	// num2기준 오름차순 정렬
 
 }
+
+파일이름: 소스.cpp
+파일크기: 562
+저장시간: 2022-05-26 10:36:43 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5 };
+	std::cout << "반복자간 거리 - " << std::distance(v.begin(), v.end()) << std::endl;
+}
+
+파일이름: 소스.cpp
+파일크기: 681
+저장시간: 2022-05-26 10:39:52 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+std::vector<int>::difference_type 
+dist(std::vector<int>::iterator b, std::vector<int>::iterator e)
+{
+	return e - b;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5 };
+	std::cout << "반복자간 거리 - " << dist(v.begin(), v.end()) << std::endl;
+
+}
+
+파일이름: 소스.cpp
+파일크기: 634
+저장시간: 2022-05-26 10:40:24 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+template <class Iter>
+long long dist(Iter b, Iter e)
+{
+	return e - b;
+}
+
+//----
+int main()
+//----
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5 };
+	std::cout << "반복자간 거리 - " << dist(v.begin(), v.end()) << std::endl;
+
+}
+
+파일이름: 소스.cpp
+파일크기: 671
+저장시간: 2022-05-26 10:44:05 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+#include "STRING.h"
+
+template <class Iter>
+long long dist(Iter b, Iter e)
+{
+	return e - b;
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5 };
+	std::cout << "반복자간 거리 - " << dist(v.begin(), v.end()) << std::endl;
+	std::cout << dist(1, 100);
+}
+
+파일이름: 소스.cpp
+파일크기: 1006
+저장시간: 2022-05-26 11:00:16 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <type_traits>
+#include "save.h"
+#include "STRING.h"
+
+template <class T>
+long long dist(T b, T e)
+{
+	// 이 코드는 반복자에서만 실행되면 좋겠어.
+	// T는 정말 반복자인가?
+	// 템플릿 코드에서는 전달되는 자료형 T가 조건을 만족하는지 검사할 필요가 있다.
+	// -> type traits를 사용하면 된다.
+	return e - b;
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5 };
+	std::cout << "반복자간 거리 - " << dist(v.begin(), v.end()) << std::endl;
+	std::cout << dist(1, 100);	// iterator를 위한 함수를 만들었는데 int를 집어넣어서 사용이 가능하네?
+								// => 그럼 iterator에서만 돌아가게 할 수 있나?
+
+
+}
+
+파일이름: 소스.cpp
+파일크기: 1119
+저장시간: 2022-05-26 11:11:30 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <iterator>
+#include "save.h"
+#include "STRING.h"
+
+using namespace std;
+
+template <class T>
+long long dist(T b, T e)
+{
+	// T가 반복자일때만 실행되게 하자
+	// 랜덤 반복자만 실행되게 할 수 있나?
+	/*if (std::is_same_v<typename iterator_traits<T>::iterator_category, random_access_iterator_tag>)
+		std::cout << "랜덤반복자네~" << std::endl;
+	else
+		std::cout << "랜덤반복자 아닌데?" << std::endl;*/
+	
+	return 1;
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5 };
+	std::cout << "반복자간 거리 - " << dist(v.begin(), v.end()) << std::endl;
+	std::cout << dist(1, 100);	// iterator를 위한 함수를 만들었는데 int를 집어넣어서 사용이 가능하네?
+								// => 그럼 iterator에서만 돌아가게 할 수 있나?
+
+
+}
+
+파일이름: 소스.cpp
+파일크기: 1106
+저장시간: 2022-05-26 11:13:28 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <iterator>
+#include "save.h"
+#include "STRING.h"
+
+using namespace std;
+
+template <class T>
+long long dist(T b, T e)
+{
+	// T가 반복자일때만 실행되게 하자
+	// 랜덤 반복자만 실행되게 할 수 있나?
+	/*if (is_same_v<typename iterator_traits<T>::iterator_category, input_iterator_tag>)
+		std::cout << "랜덤반복자네~" << std::endl;
+	else
+		std::cout << "랜덤반복자 아닌데?" << std::endl;*/
+	
+	return 1;
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5 };
+	std::cout << "반복자간 거리 - " << dist(v.begin(), v.end()) << std::endl;
+	std::cout << dist(1, 100);	// iterator를 위한 함수를 만들었는데 int를 집어넣어서 사용이 가능하네?
+								// => 그럼 iterator에서만 돌아가게 할 수 있나?
+
+
+}
+
+파일이름: 소스.cpp
+파일크기: 968
+저장시간: 2022-05-26 11:17:34 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <iterator>
+#include "save.h"
+#include "STRING.h"
+
+using namespace std;
+
+template <class T>
+long long dist(T b, T e)
+{
+	// T가 반복자일때만 실행되게 하자
+	// 랜덤 반복자만 실행되게 할 수 있나?
+	/*if (is_base_of_v < input_iterator_tag, typename iterator_traits<T>::iterator_category)
+	{
+		std::cout << "랜덤반복자네~" << std::endl;
+	}
+	else
+	{
+		std::cout << "랜덤반복자 아닌데?" << std::endl;
+	}*/
+	
+	return 1;
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5 };
+	std::cout << "반복자간 거리 - " << dist(v.begin(), v.end()) << std::endl;
+
+}
+
+파일이름: 소스.cpp
+파일크기: 891
+저장시간: 2022-05-26 11:18:05 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <iterator>
+#include "save.h"
+#include "STRING.h"
+
+using namespace std;
+
+template <class T>
+long long dist(T b, T e)
+{
+	// T가 반복자일때만 실행되게 하자
+	// 랜덤 반복자만 실행되게 할 수 있나?
+	if (is_base_of_v < input_iterator_tag, typename iterator_traits<T>::iterator_category>)
+		std::cout << "랜덤반복자네~" << std::endl;
+	
+	return 1;
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5 };
+	std::cout << "반복자간 거리 - " << dist(v.begin(), v.end()) << std::endl;
+
+}
+
+파일이름: 소스.cpp
+파일크기: 1011
+저장시간: 2022-05-26 11:19:53 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <iterator>
+#include <list>
+#include "save.h"
+#include "STRING.h"
+
+
+template <class T>
+long long dist(T b, T e)
+{
+	// T가 반복자일때만 실행되게 하자
+	// 랜덤 반복자만 실행되게 할 수 있나?
+	if (std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<T>::iterator_category>)
+		std::cout << "반복자네~" << std::endl;
+	else
+		std::cout << "반복자가 아님" << std::endl;
+	
+	return 1;
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5 };
+	std::cout << "반복자간 거리 - " << dist(v.begin(), v.end()) << std::endl;
+
+	std::list<int> lst{ 1,2,3 };
+	dist(lst.begin(), lst.end());
+}
+
+파일이름: 소스.cpp
+파일크기: 985
+저장시간: 2022-05-26 11:22:27 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <iterator>
+#include <list>
+#include "save.h"
+#include "STRING.h"
+
+
+template <class T>
+long long dist(T b, T e)
+{
+	// T가 반복자일때만 실행되게 하자
+	// 랜덤 반복자만 실행되게 할 수 있나?
+	if (std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<T>::iterator_category>)
+		std::cout << "반복자네~" << std::endl;
+	else
+		std::cout << "반복자가 아님" << std::endl;
+	
+	return 1;
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5 };
+	std::cout << "반복자간 거리 - " << dist(v.begin(), v.end()) << std::endl;
+
+	int arr[10];
+	dist(arr, arr + 1);
+}
+
+파일이름: 소스.cpp
+파일크기: 979
+저장시간: 2022-05-26 11:23:22 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <iterator>
+#include <list>
+#include "save.h"
+#include "STRING.h"
+
+
+template <class T>
+long long dist(T b, T e)
+{
+	// T가 반복자일때만 실행되게 하자
+	// 랜덤 반복자만 실행되게 할 수 있나?
+	if (std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<T>::iterator_category>)
+		std::cout << "반복자네~" << std::endl;
+	else
+		std::cout << "반복자가 아님" << std::endl;
+	
+	return 1;
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5 };
+	dist(v.begin(), v.end());
+
+	int arr[10];
+	dist(arr, arr + 1);
+
+	STRING s;
+	dist(s.begin(), s.end());
+}
+
+파일이름: 소스.cpp
+파일크기: 1235
+저장시간: 2022-05-26 11:28:08 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <list>
+#include "save.h"
+#include "STRING.h"
+
+
+template <class T>
+long long dist(T b, T e)
+{
+	
+	if (std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<T>::iterator_category>)
+	{
+		// 만일 T가 랜덤반복자라면
+		//		e - b가 거리이다.
+		if (std::is_same_v<std::random_access_iterator_tag, typename std::iterator_traits<T>::iterator_category>)
+			return e - b;
+	}
+	else
+	{
+		// 그렇지 않다면
+		//		b부터 몇 번 이동하는 지 세야한다.
+
+		return 100;
+	}
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5 };
+	std::cout << dist(v.begin(), v.end()) << std::endl;
+
+	/*std::list<int> lst{ 1,2,3,4,5 };
+	std::cout << dist(lst.begin(), lst.end()) << std::endl;*/
+
+	int arr[10];
+	std::cout << dist(arr, arr + 1) << std::endl;
+
+	STRING s;
+	std::cout << dist(s.begin(), s.end()) << std::endl;
+}
+
+파일이름: 소스.cpp
+파일크기: 1424
+저장시간: 2022-05-26 11:32:56 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <list>
+#include "save.h"
+#include "STRING.h"
+
+
+template <class T>
+long long dist(T b, T e)
+{
+	
+	if (std::is_base_of_v<std::input_iterator_tag, typename std::iterator_traits<T>::iterator_category>)
+	{
+		// 만일 T가 랜덤반복자라면
+		//		e - b가 거리이다.
+		if constexpr(std::is_same_v<std::random_access_iterator_tag, typename std::iterator_traits<T>::iterator_category>)
+			return e - b;
+		// 랜덤반복자가 아닌 경우에도 e-b 문장이 생성되어 컴파일 오류가 발생
+		// - 이전 해결 기법 - tag dispatching으로 해결
+		// c++ 17부터는 constexpr if로 선택적 컴파일 가능
+		else
+		{
+			// 그렇지 않다면
+			//		b부터 몇 번 이동하는 지 세야한다.
+
+			return 100;
+		}
+	}
+	
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	std::vector<int> v{ 1,2,3,4,5 };
+	std::cout << dist(v.begin(), v.end()) << std::endl;
+
+	std::list<int> lst{ 1,2,3,4,5 };
+	std::cout << dist(lst.begin(), lst.end()) << std::endl;
+
+	int arr[10];
+	std::cout << dist(arr, arr + 1) << std::endl;
+
+	STRING s;
+	std::cout << dist(s.begin(), s.end()) << std::endl;
+}
+
+파일이름: 소스.cpp
+파일크기: 835
+저장시간: 2022-05-26 11:59:17 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <concepts>
+#include <vector>
+#include <deque>
+#include "save.h"
+#include "STRING.h"
+
+template<std::contiguous_iterator T>
+void f(T a, T b)
+{
+	std::cout << "Coniguous 반복자입니다." << std::endl;
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	// [문제] contiguous iterator일때만 작동되는 함수 f를 만들고 싶다.
+
+	std::vector<int> v;
+	f(v.begin(), v.end());		// v는 contiguous
+	std::deque<int> dq;
+	//f(dq.begin(), dq.end());	// d는 랜덤이지 contiguous가 아니다.
+}
+
+파일이름: 소스.cpp
+파일크기: 1068
+저장시간: 2022-05-26 12:11:55 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <concepts>
+#include <vector>
+#include <list>
+#include "save.h"
+#include "STRING.h"
+
+template<std::input_iterator Iter>
+long long dist(Iter b, Iter e)
+{
+	if constexpr (std::is_same_v<std::random_access_iterator_tag, typename std::iterator_traits<Iter>::iterator_category>)
+		return e - b;
+	int step{};
+	while (b != e) {
+		++step; ++b;
+	}
+	return step;
+}
+
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	// [문제] 표준 distance와 같은 dist를 구현하라.
+
+	std::vector<int> v{ 1,2,3,4,5,6,7,8 };
+	std::cout << dist(v.begin(), v.end()) << std::endl;		// v는 contiguous
+	std::list<int> lst{ 1,2,3,4 };
+	std::cout << dist(lst.begin(), lst.end()) << std::endl;	// d는 랜덤이지 contiguous가 아니다.
+}
+
+파일이름: 소스.cpp
+파일크기: 585
+저장시간: 2022-05-26 12:17:47 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 5월 26일 목요일(13주 1일)
+// 
+//  concepts
+//		range/view
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <list>
+#include <ranges>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	/*std::list<int> lst{ 1,2,3 };
+	std::sort()
+	std::ranges::sort(lst);*/
+}
