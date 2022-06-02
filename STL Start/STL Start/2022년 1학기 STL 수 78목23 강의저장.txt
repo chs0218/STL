@@ -13531,3 +13531,1234 @@ int main()
 	std::sort()
 	std::ranges::sort(lst);*/
 }
+
+파일이름: 소스.cpp
+파일크기: 1223
+저장시간: 2022-06-02 10:48:11 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <deque>
+#include <forward_list>
+#include <vector>
+#include <list>
+#include <ranges>
+#include <algorithm>
+#include <concepts>
+#include "save.h"
+#include "STRING.h"
+
+// input_iterator가 아니면 컴파일이 되지 않음
+template<std::input_iterator Iter>
+void f(Iter iter)
+{
+	if (std::contiguous_iterator<Iter>)
+		std::cout << "contiguous 반복자입니다." << std::endl;
+	if (std::random_access_iterator<Iter>)
+		std::cout << "random_access 반복자입니다." << std::endl;
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	// [문제] 함수 f는 반복자만 인자로 받아들인다.
+	// 인자로 전달된 반복자의 category를 출력한다.
+
+	// f(1);		// 제약조건 충족 안됨
+	f(std::vector<char>::iterator{});
+	f(std::deque<int>::iterator{});
+	f(std::list<float>::iterator{});
+	f(std::forward_list<double>::const_iterator{});
+}
+
+파일이름: 소스.cpp
+파일크기: 1584
+저장시간: 2022-06-02 10:51:31 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <deque>
+#include <forward_list>
+#include <vector>
+#include <list>
+#include <ranges>
+#include <algorithm>
+#include <concepts>
+#include "save.h"
+#include "STRING.h"
+
+// input_iterator가 아니면 컴파일이 되지 않음
+template<std::input_iterator Iter>
+void f(Iter iter)
+{
+	if (std::contiguous_iterator<Iter>)
+		std::cout << "contiguous 반복자입니다." << std::endl;
+	if (std::random_access_iterator<Iter>)
+		std::cout << "random_access 반복자입니다." << std::endl;
+	if (std::bidirectional_iterator<Iter>)
+		std::cout << "bidirectional 반복자입니다." << std::endl;
+	if (std::forward_iterator<Iter>)
+		std::cout << "foward 반복자입니다." << std::endl;
+	std::cout << "======================================================" << std::endl;
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	// [문제] 함수 f는 반복자만 인자로 받아들인다.
+	// 인자로 전달된 반복자의 category를 출력한다.
+
+	// f(1);		// 제약조건 충족 안됨
+	std::cout << "======================================================" << std::endl;
+	f(std::vector<char>::iterator{});
+	f(std::deque<int>::iterator{});
+	f(std::list<float>::iterator{});
+	f(std::forward_list<double>::const_iterator{});
+}
+
+파일이름: 소스.cpp
+파일크기: 1657
+저장시간: 2022-06-02 10:52:49 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <deque>
+#include <forward_list>
+#include <vector>
+#include <list>
+#include <ranges>
+#include <algorithm>
+#include <concepts>
+#include "save.h"
+#include "STRING.h"
+
+// input_iterator가 아니면 컴파일이 되지 않음
+template<std::input_iterator Iter>
+void f(Iter iter)
+{
+	if (std::contiguous_iterator<Iter>)
+		std::cout << "contiguous 반복자입니다." << std::endl;
+	else if (std::random_access_iterator<Iter>)
+		std::cout << "random_access 반복자입니다." << std::endl;
+	else if (std::bidirectional_iterator<Iter>)
+		std::cout << "bidirectional 반복자입니다." << std::endl;
+	else if (std::forward_iterator<Iter>)
+		std::cout << "foward 반복자입니다." << std::endl;
+	else
+		std::cout << "반복자이긴 합니다." << std::endl;
+	std::cout << "======================================================" << std::endl;
+}
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	// [문제] 함수 f는 반복자만 인자로 받아들인다.
+	// 인자로 전달된 반복자의 category를 출력한다.
+
+	// f(1);		// 제약조건 충족 안됨
+	std::cout << "======================================================" << std::endl;
+	f(std::vector<char>::iterator{});
+	f(std::deque<int>::iterator{});
+	f(std::list<float>::iterator{});
+	f(std::forward_list<double>::const_iterator{});
+}
+
+파일이름: 소스.cpp
+파일크기: 1214
+저장시간: 2022-06-02 11:15:29 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <list>
+#include <ranges>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+// Ranges library
+// Ranges library는 algorithms, iterator libraries를 확장화, 일반화한 것이다.
+// 이를 통해 algorithms와 iterator libraries가 조합을 할 수 있고 덜 에러가 생기게 함으로서 더 강력하게 만든다.
+// Ranges library는 range views를 만들고 조작한다. 
+// view란 경량 오브젝트인데 간접적으로 iterable sequences를 표현한다(즉, 포인팅한다).
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	std::vector<int> v{ 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 };
+	// std::list<int> v{ 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 };
+	// => 리스트는 제약조건이 충족되지 않았어
+
+	// [문제] v를 오름차순 정렬하고 출력한다.
+	std::ranges::sort(v);
+	
+	for (int n : v)
+		std::cout << n << " ";
+	std::cout << std::endl;
+}
+
+파일이름: 소스.cpp
+파일크기: 1131
+저장시간: 2022-06-02 11:15:44 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <list>
+#include <ranges>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+// Ranges library
+// Ranges library는 algorithms, iterator libraries를 확장화, 일반화한 것이다.
+// 이를 통해 algorithms와 iterator libraries가 조합을 할 수 있고 덜 에러가 생기게 함으로서 더 강력하게 만든다.
+// Ranges library는 range views를 만들고 조작한다. 
+// view란 경량 오브젝트인데 간접적으로 iterable sequences를 표현한다(즉, 포인팅한다).
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	std::vector<int> v{ 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 };
+
+	// [문제] v를 오름차순 정렬하고 출력한다.
+	std::ranges::sort(v.begin(), v.end());
+	
+	for (int n : v)
+		std::cout << n << " ";
+	std::cout << std::endl;
+}
+
+파일이름: 소스.cpp
+파일크기: 1133
+저장시간: 2022-06-02 11:16:48 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <list>
+#include <ranges>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+// Ranges library
+// Ranges library는 algorithms, iterator libraries를 확장화, 일반화한 것이다.
+// 이를 통해 algorithms와 iterator libraries가 조합을 할 수 있고 덜 에러가 생기게 함으로서 더 강력하게 만든다.
+// Ranges library는 range views를 만들고 조작한다. 
+// view란 경량 오브젝트인데 간접적으로 iterable sequences를 표현한다(즉, 포인팅한다).
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	std::vector<int> v{ 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 };
+
+	// [문제] v를 오름차순 정렬하고 출력한다.
+	std::ranges::sort(v.rbegin(), v.rend());
+	
+	for (int n : v)
+		std::cout << n << " ";
+	std::cout << std::endl;
+}
+
+파일이름: 소스.cpp
+파일크기: 1135
+저장시간: 2022-06-02 11:17:10 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <list>
+#include <ranges>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+// Ranges library
+// Ranges library는 algorithms, iterator libraries를 확장화, 일반화한 것이다.
+// 이를 통해 algorithms와 iterator libraries가 조합을 할 수 있고 덜 에러가 생기게 함으로서 더 강력하게 만든다.
+// Ranges library는 range views를 만들고 조작한다. 
+// view란 경량 오브젝트인데 간접적으로 iterable sequences를 표현한다(즉, 포인팅한다).
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	std::vector<int> v{ 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 };
+
+	// [문제] v를 오름차순 정렬하고 출력한다.
+	std::ranges::sort(v, std::greater<int>{});
+	
+	for (int n : v)
+		std::cout << n << " ";
+	std::cout << std::endl;
+}
+
+파일이름: 소스.cpp
+파일크기: 1514
+저장시간: 2022-06-02 11:26:06 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <ranges>
+#include <algorithm>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+// Ranges library
+// Ranges library는 algorithms, iterator libraries를 확장화, 일반화한 것이다.
+// 이를 통해 algorithms와 iterator libraries가 조합을 할 수 있고 덜 에러가 생기게 함으로서 더 강력하게 만든다.
+// Ranges library는 range views를 만들고 조작한다. 
+// view란 경량 오브젝트인데 간접적으로 iterable sequences를 표현한다(즉, 포인팅한다).
+
+std::default_random_engine dre;
+std::uniform_int_distribution<> uidAge{ 1,1000 };
+std::uniform_int_distribution<> uidName{ 'a', 'z' };
+class Dog {
+	int age;
+	std::string name;
+public:	
+	Dog() {
+		age = uidAge(dre);
+		for (int i = 0; i < 10; ++i)
+			name += uidName(dre);
+	}
+
+	std::string getName() const {
+		return name;
+	}
+
+	void show() const {
+		std::cout << name << " - " << age << std::endl;
+	}
+};
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	std::vector<Dog> v(100);
+
+	// [문제] 이름 오름차순 정렬하라
+	std::ranges::sort(v, {}, &Dog::getName);
+	
+	for (const Dog& dog : v)
+		dog.show();
+}
+
+파일이름: 소스.cpp
+파일크기: 1828
+저장시간: 2022-06-02 11:27:25 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <ranges>
+#include <algorithm>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+// Ranges library
+// Ranges library는 algorithms, iterator libraries를 확장화, 일반화한 것이다.
+// 이를 통해 algorithms와 iterator libraries가 조합을 할 수 있고 덜 에러가 생기게 함으로서 더 강력하게 만든다.
+// Ranges library는 range views를 만들고 조작한다. 
+// view란 경량 오브젝트인데 간접적으로 iterable sequences를 표현한다(즉, 포인팅한다).
+
+std::default_random_engine dre;
+std::uniform_int_distribution<> uidAge{ 1,1000 };
+std::uniform_int_distribution<> uidName{ 'a', 'z' };
+class Dog {
+	int age;
+	std::string name;
+public:	
+	Dog() {
+		age = uidAge(dre);
+		for (int i = 0; i < 10; ++i)
+			name += uidName(dre);
+	}
+
+	std::string getName() const {
+		return name;
+	}
+
+	int getAge() const {
+		return age;
+	}
+
+	void show() const {
+		std::cout << name << " - " << age << std::endl;
+	}
+};
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	std::vector<Dog> v(100);
+
+	// [문제] 이름 오름차순 정렬하라
+	
+	std::cout << "========================이름 오름차순========================" << std::endl;
+	std::ranges::sort(v, {}, &Dog::getName);
+	for (const Dog& dog : v)
+		dog.show();
+	std::cout << "========================나이 오름차순========================" << std::endl;
+	std::ranges::sort(v, {}, &Dog::getAge);
+	for (const Dog& dog : v)
+		dog.show();
+}
+
+파일이름: 소스.cpp
+파일크기: 1608
+저장시간: 2022-06-02 11:28:07 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <ranges>
+#include <algorithm>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+// Ranges library
+// Ranges library는 algorithms, iterator libraries를 확장화, 일반화한 것이다.
+// 이를 통해 algorithms와 iterator libraries가 조합을 할 수 있고 덜 에러가 생기게 함으로서 더 강력하게 만든다.
+// Ranges library는 range views를 만들고 조작한다. 
+// view란 경량 오브젝트인데 간접적으로 iterable sequences를 표현한다(즉, 포인팅한다).
+
+std::default_random_engine dre;
+std::uniform_int_distribution<> uidAge{ 1,1000 };
+std::uniform_int_distribution<> uidName{ 'a', 'z' };
+class Dog {
+	int age;
+	std::string name;
+public:	
+	Dog() {
+		age = uidAge(dre);
+		for (int i = 0; i < 10; ++i)
+			name += uidName(dre);
+	}
+
+	std::string getName() const {
+		return name;
+	}
+
+	int getAge() const {
+		return age;
+	}
+
+	void show() const {
+		std::cout << name << " - " << age << std::endl;
+	}
+};
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	std::vector<Dog> v(100);
+
+	// [문제] 이름 오름차순 정렬하라
+	
+	std::ranges::sort(v, [](const Dog& a, const Dog& b) {return a.getName() < b.getName(); });
+	for (const Dog& dog : v)
+		dog.show();
+}
+
+파일이름: 소스.cpp
+파일크기: 1580
+저장시간: 2022-06-02 11:29:08 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <ranges>
+#include <algorithm>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+// Ranges library
+// Ranges library는 algorithms, iterator libraries를 확장화, 일반화한 것이다.
+// 이를 통해 algorithms와 iterator libraries가 조합을 할 수 있고 덜 에러가 생기게 함으로서 더 강력하게 만든다.
+// Ranges library는 range views를 만들고 조작한다. 
+// view란 경량 오브젝트인데 간접적으로 iterable sequences를 표현한다(즉, 포인팅한다).
+
+std::default_random_engine dre;
+std::uniform_int_distribution<> uidAge{ 1,1000 };
+std::uniform_int_distribution<> uidName{ 'a', 'z' };
+class Dog {
+	int age;
+	std::string name;
+public:	
+	Dog() {
+		age = uidAge(dre);
+		for (int i = 0; i < 10; ++i)
+			name += uidName(dre);
+	}
+
+	std::string getName() const {
+		return name;
+	}
+
+	int getAge() const {
+		return age;
+	}
+
+	void show() const {
+		std::cout << name << " - " << age << std::endl;
+	}
+};
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	std::vector<Dog> v(100);
+
+	// [문제] 이름 오름차순 정렬하라
+	
+	std::ranges::sort(v, std::less<std::string>(), &Dog::getName);
+	for (const Dog& dog : v)
+		dog.show();
+}
+
+파일이름: 소스.cpp
+파일크기: 1583
+저장시간: 2022-06-02 11:29:35 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <ranges>
+#include <algorithm>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+// Ranges library
+// Ranges library는 algorithms, iterator libraries를 확장화, 일반화한 것이다.
+// 이를 통해 algorithms와 iterator libraries가 조합을 할 수 있고 덜 에러가 생기게 함으로서 더 강력하게 만든다.
+// Ranges library는 range views를 만들고 조작한다. 
+// view란 경량 오브젝트인데 간접적으로 iterable sequences를 표현한다(즉, 포인팅한다).
+
+std::default_random_engine dre;
+std::uniform_int_distribution<> uidAge{ 1,1000 };
+std::uniform_int_distribution<> uidName{ 'a', 'z' };
+class Dog {
+	int age;
+	std::string name;
+public:	
+	Dog() {
+		age = uidAge(dre);
+		for (int i = 0; i < 10; ++i)
+			name += uidName(dre);
+	}
+
+	std::string getName() const {
+		return name;
+	}
+
+	int getAge() const {
+		return age;
+	}
+
+	void show() const {
+		std::cout << name << " - " << age << std::endl;
+	}
+};
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	std::vector<Dog> v(100);
+
+	// [문제] 이름 오름차순 정렬하라
+	
+	std::ranges::sort(v, std::greater<std::string>(), &Dog::getName);
+	for (const Dog& dog : v)
+		dog.show();
+}
+
+파일이름: 소스.cpp
+파일크기: 1577
+저장시간: 2022-06-02 11:30:31 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <ranges>
+#include <algorithm>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+// Ranges library
+// Ranges library는 algorithms, iterator libraries를 확장화, 일반화한 것이다.
+// 이를 통해 algorithms와 iterator libraries가 조합을 할 수 있고 덜 에러가 생기게 함으로서 더 강력하게 만든다.
+// Ranges library는 range views를 만들고 조작한다. 
+// view란 경량 오브젝트인데 간접적으로 iterable sequences를 표현한다(즉, 포인팅한다).
+
+std::default_random_engine dre;
+std::uniform_int_distribution<> uidAge{ 1,1000 };
+std::uniform_int_distribution<> uidName{ 'a', 'z' };
+class Dog {
+	int age;
+	std::string name;
+public:	
+	Dog() {
+		age = uidAge(dre);
+		for (int i = 0; i < 10; ++i)
+			name += uidName(dre);
+	}
+
+	std::string getName() const {
+		return name;
+	}
+
+	int getAge() const {
+		return age;
+	}
+
+	void show() const {
+		std::cout << name << " - " << age << std::endl;
+	}
+};
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	std::vector<Dog> v(100);
+
+	// [문제] num 오름차순 정렬하라
+	
+	std::ranges::sort(v, {} /*std::less<int>()*/, &Dog::getAge);
+	for (const Dog& dog : v)
+		dog.show();
+}
+
+파일이름: 소스.cpp
+파일크기: 1600
+저장시간: 2022-06-02 11:33:01 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <ranges>
+#include <algorithm>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+// Ranges library
+// Ranges library는 algorithms, iterator libraries를 확장화, 일반화한 것이다.
+// 이를 통해 algorithms와 iterator libraries가 조합을 할 수 있고 덜 에러가 생기게 함으로서 더 강력하게 만든다.
+// Ranges library는 range views를 만들고 조작한다. 
+// view란 경량 오브젝트인데 간접적으로 iterable sequences를 표현한다(즉, 포인팅한다).
+
+std::default_random_engine dre;
+std::uniform_int_distribution<> uidAge{ 1,1000 };
+std::uniform_int_distribution<> uidName{ 'a', 'z' };
+class Dog {
+	int age;
+	std::string name;
+public:	
+	Dog() {
+		age = uidAge(dre);
+		for (int i = 0; i < 10; ++i)
+			name += uidName(dre);
+	}
+
+	std::string getName() const {
+		return name;
+	}
+
+	int getAge() const {
+		return age;
+	}
+
+	void show() const {
+		std::cout << name << " - " << age << std::endl;
+	}
+};
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	std::vector<Dog> v(100);
+
+	// [문제] num 오름차순 정렬하라
+	
+	std::ranges::sort(v, {} /*std::less<int>()*/, &Dog::getAge);
+	for (const Dog& dog : v | std::views::take(10))
+		dog.show();
+}
+
+파일이름: 소스.cpp
+파일크기: 1622
+저장시간: 2022-06-02 11:33:21 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <vector>
+#include <ranges>
+#include <algorithm>
+#include <string>
+#include <random>
+#include "save.h"
+#include "STRING.h"
+
+// Ranges library
+// Ranges library는 algorithms, iterator libraries를 확장화, 일반화한 것이다.
+// 이를 통해 algorithms와 iterator libraries가 조합을 할 수 있고 덜 에러가 생기게 함으로서 더 강력하게 만든다.
+// Ranges library는 range views를 만들고 조작한다. 
+// view란 경량 오브젝트인데 간접적으로 iterable sequences를 표현한다(즉, 포인팅한다).
+
+std::default_random_engine dre;
+std::uniform_int_distribution<> uidAge{ 1,1000 };
+std::uniform_int_distribution<> uidName{ 'a', 'z' };
+class Dog {
+	int age;
+	std::string name;
+public:	
+	Dog() {
+		age = uidAge(dre);
+		for (int i = 0; i < 10; ++i)
+			name += uidName(dre);
+	}
+
+	std::string getName() const {
+		return name;
+	}
+
+	int getAge() const {
+		return age;
+	}
+
+	void show() const {
+		std::cout << name << " - " << age << std::endl;
+	}
+};
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	
+	std::vector<Dog> v(100);
+
+	// [문제] num 오름차순 정렬하라
+	
+	std::ranges::sort(v, {} /*std::less<int>()*/, &Dog::getAge);
+	for (const Dog& dog : v | std::views::reverse | std::views::take(10))
+		dog.show();
+}
+
+파일이름: 소스.cpp
+파일크기: 732
+저장시간: 2022-06-02 12:03:57 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <ranges>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	int a[]{ 1,2,3,4,5,6,7,8,9,10 };
+	auto v = std::views::all(a);
+	std::cout << "a의 크기: " << sizeof(a) << std::endl;
+	std::cout << "a의 모든 원소로 구성된 view v 의 크기: " << sizeof(v) << std::endl;
+}
+
+파일이름: 소스.cpp
+파일크기: 795
+저장시간: 2022-06-02 12:06:10 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <ranges>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	int a[]{ 1,2,3,4,5,6,7,8,9,10 };
+	auto v = std::views::all(a);
+	std::cout << "a의 크기: " << sizeof(a) << std::endl;
+	std::cout << "a의 모든 원소로 구성된 view v 의 크기: " << sizeof(v) << std::endl;
+	std::cout << "v의 타입 - " << typeid(v).name() << std::endl;
+}
+
+파일이름: 소스.cpp
+파일크기: 887
+저장시간: 2022-06-02 12:07:25 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <ranges>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	int a[]{ 1,2,3,4,5,6,7,8,9,10 };
+	auto v = std::views::all(a);
+	std::cout << "a의 크기: " << sizeof(a) << std::endl;
+	std::cout << "a의 모든 원소로 구성된 view v 의 크기: " << sizeof(v) << std::endl;
+	std::cout << "v의 타입 - " << typeid(v).name() << std::endl;
+
+	*v.begin() = 200;
+	for (int n : a)
+		std::cout << n << " ";
+	std::cout << std::endl;
+}
+
+파일이름: 소스.cpp
+파일크기: 741
+저장시간: 2022-06-02 12:13:36 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <ranges>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	int a[]{ 1,2,3,4,5,6,7,8,9,10 };
+	
+	// [문제] a에서 홀수만 출력하라
+	auto 홀수 = [](int n) { return n % 2; };
+
+	for (int n : a | std::views::filter(홀수))
+		std::cout << n << " ";
+	std::cout << std::endl;
+}
+
+파일이름: 소스.cpp
+파일크기: 828
+저장시간: 2022-06-02 12:15:57 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <ranges>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	int a[]{ 1,2,3,4,5,6,7,8,9,10 };
+	
+	// [문제] a에서 홀수만 제곱하여 출력하라
+	auto 홀수 = [](int n) { return n % 2; };
+	auto 제곱 = [](int n) {return n * n; };
+
+	for (int n : a	| std::views::filter(홀수)
+					| std::views::transform(제곱))
+		std::cout << n << " ";
+	std::cout << std::endl;
+}
+
+파일이름: 소스.cpp
+파일크기: 925
+저장시간: 2022-06-02 12:17:02 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <ranges>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	int a[]{ 1,2,3,4,5,6,7,8,9,10 };
+	
+	// [문제] a에서 홀수만 제곱하여 출력하라
+	auto 홀수 = [](int n) { return n % 2; };
+	auto 제곱 = [](int n) {return n * n; };
+
+	for (int n : a	| std::views::filter(홀수)
+					| std::views::transform(제곱))
+		std::cout << n << " ";
+	std::cout << std::endl;
+
+	// 원 자료 a는 바뀌나?
+	for (int n : a)
+		std::cout << n << " ";
+	std::cout << std::endl;
+}
+
+파일이름: 소스.cpp
+파일크기: 863
+저장시간: 2022-06-02 12:18:05 GMT+9
+
+//-----------------------------------------------------------------------------
+// 2022. 1학기 STL 6월 2일 목요일(13주 2일)
+// 
+// C++20 언어 4가지 핵심
+//  concepts
+//	range/view
+//  coroutine
+//  module
+// 
+// 6/15(수) - 15주 1일 기말시험
+// 6/16(목) - 강의 정리
+//-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <ranges>
+#include <algorithm>
+#include "save.h"
+#include "STRING.h"
+
+
+//---------
+int main()
+//---------
+{
+	save("소스.cpp");
+	int a[]{ 1,2,3,4,5,6,7,8,9,10 };
+	
+	// [문제] a에서 홀수만 제곱하여 거꾸로 출력하라
+	auto 홀수 = [](int n) { return n % 2; };
+	auto 제곱 = [](int n) {return n * n; };
+
+	for (int n : a	| std::views::filter(홀수)
+					| std::views::transform(제곱)
+					| std::views::reverse)
+		std::cout << n << " ";
+	std::cout << std::endl;
+}
