@@ -1,0 +1,22 @@
+C++ STL
+
+STL - Container <- iterator - >Algorithm
+iterator는 알고리즘과 컨테이너를 이어줌
+
+Container - Sequential, Associative, Unordered Associative 3 종류
+
+Sequential - array, vector, deque, foward_list, list
+Associative - set, map, multiset, multimap
+Unordered Associative - unordered_set, unordered_map, unordered_multiset, unordered_multimap
+
+Algorithm은?
+constrained Algorithm으로 확장
+=> algorithm을 Concept으로 재코딩
+
+Concept는 템플릿에 전달되는 자료형이 내가 원하는 자료형인지 컴파일 단계에서 확인
+T[], string, STRING => array, vector => span<T> => 메모리가 붙어있는 자료형
+
+Container + file[begin, end) => range => [begin, end)로 묶을 수 있는 자료형
+range를 쳐다볼 수 있는 light_weight 자료형 => view
+
+constrained algorithm은 view로 등장 
