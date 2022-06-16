@@ -144,9 +144,11 @@
   <ItemGroup>
     <ClCompile Include="save.cpp" />
     <ClCompile Include="STRING.cpp" />
-    <ClCompile Include="소스 - 시험.cpp" />
-    <ClCompile Include="소스.cpp">
+    <ClCompile Include="소스 - 시험.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="소스.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -20,3 +20,5 @@ Container + file[begin, end) => range => [begin, end)로 묶을 수 있는 자�
 range를 쳐다볼 수 있는 light_weight 자료형 => view
 
 constrained algorithm은 view로 등장 
+
+

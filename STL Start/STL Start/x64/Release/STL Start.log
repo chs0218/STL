@@ -1,12 +1,1 @@
-﻿  소스 - 시험.cpp
-D:\Projects\STL\STL Start\STL Start\소스 - 시험.cpp(102,20): warning C4244: '=': '__int64'에서 '_Ty'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-          with
-          [
-              _Ty=int
-          ]
-     D:\Projects\STL\STL Start\x64\Release\STL Start.lib 라이브러리 및 D:\Projects\STL\STL Start\x64\Release\STL Start.exp 개체를 생성하고 있습니다.
-  코드를 생성하고 있습니다.
-  Previous IPDB and IOBJ mismatch, fall back to full compilation.
-  All 443 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  코드를 생성했습니다.
-  STL Start.vcxproj -> D:\Projects\STL\STL Start\x64\Release\STL Start.exe
+﻿  STL Start.vcxproj -> D:\Projects\STL\STL Start\x64\Release\STL Start.exe
